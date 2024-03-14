@@ -17,7 +17,7 @@ public class Draw : MonoBehaviour
     {
         for(var i = 0; i < 10; i++)
         {
-            GameObject playerCard = Instantiate(Card1, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject playerCard = Instantiate(Card1, new Vector2(0, 0), Quaternion.identity);
             playerCard.transform.SetParent(MyHand.transform, false);
         }
     }
