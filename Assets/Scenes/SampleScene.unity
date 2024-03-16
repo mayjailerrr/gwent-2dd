@@ -714,7 +714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerArea: {fileID: 234077212}
-  Card1: {fileID: 4397274632597667295, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
+  Card1: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
   Card2: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
   Card3: {fileID: 9218734456664155323, guid: 6c8ada5622d08a8609020f21853b5ecd, type: 3}
 --- !u!1 &1771581198
