@@ -6,6 +6,8 @@ public class Draw : MonoBehaviour
 {
     public GameObject PlayerArea;
     public GameObject Card1;
+    public GameObject Card2;
+    public GameObject Card3;
 
     List <GameObject> cards = new List<GameObject>();
 
@@ -14,6 +16,8 @@ public class Draw : MonoBehaviour
     void Start()
     {
        cards.Add(Card1); 
+       cards.Add(Card2);
+       cards.Add(Card3);
     }
 
     public void OnClick()
