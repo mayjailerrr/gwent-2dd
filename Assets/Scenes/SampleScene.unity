@@ -198,7 +198,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Draw
+  m_Text: 
 --- !u!222 &525312568
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -605,7 +605,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 391, y: -103.21}
-  m_SizeDelta: {x: 48, y: 60}
+  m_SizeDelta: {x: 45, y: 57}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375366793
 MonoBehaviour:
@@ -717,6 +717,7 @@ MonoBehaviour:
   Card1: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
   Card2: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
   Card3: {fileID: 9218734456664155323, guid: 6c8ada5622d08a8609020f21853b5ecd, type: 3}
+  Card4: {fileID: 8071366615128438157, guid: 65a0f6d3b5ac7835a85a5a7dd0f1f528, type: 3}
 --- !u!1 &1771581198
 GameObject:
   m_ObjectHideFlags: 0
