@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SiegeZone : MonoBehaviour
 {
-    public GameObject Card3;
+    public GameObject Card31;
+    public GameObject Card32;
+    public GameObject Card33;
     public GameObject WarZone;
     // Start is called before the first frame update
     void Start()
@@ -13,8 +15,14 @@ public class SiegeZone : MonoBehaviour
     }
     public void PlayCard()
     {
-        Card3.transform.SetParent(WarZone.transform, false);
-        Card3.transform.position = WarZone.transform.position;
+        Card31.transform.SetParent(WarZone.transform, false);
+        Card31.transform.position = WarZone.transform.position;
+
+        Card32.transform.SetParent(WarZone.transform, false);
+        Card32.transform.position = WarZone.transform.position;
+
+        Card33.transform.SetParent(WarZone.transform, false);
+        Card33.transform.position = WarZone.transform.position;
     }
     // Update is called once per frame
     void Update()

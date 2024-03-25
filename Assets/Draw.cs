@@ -5,10 +5,15 @@ using UnityEngine;
 public class Draw : MonoBehaviour
 {
     public GameObject PlayerArea;
-    public GameObject Card1;
-    public GameObject Card2;
-    public GameObject Card3;
-    public GameObject Card4;
+    public GameObject Card11;
+    public GameObject Card12;
+    public GameObject Card13;
+    public GameObject Card21;
+    public GameObject Card22;
+    public GameObject Card23;
+    public GameObject Card31;
+    public GameObject Card32;
+    public GameObject Card33;
 
     List <GameObject> cards = new List<GameObject>();
 
@@ -16,10 +21,15 @@ public class Draw : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       cards.Add(Card1); 
-       cards.Add(Card2);
-       cards.Add(Card3);
-       cards.Add(Card4);
+       cards.Add(Card11); 
+       cards.Add(Card12);
+       cards.Add(Card13);
+       cards.Add(Card21);
+       cards.Add(Card22);
+       cards.Add(Card23);
+       cards.Add(Card31);
+       cards.Add(Card32);
+       cards.Add(Card33);
     }
 
     public void OnClick()

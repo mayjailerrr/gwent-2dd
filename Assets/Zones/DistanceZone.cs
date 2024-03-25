@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DistanceZone : MonoBehaviour
 {
-    public GameObject Card4;
+    public GameObject Card21;
+    public GameObject Card22;
+    public GameObject Card23;
     public GameObject WarZone;
     // Start is called before the first frame update
     void Start()
@@ -13,8 +15,14 @@ public class DistanceZone : MonoBehaviour
     }
     public void PlayCard()
     {
-        Card4.transform.SetParent(WarZone.transform, false);
-        Card4.transform.position = WarZone.transform.position;
+        Card21.transform.SetParent(WarZone.transform, false);
+        Card21.transform.position = WarZone.transform.position;
+
+        Card22.transform.SetParent(WarZone.transform, false);
+        Card22.transform.position = WarZone.transform.position;
+
+        Card23.transform.SetParent(WarZone.transform, false);
+        Card23.transform.position = WarZone.transform.position;
     }
     // Update is called once per frame
     void Update()
