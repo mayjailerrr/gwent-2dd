@@ -14,6 +14,21 @@ public class Draw : MonoBehaviour
     public GameObject Card31;
     public GameObject Card32;
     public GameObject Card33;
+    public GameObject Card41;
+    public GameObject Card42;
+    public GameObject Card43;
+    public GameObject Card44;
+    public GameObject Card51;
+    public GameObject Card52;
+    public GameObject Card53;
+    public GameObject Card54;
+    public GameObject Card55;
+    public GameObject Card56;
+    public GameObject Card61;
+    public GameObject Card62;
+    public GameObject Card63;
+    public GameObject Card64;
+
 
     List <GameObject> cards = new List<GameObject>();
 
@@ -30,6 +45,20 @@ public class Draw : MonoBehaviour
        cards.Add(Card31);
        cards.Add(Card32);
        cards.Add(Card33);
+       cards.Add(Card41); 
+       cards.Add(Card42);
+       cards.Add(Card43);
+       cards.Add(Card44);
+       cards.Add(Card51);
+       cards.Add(Card52);
+       cards.Add(Card53);
+       cards.Add(Card54);
+       cards.Add(Card55);
+       cards.Add(Card56);
+       cards.Add(Card61);
+       cards.Add(Card62);
+       cards.Add(Card63);
+       cards.Add(Card64);
     }
 
     public void OnClick()
