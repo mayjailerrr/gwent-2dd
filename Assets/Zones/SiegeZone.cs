@@ -10,7 +10,6 @@ public class SiegeZone : MonoBehaviour
     public GameObject Card43;
     public GameObject Card55;
     public GameObject Card56;
-    public GameObject Card63;
     public GameObject WarZone;
     // Start is called before the first frame update
     void Start()
@@ -36,9 +35,6 @@ public class SiegeZone : MonoBehaviour
 
         Card56.transform.SetParent(WarZone.transform, false);
         Card56.transform.position = WarZone.transform.position;
-
-        Card63.transform.SetParent(WarZone.transform, false);
-        Card63.transform.position = WarZone.transform.position;
 
     }
     // Update is called once per frame

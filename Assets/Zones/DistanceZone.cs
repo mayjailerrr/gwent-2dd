@@ -10,7 +10,6 @@ public class DistanceZone : MonoBehaviour
     public GameObject Card42;
     public GameObject Card53;
     public GameObject Card54;
-    public GameObject Card62;
 
     public GameObject WarZone;
     // Start is called before the first frame update
@@ -37,9 +36,6 @@ public class DistanceZone : MonoBehaviour
 
         Card54.transform.SetParent(WarZone.transform, false);
         Card54.transform.position = WarZone.transform.position;
-
-        Card62.transform.SetParent(WarZone.transform, false);
-        Card62.transform.position = WarZone.transform.position;
 
     }
     // Update is called once per frame

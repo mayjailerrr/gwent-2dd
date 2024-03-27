@@ -10,7 +10,6 @@ public class CACZone : MonoBehaviour
     public GameObject Card41;
     public GameObject Card51;
     public GameObject Card52;
-    public GameObject Card61;
 
     public GameObject WarZone;
     // Start is called before the first frame update
@@ -37,9 +36,6 @@ public class CACZone : MonoBehaviour
 
         Card52.transform.SetParent(WarZone.transform, false);
         Card52.transform.position = WarZone.transform.position;
-
-        Card61.transform.SetParent(WarZone.transform, false);
-        Card61.transform.position = WarZone.transform.position;
 
     }
     // Update is called once per frame

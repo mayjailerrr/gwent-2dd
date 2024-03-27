@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 734623111529764809}
   - component: {fileID: 4622087961521101670}
   - component: {fileID: 2204908564554128621}
-  - component: {fileID: 3427372961531404083}
+  - component: {fileID: 2776009815258080246}
   m_Layer: 5
   m_Name: Card63
   m_TagString: Untagged
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3427372961531404083}
-        m_TargetAssemblyTypeName: SiegeZone, Assembly-CSharp
+      - m_Target: {fileID: 2776009815258080246}
+        m_TargetAssemblyTypeName: SiegeWZone, Assembly-CSharp
         m_MethodName: PlayCard
         m_Mode: 1
         m_Arguments:
@@ -134,7 +134,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3427372961531404083
+--- !u!114 &2776009815258080246
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,15 +143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8404694673516141302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d47b1d85dd75d19bdb3cda831281646b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ffc89bf9c4da99baa6ee879ea17cf5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card31: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
-  Card32: {fileID: 8679952771776733623, guid: b0df10a3d1738b027bac45c5c61e183e, type: 3}
-  Card33: {fileID: 5015624831165230078, guid: 5c9539ad1d94becb1817ce8e5822785c, type: 3}
-  Card43: {fileID: 5602518809618502599, guid: 4ca7b31f4c2c10319a3add6745a59516, type: 3}
-  Card55: {fileID: 5604253332154783724, guid: 66426cad73bf94c2288e3d8b36951848, type: 3}
-  Card56: {fileID: 5048249163915038914, guid: 81021ac96a97b216a99fafdf21ae19eb, type: 3}
   Card63: {fileID: 8404694673516141302}
   WarZone: {fileID: 0}
 --- !u!1 &8742188537097651611
