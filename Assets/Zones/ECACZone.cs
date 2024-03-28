@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class ECACZone : MonoBehaviour
 {
-    public GameObject CardE11;
+    public GameObject ECard11;
+    public GameObject ECard12;
+    public GameObject ECard13;
+    public GameObject ECard41;
+    public GameObject ECard51;
+    public GameObject ECard52;
     public GameObject WarZone;
 
 
@@ -16,8 +21,23 @@ public class ECACZone : MonoBehaviour
 
     public void PlayCard()
     {
-        CardE11.transform.SetParent(WarZone.transform, false);
-        CardE11.transform.position = WarZone.transform.position;
+        ECard11.transform.SetParent(WarZone.transform, false);
+        ECard11.transform.position = WarZone.transform.position;
+
+        ECard12.transform.SetParent(WarZone.transform, false);
+        ECard12.transform.position = WarZone.transform.position;
+
+        ECard13.transform.SetParent(WarZone.transform, false);
+        ECard13.transform.position = WarZone.transform.position;
+
+        ECard41.transform.SetParent(WarZone.transform, false);
+        ECard41.transform.position = WarZone.transform.position;
+
+        ECard51.transform.SetParent(WarZone.transform, false);
+        ECard51.transform.position = WarZone.transform.position;
+
+        ECard52.transform.SetParent(WarZone.transform, false);
+        ECard52.transform.position = WarZone.transform.position;
 
     }
 
