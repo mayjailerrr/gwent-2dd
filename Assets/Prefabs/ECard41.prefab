@@ -166,10 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Joffrey Baratheon
+  TypeOfCard: Follower
   Power: 0
-  TypeOfPower: 0
-  Faction: 0
+  TypeOfPower: Lure
+  Faction: Neutral
   Index: 
 --- !u!1 &6063367231816144078
 GameObject:

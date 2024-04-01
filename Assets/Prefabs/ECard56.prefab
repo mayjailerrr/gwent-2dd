@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  TypeOfCard: 
+  Name: Valyrian Fire
+  TypeOfCard: Follower
   Power: 3
-  TypeOfPower: 
-  Faction: 0
+  TypeOfPower: Augment
+  Faction: Neutral
   Index: 
 --- !u!1 &5524366079922339297
 GameObject:

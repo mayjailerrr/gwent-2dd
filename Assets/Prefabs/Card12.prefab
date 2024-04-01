@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Brienn
-  TypeOfCard: 
+  Name: Brienne of Tarth
+  TypeOfCard: Follower
   Power: 6
-  TypeOfPower: 
-  Faction: 0
+  TypeOfPower: Meele
+  Faction: Cloud of Fraternity
   Index: 
 --- !u!1 &9088076746871510227
 GameObject:

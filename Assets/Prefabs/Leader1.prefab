@@ -213,8 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
+  Name: Bran Stark
+  TypeOfCard: Leader
   Power: 0
-  TypeOfPower: 0
-  Faction: 0
+  TypeOfPower: Special
+  Faction: Cloud of Fraternity
   Index: 

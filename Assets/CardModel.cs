@@ -8,7 +8,7 @@ public class CardModel : MonoBehaviour
     public string TypeOfCard;
     public int Power;
     public string TypeOfPower;
-    public int Faction;
+    public string Faction;
     public string Index;
 
     // Start is called before the first frame update
