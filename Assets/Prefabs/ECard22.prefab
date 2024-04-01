@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1787245349281845337}
   - component: {fileID: 1976048427741826858}
   - component: {fileID: -337539667010794144}
+  - component: {fileID: 1286203204142917499}
   m_Layer: 5
   m_Name: ECard22
   m_TagString: Untagged
@@ -153,6 +154,24 @@ MonoBehaviour:
   ECard53: {fileID: 7482025435920368307, guid: 447228948a4da1d649045a872f0b9b07, type: 3}
   ECard54: {fileID: 3163715936950325898, guid: 7078bb614dc5d3f1aa20fa60c2e5e7bf, type: 3}
   WarZone: {fileID: 0}
+--- !u!114 &1286203204142917499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116640673322373063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  TypeOfCard: 
+  Power: 9
+  TypeOfPower: 
+  Faction: 0
+  Index: 
 --- !u!1 &1998214118581990757
 GameObject:
   m_ObjectHideFlags: 0

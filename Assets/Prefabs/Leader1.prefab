@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 1814276286774367625}
   - component: {fileID: 588938389322084668}
   - component: {fileID: 4012429166250667504}
+  - component: {fileID: 5330554298927383580}
   m_Layer: 5
   m_Name: Leader1
   m_TagString: Untagged
@@ -200,3 +201,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5330554298927383580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3632720989060834427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Power: 0
+  TypeOfPower: 0
+  Faction: 0
+  Index: 

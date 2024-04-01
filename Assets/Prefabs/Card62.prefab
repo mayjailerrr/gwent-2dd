@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6362812089762217123}
   - component: {fileID: 1609812440901199776}
   - component: {fileID: 9092122015477863882}
+  - component: {fileID: 5822641249454394303}
   m_Layer: 5
   m_Name: Card62
   m_TagString: Untagged
@@ -227,3 +228,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Card62: {fileID: 6986718453807437677}
   WarZone: {fileID: 0}
+--- !u!114 &5822641249454394303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986718453807437677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  TypeOfCard: 
+  Power: 5
+  TypeOfPower: 
+  Faction: 0
+  Index: 

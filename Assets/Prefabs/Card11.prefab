@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 4940404601625393144}
   - component: {fileID: 3404240862035272357}
   - component: {fileID: 3988119359035065598}
+  - component: {fileID: -3107772324725245316}
   m_Layer: 5
   m_Name: Card11
   m_TagString: Untagged
@@ -231,5 +232,22 @@ MonoBehaviour:
   Card41: {fileID: 6030625687827019222, guid: afe7ad55b65dda4fdba47b2f3c1f58b8, type: 3}
   Card51: {fileID: 556377470672438169, guid: b3754b01f8bbd5e73824ef03ae9c06aa, type: 3}
   Card52: {fileID: 6747672165475763347, guid: a9ef9a70d1efd74e3a47b009b1e45b55, type: 3}
-  Card61: {fileID: 5884466880408977679, guid: ec32cf50c15130506a02bdf3f32c9bed, type: 3}
   WarZone: {fileID: 0}
+--- !u!114 &-3107772324725245316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071366615128438157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Arya Stark
+  TypeOfCard: Gold
+  Power: 8
+  TypeOfPower: Melee
+  Faction: 1
+  Index: 

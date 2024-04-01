@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5553729430742829792}
   - component: {fileID: 7844598292444157886}
   - component: {fileID: -8982272589561273942}
+  - component: {fileID: -7638818300372314141}
   m_Layer: 5
   m_Name: Card31
   m_TagString: Untagged
@@ -152,8 +153,25 @@ MonoBehaviour:
   Card43: {fileID: 5602518809618502599, guid: 4ca7b31f4c2c10319a3add6745a59516, type: 3}
   Card55: {fileID: 5604253332154783724, guid: 66426cad73bf94c2288e3d8b36951848, type: 3}
   Card56: {fileID: 5048249163915038914, guid: 81021ac96a97b216a99fafdf21ae19eb, type: 3}
-  Card63: {fileID: 8404694673516141302, guid: abde557b211f6f859b5d63337ec9ee6f, type: 3}
   WarZone: {fileID: 0}
+--- !u!114 &-7638818300372314141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894338261374197898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a5e8a84a7cb3b00ad919e000201be8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  TypeOfCard: 
+  Power: 3
+  TypeOfPower: 
+  Faction: 0
+  Index: 
 --- !u!1 &8752558576756394083
 GameObject:
   m_ObjectHideFlags: 0
