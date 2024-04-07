@@ -119,8 +119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 510.56345, y: 186.73914}
-  m_SizeDelta: {x: 48, y: 60}
+  m_AnchoredPosition: {x: 485.21643, y: 174.9398}
+  m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3088576893232509019
 CanvasRenderer:
@@ -251,8 +251,9 @@ MonoBehaviour:
   TypeOfCard: Follower
   Power: 2
   TypeOfPower: Augment
-  Faction: Neutral
+  Faction: Cloud Of Fraternity
   Index: 
+  Stripe: 0
 --- !u!61 &4266893530322365615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48, y: 60}
+  m_Size: {x: 40, y: 43}
   m_EdgeRadius: 0
 --- !u!50 &3268243730598056654
 Rigidbody2D:

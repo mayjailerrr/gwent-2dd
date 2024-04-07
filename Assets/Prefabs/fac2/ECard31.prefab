@@ -119,8 +119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 505.439, y: 320.56387}
-  m_SizeDelta: {x: 48, y: 60}
+  m_AnchoredPosition: {x: 485.21643, y: 324.89206}
+  m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8737129124395744206
 CanvasRenderer:
@@ -251,8 +251,9 @@ MonoBehaviour:
   TypeOfCard: Gold
   Power: 8
   TypeOfPower: Siege
-  Faction: Reign of Punishment
+  Faction: Reign Of Punishment
   Index: 
+  Stripe: 0
 --- !u!61 &-3433651606537404485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48, y: 60}
+  m_Size: {x: 40, y: 43}
   m_EdgeRadius: 0
 --- !u!50 &-8384572455897944598
 Rigidbody2D:

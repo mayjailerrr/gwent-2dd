@@ -41,7 +41,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 505.439, y: 99.24856}
-  m_SizeDelta: {x: 48, y: 60}
+  m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &734623111529764809
 CanvasRenderer:
@@ -167,8 +167,9 @@ MonoBehaviour:
   TypeOfCard: Follower
   Power: 4
   TypeOfPower: Weather
-  Faction: Neutral
+  Faction: Cloud Of Fraternity
   Index: 
+  Stripe: 0
 --- !u!61 &1065177341952435236
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -212,7 +213,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48, y: 60}
+  m_Size: {x: 40, y: 43}
   m_EdgeRadius: 0
 --- !u!50 &8342725982123642824
 Rigidbody2D:

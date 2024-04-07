@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Strip : MonoBehaviour
 {
     private GameObject CardEntry;
     public List<GameObject> CardsInStripe;
     public int Plus = 0;
-    public Text PunctuationText;
+    public TextMeshProUGUI punctuation;
     public string Faction;
     public int Stripe;
     public GameObject PlayerGraveyard;
@@ -42,7 +43,7 @@ public class Strip : MonoBehaviour
             PartialPlus += CardsInStripe[i].GetComponent<CardModel>().Power;
         }
         Plus = PartialPlus;
-        PunctuationText.text = Plus.ToString();  //ends the Plus
+        punctuation.text = Plus.ToString();  //ends the Plus
         
 
 
@@ -50,7 +51,7 @@ public class Strip : MonoBehaviour
         if(RoundChecker != Round)
         {
             RoundChecker = Round;
-            if(Faction == "Cloud of Fraternity")
+            if(Faction == "Cloud Of Fraternity")
             {
                 foreach(GameObject Card in CardsInStripe)
                 {
@@ -59,10 +60,10 @@ public class Strip : MonoBehaviour
                 }
                 CardsInStripe.Clear();
                 Plus = 0;
-                PunctuationText.text = Plus.ToString();
+                punctuation.text = Plus.ToString();
             }
 
-            if(Faction == "Reign of Punishment")
+            if(Faction == "Reign Of Punishment")
             {
                 foreach(GameObject Card in CardsInStripe)
                 {
@@ -71,7 +72,7 @@ public class Strip : MonoBehaviour
                 }
                 CardsInStripe.Clear();
                 Plus = 0;
-                PunctuationText.text = Plus.ToString();
+                punctuation.text = Plus.ToString();
             }
         }
 

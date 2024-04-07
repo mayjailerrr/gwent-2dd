@@ -119,8 +119,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 510.56345, y: 234.67944}
-  m_SizeDelta: {x: 48, y: 60}
+  m_AnchoredPosition: {x: 485.21643, y: 228.34608}
+  m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3088576893232509019
 CanvasRenderer:
@@ -251,8 +251,9 @@ MonoBehaviour:
   TypeOfCard: Follower
   Power: 2
   TypeOfPower: Augment
-  Faction: Neutral
+  Faction: Reign Of Punishment
   Index: 
+  Stripe: 0
 --- !u!61 &-8521140454537103932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -296,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 48, y: 60}
+  m_Size: {x: 40, y: 43}
   m_EdgeRadius: 0
 --- !u!50 &-2668612280451466235
 Rigidbody2D:

@@ -10,6 +10,8 @@ public class CardModel : MonoBehaviour
     public string TypeOfPower;
     public string Faction;
     public string Index;
+    public int Stripe;
+    public bool Drew = false;
 
     // Start is called before the first frame update
     void Start()

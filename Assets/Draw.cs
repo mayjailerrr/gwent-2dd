@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Draw : MonoBehaviour
 {
@@ -37,7 +38,22 @@ public class Draw : MonoBehaviour
     public GameObject Card63;
 
 
+    
+    public bool Stole = false;
+    public bool Stole2 = false;
+    public bool Stole3 = false;
+    private int Round = 1;
+    
+    
+    // private int Position = 0;
+
+
+
     List <GameObject> cards = new List<GameObject>();
+
+
+
+
 
 
     // Start is called before the first frame update
@@ -72,15 +88,58 @@ public class Draw : MonoBehaviour
        cards.Add(Card61);
        cards.Add(Card62);
        cards.Add(Card63);
+
+
+        foreach(GameObject card in cards)
+        {
+            card.GetComponent<CardModel>().Drew = false;
+        }
+
     }
 
     public void OnClick()
     {
-        for(var i = 0; i < 10; i++)
+
+
+        if (Stole == false)
+        {
+            for(var i = 0; i < 10; i++)
+            {
+            GameObject playerCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0,0), Quaternion.identity);
+            playerCard.transform.SetParent(PlayerArea.transform, false);
+            }
+            Stole = true;
+        }
+        
+
+        if (Stole2 == true && Round == 2)
+        {
+            for (int i= 0; i < 3; i ++)
+            {
+                GameObject playerCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0,0), Quaternion.identity);
+                playerCard.transform.SetParent(PlayerArea.transform, false);
+            }
+            Stole2 = true;
+            
+        }
+
+
+        if (Stole3 == true && Round == 3)
+        {
+            for (int i= 0; i < 4; i ++)
         {
             GameObject playerCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0,0), Quaternion.identity);
             playerCard.transform.SetParent(PlayerArea.transform, false);
         }
+        Stole3 = true;
+        }
+
     }
 
+
+
+    void Update()
+    {
+        Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+    }
 }

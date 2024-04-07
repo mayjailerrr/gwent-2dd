@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public int Round = 1;
-    public Text WinnerIsPlayer;
-    public Text WinnerIsEnemy;
+    public TextMeshProUGUI WinnerIsPlayer;
+    public TextMeshProUGUI WinnerIsEnemy;
     public string PlayerPoints;
     public string EnemyPoints;
-    public Text WinnerText;
+    public TextMeshProUGUI WinnerText;
 
 
     public bool PlayerSurrendered;
@@ -260,6 +261,16 @@ public class GameManager : MonoBehaviour
 
         PlayerPoints = GameObject.Find("PlayerCnt").GetComponent<Text>().text;
         EnemyPoints = GameObject.Find("EnemyCnt").GetComponent<Text>().text;
+
+
+        ESteals = GameObject.Find("Deck2").GetComponent<Draw>().Stole;
+        PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
+        ESteals2 = GameObject.Find("Deck2").GetComponent<Draw>().Stole2;
+        PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
+        ESteals3 = GameObject.Find("Deck2").GetComponent<Draw>().Stole3;
+        PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
+
+
 
 
         //deciding the winner
