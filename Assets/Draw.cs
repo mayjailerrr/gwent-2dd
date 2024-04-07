@@ -6,18 +6,26 @@ public class Draw : MonoBehaviour
 {
     public GameObject PlayerArea;
     public GameObject Card11;
+    public GameObject Card11C1;
     public GameObject Card12;
+    public GameObject Card12C1;
+    public GameObject Card12C2;
     public GameObject Card13;
     public GameObject Card21;
+    public GameObject Card21C1;
     public GameObject Card22;
+    public GameObject Card22C1;
+    public GameObject Card22C2;
     public GameObject Card23;
     public GameObject Card31;
+    public GameObject Card31C1;
     public GameObject Card32;
+    public GameObject Card32C1;
+    public GameObject Card32C2;
     public GameObject Card33;
     public GameObject Card41;
     public GameObject Card42;
     public GameObject Card43;
-    public GameObject Card44;
     public GameObject Card51;
     public GameObject Card52;
     public GameObject Card53;
@@ -27,7 +35,6 @@ public class Draw : MonoBehaviour
     public GameObject Card61;
     public GameObject Card62;
     public GameObject Card63;
-    public GameObject Card64;
 
 
     List <GameObject> cards = new List<GameObject>();
@@ -37,18 +44,25 @@ public class Draw : MonoBehaviour
     void Start()
     {
        cards.Add(Card11); 
+       cards.Add(Card11C1); 
        cards.Add(Card12);
+       cards.Add(Card12C1);
+       cards.Add(Card12C2);
        cards.Add(Card13);
        cards.Add(Card21);
+       cards.Add(Card21C1);
        cards.Add(Card22);
+       cards.Add(Card22C1);
+       cards.Add(Card22C2);
        cards.Add(Card23);
-       cards.Add(Card31);
+       cards.Add(Card31C1);
        cards.Add(Card32);
+       cards.Add(Card32C1);
+       cards.Add(Card32C2);
        cards.Add(Card33);
        cards.Add(Card41); 
        cards.Add(Card42);
        cards.Add(Card43);
-       cards.Add(Card44);
        cards.Add(Card51);
        cards.Add(Card52);
        cards.Add(Card53);
@@ -58,7 +72,6 @@ public class Draw : MonoBehaviour
        cards.Add(Card61);
        cards.Add(Card62);
        cards.Add(Card63);
-       cards.Add(Card64);
     }
 
     public void OnClick()
