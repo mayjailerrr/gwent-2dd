@@ -259,15 +259,15 @@ public class GameManager : MonoBehaviour
         EnemySurrendered = GameObject.Find("EnemyArea").GetComponent<Hand>().Surrendered;
 
 
-        PlayerPoints = GameObject.Find("PlayerCnt").GetComponent<Text>().text;
-        EnemyPoints = GameObject.Find("EnemyCnt").GetComponent<Text>().text;
+        PlayerPoints = GameObject.Find("PlayerCnt").GetComponent<TextMeshProUGUI>().text;
+        EnemyPoints = GameObject.Find("EnemyCnt").GetComponent<TextMeshProUGUI>().text;
 
 
-        ESteals = GameObject.Find("Deck2").GetComponent<Draw>().Stole;
+        ESteals = GameObject.Find("Deck2").GetComponent<EDraw>().Stole;
         PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
-        ESteals2 = GameObject.Find("Deck2").GetComponent<Draw>().Stole2;
+        ESteals2 = GameObject.Find("Deck2").GetComponent<EDraw>().Stole2;
         PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
-        ESteals3 = GameObject.Find("Deck2").GetComponent<Draw>().Stole3;
+        ESteals3 = GameObject.Find("Deck2").GetComponent<EDraw>().Stole3;
         PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
 
 

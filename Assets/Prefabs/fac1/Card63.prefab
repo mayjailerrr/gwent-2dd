@@ -170,6 +170,7 @@ MonoBehaviour:
   Faction: Cloud Of Fraternity
   Index: 
   Stripe: 0
+  Drew: 0
 --- !u!61 &1065177341952435236
 BoxCollider2D:
   m_ObjectHideFlags: 0

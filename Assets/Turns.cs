@@ -15,14 +15,14 @@ public class Turns : MonoBehaviour
     public GameObject HiddenEnemy;
     public TextMeshProUGUI SurrenderedPlayerText;
     public TextMeshProUGUI SurrenderedEnemyText;
-    public bool BranStarkOff;
-    public bool TheKingOfTheNightOff;
+    // public bool BranStarkOff;
+    // public bool TheKingOfTheNightOff;
     // private int BranStark = 1;
     // private int TheKingOfTheNight = 1;
     private int Hand1 = 0;
     private int Hand2 = 0;
-    private int Equalizer1 = 0;
-    private int Equalizer2 = 0;
+    // private int Equalizer1 = 0;
+    // private int Equalizer2 = 0;
     private RectTransform hiddenPlayer;
     private RectTransform hiddenEnemy;
 
@@ -49,11 +49,11 @@ public class Turns : MonoBehaviour
         PlayerArea = GameObject.FindGameObjectWithTag("PlayerArea").GetComponent<Hand>();
         EnemyArea = GameObject.FindGameObjectWithTag("EnemyArea").GetComponent<Hand>();
 
-        ESteals = GameObject.Find("Deck2").GetComponent<Draw>().Stole;
+        ESteals = GameObject.Find("Deck2").GetComponent<EDraw>().Stole;
         PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
-        ESteals2 = GameObject.Find("Deck2").GetComponent<Draw>().Stole2;
+        ESteals2 = GameObject.Find("Deck2").GetComponent<EDraw>().Stole2;
         PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
-        ESteals3 = GameObject.Find("Deck2").GetComponent<Draw>().Stole3;
+        ESteals3 = GameObject.Find("Deck2").GetComponent<EDraw>().Stole3;
         PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
 
         Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
@@ -108,53 +108,60 @@ public class Turns : MonoBehaviour
         }
 
 
-       if(Turn) //change of turn
+       if(Hand1 != 10 && Turn == true) //change of turn
        {
         hiddenEnemy.sizeDelta = new Vector2(0, 0);
-        hiddenPlayer.sizeDelta = new Vector2(850, 56);
-        if(Hand1 == 0 && Round == 1 && PSteals)
-        {
-            Turn = false;
-        }
-        if(Hand1 == 0 && Round == 2 && PSteals2)
-        {
-            Turn = false;
-        }
-        if(Hand1 == 0 && Round == 3 && PSteals3)
-        {
-            Turn = false;
-        }
+        hiddenPlayer.sizeDelta = new Vector2(56, 56);
+        Turn = false;
 
-        if(Equalizer1 != Hand1)
-        {
-            Equalizer1 = Hand1;
-            Turn = false;
-        }
-       }
+        } 
+
+        // if(Hand1 == 0 && Round == 1 && PSteals)
+        // {
+        //     Turn = true;
+        // }
+        // if(Hand1 == 0 && Round == 2 && PSteals2)
+        // {
+        //     Turn = true;
+        // }
+        // if(Hand1 == 0 && Round == 3 && PSteals3)
+        // {
+        //     Turn = true;
+        // }
+
+    //     if(Equalizer1 != Hand1)
+    //     {
+    //         Equalizer1 = Hand1;
+    //         Turn = false;
+    //     }
+    //    }
 
 
        if(Turn == false) //change of turn
        {
         hiddenPlayer.sizeDelta = new Vector2(0, 0);
-        hiddenEnemy.sizeDelta = new Vector2(850, 56);
-        if(Hand2 == 0 && Round == 1 && ESteals)
-        {
-            Turn = true;
-        }
-        if(Hand2 == 0 && Round == 2 && ESteals2)
-        {
-            Turn = true;
-        }
-        if(Hand2 == 0 && Round == 3 && ESteals3)
-        {
-            Turn = true;
-        }
+        hiddenEnemy.sizeDelta = new Vector2(1000, 70);
+        Turn = true;
 
-        if(Equalizer2 != Hand2)
-        {
-            Equalizer2 = Hand2;
-            Turn = true;
         }
-       }
+        // if(Hand2 == 0 && Round == 1 && ESteals)
+        // {
+        //     Turn = true;
+        // }
+        // if(Hand2 == 0 && Round == 2 && ESteals2)
+        // {
+        //     Turn = true;
+        // }
+        // if(Hand2 == 0 && Round == 3 && ESteals3)
+        // {
+        //     Turn = true;
+        // }
+
+        // if(Equalizer2 != Hand2)
+        // {
+        //     Equalizer2 = Hand2;
+        //     Turn = true;
+        // }
+    //    }
     }
 }
