@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7606738864358795567}
   - component: {fileID: 8892563635416730329}
   - component: {fileID: 1903361842455560497}
-  - component: {fileID: 6670607626460581826}
   - component: {fileID: 96205761182599529}
   - component: {fileID: 8798858642679564628}
   - component: {fileID: 5458857831264664870}
+  - component: {fileID: 2732368940409301269}
   m_Layer: 5
   m_Name: Card43
   m_TagString: Untagged
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6670607626460581826}
-        m_TargetAssemblyTypeName: SiegeZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 5602518809618502599}
+        m_TargetAssemblyTypeName: UseCard, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137,25 +137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6670607626460581826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5602518809618502599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d47b1d85dd75d19bdb3cda831281646b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Card31: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
-  Card32: {fileID: 8679952771776733623, guid: b0df10a3d1738b027bac45c5c61e183e, type: 3}
-  Card33: {fileID: 5015624831165230078, guid: 5c9539ad1d94becb1817ce8e5822785c, type: 3}
-  Card43: {fileID: 5602518809618502599}
-  Card55: {fileID: 5604253332154783724, guid: 66426cad73bf94c2288e3d8b36951848, type: 3}
-  Card56: {fileID: 5048249163915038914, guid: 81021ac96a97b216a99fafdf21ae19eb, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &96205761182599529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +229,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &2732368940409301269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5602518809618502599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76441369a5d3411bb422151d7535f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Card1: {fileID: 0}
+  Card2: {fileID: 0}
+  Card3: {fileID: 5602518809618502599}
+  PCACZone: {fileID: 0}
+  PDistanceZone: {fileID: 0}
+  PSiegeZone: {fileID: 0}
+  canPlayCard: 1
 --- !u!1 &8204827549132960108
 GameObject:
   m_ObjectHideFlags: 0

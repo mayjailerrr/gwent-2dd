@@ -2288,7 +2288,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 391, y: 112.099976}
-  m_SizeDelta: {x: 45, y: 57}
+  m_SizeDelta: {x: 35, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152111032
 MonoBehaviour:
@@ -2930,7 +2930,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 391, y: -110.70999}
-  m_SizeDelta: {x: 45, y: 57}
+  m_SizeDelta: {x: 35, y: 47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1375366793
 MonoBehaviour:
@@ -3040,22 +3040,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerArea: {fileID: 234077212}
   Card11: {fileID: 8071366615128438157, guid: 65a0f6d3b5ac7835a85a5a7dd0f1f528, type: 3}
-  Card11C1: {fileID: 8071366615128438157, guid: 915c673fb9bb8d1df94d532515790ed3, type: 3}
+  Card11C1: {fileID: 8071366615128438157, guid: a4d8bce520dea10e0a533e6222b78b25, type: 3}
   Card12: {fileID: 7525570581756852020, guid: 70330d2c482cb4485a27eb4aa94fc364, type: 3}
-  Card12C1: {fileID: 7525570581756852020, guid: ca9d5bacf261f8caf8acd97ba2542ce3, type: 3}
-  Card12C2: {fileID: 7525570581756852020, guid: 48e9eb6a0933be5ae88837e41b0c0c0a, type: 3}
+  Card12C1: {fileID: 7525570581756852020, guid: 8215117f119064e37a417eabefe00069, type: 3}
+  Card12C2: {fileID: 7525570581756852020, guid: 3f9f24209577b9a99b0e17470d319f23, type: 3}
   Card13: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
   Card21: {fileID: 9218734456664155323, guid: 6c8ada5622d08a8609020f21853b5ecd, type: 3}
-  Card21C1: {fileID: 9218734456664155323, guid: 6fdbe57847d7a3a34a3cb6d5f4634ba0, type: 3}
+  Card21C1: {fileID: 9218734456664155323, guid: c27aa0a73abd14ed38b4ce5fa377a3c9, type: 3}
   Card22: {fileID: 5632851284757351919, guid: 402bd26f2fb1d281b97c8857dff325c4, type: 3}
-  Card22C1: {fileID: 5632851284757351919, guid: 2b5cb113e6be112dd9a43ddf2bb1a191, type: 3}
-  Card22C2: {fileID: 5632851284757351919, guid: 3cb525d231d9f9036aee8c66b6929cf7, type: 3}
+  Card22C1: {fileID: 5632851284757351919, guid: c9ca1d9f6efe2722d96399816dbe21db, type: 3}
+  Card22C2: {fileID: 5632851284757351919, guid: 351c99b3d2fe19c14a1a9282253716d2, type: 3}
   Card23: {fileID: 3571612117873188876, guid: 69b1579a9cd355b2a9de961f1c8b502a, type: 3}
   Card31: {fileID: 8679952771776733623, guid: b0df10a3d1738b027bac45c5c61e183e, type: 3}
-  Card31C1: {fileID: 8679952771776733623, guid: 95691cd1425293edf8d972d7bc8de725, type: 3}
+  Card31C1: {fileID: 8679952771776733623, guid: 1eed00c8890e95b02b099628ab7e08ab, type: 3}
   Card32: {fileID: 5015624831165230078, guid: 5c9539ad1d94becb1817ce8e5822785c, type: 3}
-  Card32C1: {fileID: 5015624831165230078, guid: f28b65628f5e8f9dd925605955b0c00c, type: 3}
-  Card32C2: {fileID: 5015624831165230078, guid: d44615626c5746b37be7598bb940c4fc, type: 3}
+  Card32C1: {fileID: 5015624831165230078, guid: 2a09af395e0b8e043a00c855d6b71aa6, type: 3}
+  Card32C2: {fileID: 5015624831165230078, guid: 275b496ace8592b9ca06f1aa7045a58a, type: 3}
   Card33: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
   Card41: {fileID: 6030625687827019222, guid: afe7ad55b65dda4fdba47b2f3c1f58b8, type: 3}
   Card42: {fileID: 5010788314114222767, guid: cc5ac3fdd49443ac78f10edc3288eaa2, type: 3}
@@ -3329,58 +3329,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657303629}
   m_CullTransparentMesh: 1
---- !u!1 &1667594502
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1667594504}
-  - component: {fileID: 1667594503}
-  m_Layer: 0
-  m_Name: Turns
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1667594503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667594502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6827a97c58d1fade088b6db70ea0af51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Round: 1
-  Turn: 1
-  PlayerArea: {fileID: 8196469109342208361}
-  EnemyArea: {fileID: 1194286792}
-  HiddenPlayer: {fileID: 121911563}
-  HiddenEnemy: {fileID: 872125534}
-  SurrenderedPlayerText: {fileID: 248281177}
-  SurrenderedEnemyText: {fileID: 669921420}
---- !u!4 &1667594504
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667594502}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.446993, y: -20.74178, z: 1235.5457}
-  m_LocalScale: {x: 1.0129892, y: 1.0129892, z: 1.0129892}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1771581202}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1679070345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,7 +3804,6 @@ RectTransform:
   - {fileID: 872125535}
   - {fileID: 248281175}
   - {fileID: 669921422}
-  - {fileID: 1667594504}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

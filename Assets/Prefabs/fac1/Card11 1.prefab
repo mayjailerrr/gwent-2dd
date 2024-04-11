@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7971000268708416335}
   - component: {fileID: 1109528753936260772}
   - component: {fileID: 4842606085573982033}
-  - component: {fileID: 7715503278770140294}
+  - component: {fileID: -4100122220839315161}
   m_Layer: 6
   m_Name: Card11 1
   m_TagString: Untagged
@@ -119,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 510.56345, y: 186.73914}
+  m_AnchoredPosition: {x: 485.21643, y: 174.9398}
   m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &607199323367483660
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7715503278770140294}
-        m_TargetAssemblyTypeName: CACZone, Assembly-CSharp
+      - m_Target: {fileID: -4100122220839315161}
+        m_TargetAssemblyTypeName: UseCard, Assembly-CSharp
         m_MethodName: PlayCard
         m_Mode: 1
         m_Arguments:
@@ -307,7 +307,8 @@ MonoBehaviour:
   Faction: Cloud Of Fraternity
   Index: 
   Stripe: 0
---- !u!114 &7715503278770140294
+  Drew: 0
+--- !u!114 &-4100122220839315161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,13 +317,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8071366615128438157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16aa7eb401893aca2aac333af5f3ae9b, type: 3}
+  m_Script: {fileID: 11500000, guid: b76441369a5d3411bb422151d7535f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card11: {fileID: 8071366615128438157}
-  Card12: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
-  Card13: {fileID: 7525570581756852020, guid: 70330d2c482cb4485a27eb4aa94fc364, type: 3}
-  Card41: {fileID: 6030625687827019222, guid: afe7ad55b65dda4fdba47b2f3c1f58b8, type: 3}
-  Card51: {fileID: 556377470672438169, guid: b3754b01f8bbd5e73824ef03ae9c06aa, type: 3}
-  Card52: {fileID: 6747672165475763347, guid: a9ef9a70d1efd74e3a47b009b1e45b55, type: 3}
-  WarZone: {fileID: 0}
+  Card1: {fileID: 8071366615128438157}
+  Card2: {fileID: 0}
+  Card3: {fileID: 0}
+  PCACZone: {fileID: 0}
+  PDistanceZone: {fileID: 0}
+  PSiegeZone: {fileID: 0}
+  canPlayCard: 1

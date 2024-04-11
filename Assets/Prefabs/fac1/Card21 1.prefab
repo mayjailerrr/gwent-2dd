@@ -91,10 +91,10 @@ GameObject:
   - component: {fileID: 5670137821151915551}
   - component: {fileID: 2125934067152300484}
   - component: {fileID: 8501683984880283836}
-  - component: {fileID: -113337996175671861}
   - component: {fileID: -7902378734625406676}
   - component: {fileID: 1962417669746389411}
   - component: {fileID: -1956160104211960256}
+  - component: {fileID: -3958526582887505295}
   m_Layer: 5
   m_Name: Card21 1
   m_TagString: Untagged
@@ -119,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 515.00574, y: 144.25003}
+  m_AnchoredPosition: {x: 485.2165, y: 126.66683}
   m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5670137821151915551
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -113337996175671861}
-        m_TargetAssemblyTypeName: DistanceZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 9218734456664155323}
+        m_TargetAssemblyTypeName: UseCard, Assembly-CSharp
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,25 +216,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-113337996175671861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9218734456664155323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd8439431dd251b3a1ca5129016c38e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Card21: {fileID: 9218734456664155323}
-  Card22: {fileID: 5632851284757351919, guid: 402bd26f2fb1d281b97c8857dff325c4, type: 3}
-  Card23: {fileID: 3571612117873188876, guid: 69b1579a9cd355b2a9de961f1c8b502a, type: 3}
-  Card42: {fileID: 5010788314114222767, guid: cc5ac3fdd49443ac78f10edc3288eaa2, type: 3}
-  Card53: {fileID: 7482025435920368307, guid: d9a8837207771412d82cbdb06ef6956b, type: 3}
-  Card54: {fileID: 3163715936950325898, guid: 26cae41f2f19dde58b9c800f434320f6, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &-7902378734625406676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +235,7 @@ MonoBehaviour:
   Faction: Cloud Of Fraternity
   Index: 
   Stripe: 0
+  Drew: 0
 --- !u!61 &1962417669746389411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -326,3 +308,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &-3958526582887505295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218734456664155323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76441369a5d3411bb422151d7535f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Card1: {fileID: 0}
+  Card2: {fileID: 9218734456664155323}
+  Card3: {fileID: 0}
+  PCACZone: {fileID: 0}
+  PDistanceZone: {fileID: 0}
+  PSiegeZone: {fileID: 0}
+  canPlayCard: 1
