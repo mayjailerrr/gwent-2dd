@@ -91,10 +91,10 @@ GameObject:
   - component: {fileID: 2444635923289090460}
   - component: {fileID: 7475050958653951156}
   - component: {fileID: 4979877279009818614}
-  - component: {fileID: -6709580489080878219}
   - component: {fileID: 1718382026357036489}
   - component: {fileID: -6939913289183019308}
   - component: {fileID: -4228872256699977362}
+  - component: {fileID: -8231785931776669660}
   m_Layer: 5
   m_Name: ECard23
   m_TagString: Untagged
@@ -119,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 485.21643, y: 277.2114}
+  m_AnchoredPosition: {x: 484.85547, y: 276.53723}
   m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2444635923289090460
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6709580489080878219}
-        m_TargetAssemblyTypeName: EDistanceZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: -8231785931776669660}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: EDistanceZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,25 +216,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-6709580489080878219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9177982144635542758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bfd386e6e290f17b450165a1b73e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard21: {fileID: 1489942551923695730, guid: 63558d02375ba4529ade8b03d216160a, type: 3}
-  ECard22: {fileID: 1116640673322373063, guid: d29a8abbf174fc095b85cdf486a40702, type: 3}
-  ECard23: {fileID: 9177982144635542758}
-  ECard42: {fileID: 5010788314114222767, guid: 3de61274e0b92b23898008741e0d9096, type: 3}
-  ECard53: {fileID: 7482025435920368307, guid: 447228948a4da1d649045a872f0b9b07, type: 3}
-  ECard54: {fileID: 3163715936950325898, guid: 7078bb614dc5d3f1aa20fa60c2e5e7bf, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &1718382026357036489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,10 +231,13 @@ MonoBehaviour:
   Name: Ygritte
   TypeOfCard: Follower
   Power: 5
+  PurePower: 5
   TypeOfPower: Distance
   Faction: Reign Of Punishment
   Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
 --- !u!61 &-6939913289183019308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -326,3 +310,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &-8231785931776669660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9177982144635542758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 9177982144635542758}
+  useful: 1

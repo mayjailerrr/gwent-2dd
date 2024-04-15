@@ -91,10 +91,10 @@ GameObject:
   - component: {fileID: 8737129124395744206}
   - component: {fileID: 7180664954557111203}
   - component: {fileID: 5071569699121912652}
-  - component: {fileID: -5137218426581328421}
   - component: {fileID: -3163232588349868688}
   - component: {fileID: -3433651606537404485}
   - component: {fileID: -8384572455897944598}
+  - component: {fileID: -1306562263066209758}
   m_Layer: 5
   m_Name: ECard31
   m_TagString: Untagged
@@ -119,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 485.21643, y: 324.89206}
+  m_AnchoredPosition: {x: 484.85547, y: 324.48468}
   m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8737129124395744206
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -5137218426581328421}
-        m_TargetAssemblyTypeName: ESiegeZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: -1306562263066209758}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: ESiegeZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,25 +216,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-5137218426581328421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924509004813675233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a689ed145ac6261924d96d581c6ad0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard31: {fileID: 934837816846620650, guid: 9f7308c4d1170a121bf94ce5d5543a38, type: 3}
-  ECard32: {fileID: 8063148096683871485, guid: c9aa4bd4ee621b87c9b9d0e1435a8006, type: 3}
-  ECard33: {fileID: 5924509004813675233}
-  ECard43: {fileID: 5602518809618502599, guid: 4a28c3d0828948c11bf6d0aa6ed54bb7, type: 3}
-  ECard55: {fileID: 5604253332154783724, guid: 94aeab3a67389afb1b82cf453a2443a8, type: 3}
-  ECard56: {fileID: 5048249163915038914, guid: 1d02cc9027e02982e84c7f4490f31dea, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &-3163232588349868688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,10 +231,13 @@ MonoBehaviour:
   Name: The Red Keep
   TypeOfCard: Gold
   Power: 8
+  PurePower: 8
   TypeOfPower: Siege
   Faction: Reign Of Punishment
   Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
 --- !u!61 &-3433651606537404485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -326,3 +310,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &-1306562263066209758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924509004813675233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 5924509004813675233}
+  useful: 1

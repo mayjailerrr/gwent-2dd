@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1394644662648951495}
   - component: {fileID: 338099883849402042}
   - component: {fileID: 6251300364353894266}
-  - component: {fileID: 606091436000131534}
   - component: {fileID: 951198310385888137}
   - component: {fileID: -5227857389025405826}
   - component: {fileID: 801211370157098972}
+  - component: {fileID: 3662045000938061620}
   m_Layer: 5
   m_Name: ECard22 1
   m_TagString: Untagged
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 606091436000131534}
-        m_TargetAssemblyTypeName: EDistanceZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 3662045000938061620}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: EDistanceZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137,25 +137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &606091436000131534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1489942551923695730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bfd386e6e290f17b450165a1b73e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard21: {fileID: 1489942551923695730}
-  ECard22: {fileID: 1116640673322373063, guid: d29a8abbf174fc095b85cdf486a40702, type: 3}
-  ECard23: {fileID: 9177982144635542758, guid: 476f633538cdfce18a46be4e4cb3461f, type: 3}
-  ECard42: {fileID: 5010788314114222767, guid: 3de61274e0b92b23898008741e0d9096, type: 3}
-  ECard53: {fileID: 7482025435920368307, guid: 447228948a4da1d649045a872f0b9b07, type: 3}
-  ECard54: {fileID: 3163715936950325898, guid: 7078bb614dc5d3f1aa20fa60c2e5e7bf, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &951198310385888137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +152,13 @@ MonoBehaviour:
   Name: Rhaegal
   TypeOfCard: Silver
   Power: 7
+  PurePower: 7
   TypeOfPower: Distance
   Faction: Reign Of Punishment
   Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
 --- !u!61 &-5227857389025405826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,6 +231,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &3662045000938061620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489942551923695730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 1489942551923695730}
+  useful: 1
 --- !u!1 &5704841257364175581
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,23 +37,13 @@ public class Draw : MonoBehaviour
     public GameObject Card62;
     public GameObject Card63;
 
-
-    
     public bool Stole = false;
     public bool Stole2 = false;
     public bool Stole3 = false;
     private int Round = 1;
-    
-    
-    // private int Position = 0;
-
-
+    private List<GameObject> remainingCards;
 
     List <GameObject> cards = new List<GameObject>();
-
-
-
-
 
 
     // Start is called before the first frame update
@@ -89,57 +79,107 @@ public class Draw : MonoBehaviour
        cards.Add(Card62);
        cards.Add(Card63);
 
-
-        foreach(GameObject card in cards)
-        {
-            card.GetComponent<CardModel>().Drew = false;
-        }
+        remainingCards = new List<GameObject>(cards);
 
     }
 
-    public void OnClick()
+
+    public void DealCards()
     {
-
-
-        if (Stole == false)
+        //first round
+        if(Stole == false && Round == 1)
         {
-            for(var i = 0; i < 10; i++)
+            //shuffle remaining cards
+            ShuffleCards();
+
+            //instantiate 10 cards from remainingCards
+            for (int i = 0; i < 10; i++)
             {
-            GameObject playerCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0,0), Quaternion.identity);
-            playerCard.transform.SetParent(PlayerArea.transform, false);
+                if(remainingCards.Count > 0)
+                {
+                    GameObject Card = remainingCards[0];
+                    remainingCards.RemoveAt(0); //remove the card from remainingCards
+                    GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
+                }
             }
             Stole = true;
         }
-        
 
-        if (Stole2 == true && Round == 2)
+        //second round
+        if (Stole2 == false && Round == 2)
         {
-            for (int i= 0; i < 3; i ++)
+             //shuffle remaining cards
+            ShuffleCards();
+
+            //instantiate 10 cards from remainingCards
+            for (int i = 0; i < 3; i++)
             {
-                GameObject playerCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0,0), Quaternion.identity);
-                playerCard.transform.SetParent(PlayerArea.transform, false);
+                if(remainingCards.Count > 0)
+                {
+                    GameObject Card = remainingCards[0];
+                    remainingCards.RemoveAt(0); //remove the card from remainingCards
+                    GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
+                }
             }
             Stole2 = true;
-            
         }
 
-
+         //third round
         if (Stole3 == true && Round == 3)
         {
-            for (int i= 0; i < 4; i ++)
-        {
-            GameObject playerCard = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0,0), Quaternion.identity);
-            playerCard.transform.SetParent(PlayerArea.transform, false);
-        }
-        Stole3 = true;
-        }
+              //shuffle remaining cards
+            ShuffleCards();
 
+            //instantiate 10 cards from remainingCards
+            for (int i = 0; i < 4; i++)
+            {
+                if(remainingCards.Count > 0)
+                {
+                    GameObject Card = remainingCards[0];
+                    remainingCards.RemoveAt(0); //remove the card from remainingCards
+                    GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
+                }
+            }
+            Stole3 = false;
+        }
+       
     }
 
 
+
+    public void ShuffleCards()
+    {
+       
+        //fisher-yates shuffle algorithm
+        for(int i = remainingCards.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            GameObject temp = remainingCards[i];
+            remainingCards[i] = remainingCards[j];
+            remainingCards[j] = temp;
+        }
+    }
+
+    //5th: steal a card
+    public void Gigants()
+    {
+        ShuffleCards();
+
+        //instantiate 1 card from remainingCards
+            for (int i = 0; i < 2; i++)
+            {
+                if(remainingCards.Count > 0)
+                {
+                    GameObject Card = remainingCards[0];
+                    remainingCards.RemoveAt(0); //remove the card from remainingCards
+                    GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
+                }
+            }
+    }
 
     void Update()
     {
         Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
     }
+
 }

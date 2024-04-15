@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1499884045481263613}
   - component: {fileID: 1787245349281845337}
   - component: {fileID: 1976048427741826858}
-  - component: {fileID: -337539667010794144}
   - component: {fileID: 1286203204142917499}
   - component: {fileID: 7686448336074080041}
   - component: {fileID: -3693287074718816467}
+  - component: {fileID: 3995311024250214695}
   m_Layer: 5
   m_Name: ECard21
   m_TagString: Untagged
@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 485.21643, y: 277.2114}
+  m_AnchoredPosition: {x: 484.85547, y: 276.53723}
   m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1499884045481263613
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -337539667010794144}
-        m_TargetAssemblyTypeName: EDistanceZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 3995311024250214695}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: EDistanceZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137,25 +137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-337539667010794144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116640673322373063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bfd386e6e290f17b450165a1b73e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard21: {fileID: 1489942551923695730, guid: 63558d02375ba4529ade8b03d216160a, type: 3}
-  ECard22: {fileID: 1116640673322373063}
-  ECard23: {fileID: 9177982144635542758, guid: 476f633538cdfce18a46be4e4cb3461f, type: 3}
-  ECard42: {fileID: 5010788314114222767, guid: 3de61274e0b92b23898008741e0d9096, type: 3}
-  ECard53: {fileID: 7482025435920368307, guid: 447228948a4da1d649045a872f0b9b07, type: 3}
-  ECard54: {fileID: 3163715936950325898, guid: 7078bb614dc5d3f1aa20fa60c2e5e7bf, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &1286203204142917499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +152,13 @@ MonoBehaviour:
   Name: Viserion
   TypeOfCard: Gold
   Power: 9
+  PurePower: 9
   TypeOfPower: Distance
   Faction: Reign Of Punishment
   Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
 --- !u!61 &7686448336074080041
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,6 +231,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &3995311024250214695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116640673322373063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 1116640673322373063}
+  useful: 1
 --- !u!1 &1998214118581990757
 GameObject:
   m_ObjectHideFlags: 0

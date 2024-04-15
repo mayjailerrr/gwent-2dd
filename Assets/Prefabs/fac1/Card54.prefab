@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4156254497050828771}
   - component: {fileID: -6377858531776225429}
   - component: {fileID: 2839960760690653855}
-  - component: {fileID: 3315311955651170890}
+  - component: {fileID: 8256297723887538424}
   m_Layer: 5
   m_Name: Card54
   m_TagString: Untagged
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3163715936950325898}
-        m_TargetAssemblyTypeName: UseCard, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 8256297723887538424}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: DistanceZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -229,7 +229,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &3315311955651170890
+--- !u!114 &8256297723887538424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,16 +238,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3163715936950325898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76441369a5d3411bb422151d7535f58, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card1: {fileID: 0}
-  Card2: {fileID: 3163715936950325898}
-  Card3: {fileID: 0}
-  PCACZone: {fileID: 0}
-  PDistanceZone: {fileID: 0}
-  PSiegeZone: {fileID: 0}
-  canPlayCard: 1
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  Card: {fileID: 3163715936950325898}
 --- !u!1 &4996378212790867235
 GameObject:
   m_ObjectHideFlags: 0

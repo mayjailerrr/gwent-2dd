@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2432695252690709842}
   - component: {fileID: 7924499154248964829}
   - component: {fileID: -655140373235164879}
-  - component: {fileID: -7699339857517206436}
+  - component: {fileID: 9084631799327630447}
   m_Layer: 5
   m_Name: Card22 2
   m_TagString: Untagged
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5632851284757351919}
-        m_TargetAssemblyTypeName: UseCard, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 9084631799327630447}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: DistanceZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -152,11 +152,13 @@ MonoBehaviour:
   Name: Dragonglass
   TypeOfCard: Silver
   Power: 6
+  PurePower: 6
   TypeOfPower: Distance
   Faction: Cloud Of Fraternity
   Index: 
   Stripe: 0
   Drew: 0
+  UnderAttack: 0
 --- !u!61 &7924499154248964829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -229,7 +231,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &-7699339857517206436
+--- !u!114 &9084631799327630447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,16 +240,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5632851284757351919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76441369a5d3411bb422151d7535f58, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card1: {fileID: 0}
-  Card2: {fileID: 5632851284757351919}
-  Card3: {fileID: 0}
-  PCACZone: {fileID: 0}
-  PDistanceZone: {fileID: 0}
-  PSiegeZone: {fileID: 0}
-  canPlayCard: 1
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 5632851284757351919}
+  useful: 1
 --- !u!1 &7240250978405204041
 GameObject:
   m_ObjectHideFlags: 0

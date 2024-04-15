@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5869795691185493457}
   - component: {fileID: -1280239981904368687}
   - component: {fileID: 593105788997440991}
-  - component: {fileID: 6416811621986611751}
+  - component: {fileID: -6256690292744105472}
   m_Layer: 6
   m_Name: Card13
   m_TagString: Untagged
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6416811621986611751}
-        m_TargetAssemblyTypeName: UseCard, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: -6256690292744105472}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: CACZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -152,11 +152,13 @@ MonoBehaviour:
   Name: Brienne of Tarth
   TypeOfCard: Follower
   Power: 6
+  PurePower: 6
   TypeOfPower: Meele
   Faction: Cloud Of Fraternity
   Index: 
   Stripe: 0
   Drew: 0
+  UnderAttack: 0
 --- !u!61 &-1280239981904368687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -229,7 +231,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &6416811621986611751
+--- !u!114 &-6256690292744105472
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,16 +240,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8203202939795233134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76441369a5d3411bb422151d7535f58, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card1: {fileID: 8203202939795233134}
-  Card2: {fileID: 0}
-  Card3: {fileID: 0}
-  PCACZone: {fileID: 0}
-  PDistanceZone: {fileID: 0}
-  PSiegeZone: {fileID: 0}
-  canPlayCard: 1
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 8203202939795233134}
+  useful: 1
 --- !u!1 &9088076746871510227
 GameObject:
   m_ObjectHideFlags: 0

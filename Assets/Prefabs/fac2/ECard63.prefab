@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 734623111529764809}
   - component: {fileID: 4622087961521101670}
   - component: {fileID: 2204908564554128621}
-  - component: {fileID: 4999048319764535370}
   - component: {fileID: -1353156280934153330}
   - component: {fileID: -3480220296772354126}
   - component: {fileID: -6697410681714809132}
+  - component: {fileID: 936688391782128153}
+  - component: {fileID: 6684070229898197398}
   m_Layer: 5
   m_Name: ECard63
   m_TagString: Untagged
@@ -125,9 +126,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4999048319764535370}
-        m_TargetAssemblyTypeName: ESiegeWZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 936688391782128153}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: ESiegeWZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137,20 +138,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4999048319764535370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8404694673516141302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8574df4deb658002bb982a989b3cc4e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard63: {fileID: 8404694673516141302}
-  WarZone: {fileID: 0}
+      - m_Target: {fileID: 6684070229898197398}
+        m_TargetAssemblyTypeName: Thormund, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-1353156280934153330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,10 +165,13 @@ MonoBehaviour:
   Name: Tormund Giantsbane
   TypeOfCard: Follower
   Power: 4
+  PurePower: 0
   TypeOfPower: Weather
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
+  used: 0
 --- !u!61 &-3480220296772354126
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -242,6 +244,50 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &936688391782128153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404694673516141302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 8404694673516141302}
+  turnManager: {fileID: 0}
+  useful: 1
+--- !u!114 &6684070229898197398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404694673516141302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e802fdda9ccedb8999535c45346414c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useful: 0
+  CAC: {fileID: 0}
+  Siege: {fileID: 0}
+  ECAC: {fileID: 0}
+  ESiege: {fileID: 0}
 --- !u!1 &8742188537097651611
 GameObject:
   m_ObjectHideFlags: 0

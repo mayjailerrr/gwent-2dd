@@ -91,10 +91,11 @@ GameObject:
   - component: {fileID: 7389788945223181379}
   - component: {fileID: 6882182525419086824}
   - component: {fileID: 3164738069260243267}
-  - component: {fileID: -6788085425167189768}
   - component: {fileID: 3787841020553033805}
   - component: {fileID: 8149970355745571404}
   - component: {fileID: 5681754897357262724}
+  - component: {fileID: 1828813205035654467}
+  - component: {fileID: -6283830503052665901}
   m_Layer: 5
   m_Name: ECard61
   m_TagString: Untagged
@@ -204,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6788085425167189768}
-        m_TargetAssemblyTypeName: ECACWZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 1828813205035654467}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: ECACWZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,20 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-6788085425167189768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5884466880408977679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fddd70dc1080ffdc38ff4f09abae7470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard61: {fileID: 5884466880408977679}
-  WarZone: {fileID: 0}
+      - m_Target: {fileID: -6283830503052665901}
+        m_TargetAssemblyTypeName: John, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3787841020553033805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,10 +244,13 @@ MonoBehaviour:
   Name: John Snow
   TypeOfCard: Follower
   Power: 5
+  PurePower: 0
   TypeOfPower: Weather
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
+  used: 0
 --- !u!61 &8149970355745571404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -321,3 +323,49 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &1828813205035654467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884466880408977679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 5884466880408977679}
+  turnManager: {fileID: 0}
+  useful: 1
+--- !u!114 &-6283830503052665901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5884466880408977679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b16fe732a55a94ccd90de61310ccbca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CAC: {fileID: 0}
+  Distance: {fileID: 0}
+  Siege: {fileID: 0}
+  ECAC: {fileID: 0}
+  EDistance: {fileID: 0}
+  ESiege: {fileID: 0}
+  useful: 0

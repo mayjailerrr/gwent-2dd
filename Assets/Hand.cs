@@ -9,6 +9,7 @@ public class Hand : MonoBehaviour
     public int Cards = 0;
     public bool Surrendered = false;
 
+
     private void OnCollisionEnter2D(Collision2D collision) //when collision it gets them on the list of the Stripe
     {
         CardEntry = collision.gameObject;

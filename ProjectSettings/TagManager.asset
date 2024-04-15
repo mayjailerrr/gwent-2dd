@@ -6,6 +6,14 @@ TagManager:
   tags:
   - PlayerArea
   - EnemyArea
+  - CACZone
+  - DistanceZone
+  - SiegeZone
+  - ECACZone
+  - EDistanceZone
+  - ESiegeZone
+  - Army
+  - TurnManager
   layers:
   - Default
   - TransparentFX

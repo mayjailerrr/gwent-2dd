@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class CardGame : MonoBehaviour
 {
-    public GameObject player1;
+    public GameObject hiddenPlayer;
     private bool player1Turn = true;
     public int playerCards;
-
-    private GameObject CardEntry;
-    public List<GameObject> CardsInStripe;
-    public int Cards = 0;
-
+    public GameObject PlayerArea;
 
 
     // Start is called before the first frame update
@@ -20,20 +16,6 @@ public class CardGame : MonoBehaviour
         playerCards = GameObject.FindGameObjectWithTag("PlayerArea").GetComponent<Hand>().Cards;
     }
 
-
-
-    private void OnCollisionEnter2D(Collision2D collision) //when collision it gets them on the list of the Stripe
-    {
-        CardEntry = collision.gameObject;
-        CardsInStripe.Add(CardEntry);
-        Cards += 1;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision) // it get them out of the list
-    {
-        CardsInStripe.RemoveAt(0);
-        Cards -= 1;
-    }
 
 
 
@@ -45,13 +27,11 @@ public class CardGame : MonoBehaviour
         if(player1Turn)
 
         {
-            if(Input.GetButton("Deck1"))
+            if(playerCards != 10)
             {
                 {
-                    for(int i = 0; i < CardsInStripe.Count; i++)
-                    {
-                        player1.GetComponent<UseCard>().PlayCard();
-                    }
+                    //setactive arriba del nametag chatgpt, 
+
                     player1Turn = false;
                     
                 }

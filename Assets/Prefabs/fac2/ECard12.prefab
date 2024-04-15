@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5066970064956223095}
   - component: {fileID: 496657523937660233}
   - component: {fileID: 3763854907213776318}
-  - component: {fileID: 1084458099532234312}
   - component: {fileID: 8328643318219610863}
   - component: {fileID: 7399348503511802973}
   - component: {fileID: -5416845005788507807}
+  - component: {fileID: -4556456871398745604}
   m_Layer: 5
   m_Name: ECard12
   m_TagString: Untagged
@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 485.21643, y: 228.34608}
+  m_AnchoredPosition: {x: 484.85547, y: 227.39853}
   m_SizeDelta: {x: 40, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5066970064956223095
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1084458099532234312}
-        m_TargetAssemblyTypeName: ECACZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: -4556456871398745604}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: ECACZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -137,25 +137,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1084458099532234312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1320223928546387590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60d5cc4055c19663b8b5b51a46562734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard11: {fileID: 4295609393252194205, guid: 17be0b1e993823d4a821ecb8d2888869, type: 3}
-  ECard12: {fileID: 3047037051972302222, guid: f29c75f0759722efcbe398e0452b4ba2, type: 3}
-  ECard13: {fileID: 1320223928546387590}
-  ECard41: {fileID: 6030625687827019222, guid: 7e6fea93b96bfe286b99574da9177b47, type: 3}
-  ECard51: {fileID: 556377470672438169, guid: 53ed2e96e446cebb2b934119fab7746e, type: 3}
-  ECard52: {fileID: 6747672165475763347, guid: 2efee9fe34105874fa9d43533c31160a, type: 3}
-  WarZone: {fileID: 0}
 --- !u!114 &8328643318219610863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,10 +152,13 @@ MonoBehaviour:
   Name: 'The Hound '
   TypeOfCard: Silver
   Power: 6
+  PurePower: 6
   TypeOfPower: Meele
   Faction: Reign Of Punishment
   Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
 --- !u!61 &7399348503511802973
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,6 +231,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &-4556456871398745604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320223928546387590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 1320223928546387590}
+  useful: 1
 --- !u!1 &4578430170962854081
 GameObject:
   m_ObjectHideFlags: 0

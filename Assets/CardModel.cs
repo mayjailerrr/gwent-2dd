@@ -7,21 +7,12 @@ public class CardModel : MonoBehaviour
     public string Name;
     public string TypeOfCard;
     public int Power;
+    public int PurePower;
     public string TypeOfPower;
     public string Faction;
-    public string Index;
     public int Stripe;
+
     public bool Drew = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool UnderAttack = false;
+    public bool used = false;
 }

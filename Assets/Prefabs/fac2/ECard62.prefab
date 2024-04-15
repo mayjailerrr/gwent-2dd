@@ -91,10 +91,11 @@ GameObject:
   - component: {fileID: 6134394192081676914}
   - component: {fileID: 6362812089762217123}
   - component: {fileID: 1609812440901199776}
-  - component: {fileID: -5551594250004240801}
   - component: {fileID: -3469834899730271151}
   - component: {fileID: -3553557171759617151}
   - component: {fileID: -8086679898401359549}
+  - component: {fileID: 1903623941655351836}
+  - component: {fileID: 7271042912440066438}
   m_Layer: 5
   m_Name: ECard62
   m_TagString: Untagged
@@ -204,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -5551594250004240801}
-        m_TargetAssemblyTypeName: EDistanceWZone, Assembly-CSharp
-        m_MethodName: PlayCard
+      - m_Target: {fileID: 1903623941655351836}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: EDistanceWZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,20 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-5551594250004240801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6986718453807437677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adc47e6a0e06e04e7a6b14c1eb65514f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ECard62: {fileID: 6986718453807437677}
-  WarZone: {fileID: 0}
+      - m_Target: {fileID: 7271042912440066438}
+        m_TargetAssemblyTypeName: Khal, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-3469834899730271151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,10 +244,13 @@ MonoBehaviour:
   Name: Khal Drogo
   TypeOfCard: Follower
   Power: 5
+  PurePower: 0
   TypeOfPower: Weather
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
+  Drew: 0
+  UnderAttack: 0
+  used: 0
 --- !u!61 &-3553557171759617151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -321,3 +323,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
+--- !u!114 &1903623941655351836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986718453807437677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarZone1: {fileID: 0}
+  WarZone2: {fileID: 0}
+  WarZone3: {fileID: 0}
+  WarZone4: {fileID: 0}
+  WarZone5: {fileID: 0}
+  WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
+  Card: {fileID: 6986718453807437677}
+  turnManager: {fileID: 0}
+  useful: 1
+--- !u!114 &7271042912440066438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6986718453807437677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf27ea5d0eaf3ff2d93feeeb75114631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Distance: {fileID: 0}
+  EDistance: {fileID: 0}
+  useful: 0

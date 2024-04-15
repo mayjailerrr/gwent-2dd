@@ -263,11 +263,11 @@ public class GameManager : MonoBehaviour
         EnemyPoints = GameObject.Find("EnemyCnt").GetComponent<TextMeshProUGUI>().text;
 
 
-        ESteals = GameObject.Find("Deck2").GetComponent<EDraw>().Stole;
+        ESteals = GameObject.Find("Deck2").GetComponent<Draw>().Stole;
         PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
-        ESteals2 = GameObject.Find("Deck2").GetComponent<EDraw>().Stole2;
+        ESteals2 = GameObject.Find("Deck2").GetComponent<Draw>().Stole2;
         PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
-        ESteals3 = GameObject.Find("Deck2").GetComponent<EDraw>().Stole3;
+        ESteals3 = GameObject.Find("Deck2").GetComponent<Draw>().Stole3;
         PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
 
 
