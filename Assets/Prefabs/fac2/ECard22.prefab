@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -5227857389025405826}
   - component: {fileID: 801211370157098972}
   - component: {fileID: -1262121872370581177}
+  - component: {fileID: -4931581889968646215}
   m_Layer: 5
   m_Name: ECard22
   m_TagString: Untagged
@@ -137,6 +138,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -4931581889968646215}
+        m_TargetAssemblyTypeName: Rhaegal, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &951198310385888137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,10 +168,10 @@ MonoBehaviour:
   PurePower: 7
   TypeOfPower: Distance
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
   Drew: 0
   UnderAttack: 0
+  used: 0
 --- !u!61 &-5227857389025405826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -256,7 +269,22 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 1489942551923695730}
+  turnManager: {fileID: 0}
   useful: 1
+--- !u!114 &-4931581889968646215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489942551923695730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451590f760a214046b978b696de1bd29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  siege: {fileID: 0}
+  useful: 0
 --- !u!1 &5704841257364175581
 GameObject:
   m_ObjectHideFlags: 0

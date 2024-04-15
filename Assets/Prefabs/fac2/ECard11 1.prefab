@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -7822875198930236667}
   - component: {fileID: -6587787396264367704}
   - component: {fileID: 1187435042748078368}
+  - component: {fileID: 8186241840240767277}
   m_Layer: 5
   m_Name: ECard11 1
   m_TagString: Untagged
@@ -137,6 +138,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8186241840240767277}
+        m_TargetAssemblyTypeName: Ramsay, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6964374217850732135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,10 +168,10 @@ MonoBehaviour:
   PurePower: 7
   TypeOfPower: Meele
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
   Drew: 0
   UnderAttack: 0
+  used: 0
 --- !u!61 &-7822875198930236667
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -256,7 +269,24 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 3047037051972302222}
+  turnManager: {fileID: 0}
   useful: 1
+--- !u!114 &8186241840240767277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047037051972302222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed5cb7072311778a978afa48e0a0ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useful: 0
+  CAC: {fileID: 0}
+  Distance: {fileID: 0}
+  Siege: {fileID: 0}
 --- !u!1 &3248147623347929732
 GameObject:
   m_ObjectHideFlags: 0

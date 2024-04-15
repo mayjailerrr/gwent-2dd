@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Rhaegal : MonoBehaviour
 {
-    public Strip siege;
+    public Strip distance;
     public bool useful;
 
     public void Attack()
     {
         if(useful)
         {
-            siege.Rhaegal();
+            distance.Rhaegal();
         }
     }
 
     void Update()
     {
-        siege = GameObject.FindGameObjectWithTag("SiegeZone").GetComponent<Strip>();
+        distance = GameObject.FindGameObjectWithTag("EDistanceZone").GetComponent<Strip>();
+
         useful = gameObject.GetComponent<MoveCard>().useful;
     }
 }

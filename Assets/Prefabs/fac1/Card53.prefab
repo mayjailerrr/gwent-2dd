@@ -234,10 +234,10 @@ MonoBehaviour:
   PurePower: 0
   TypeOfPower: Augment
   Faction: Cloud Of Fraternity
-  Index: 
   Stripe: 0
   Drew: 0
   UnderAttack: 0
+  used: 0
 --- !u!61 &-3674541031635687838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -335,4 +335,5 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 7482025435920368307}
+  turnManager: {fileID: 0}
   useful: 1

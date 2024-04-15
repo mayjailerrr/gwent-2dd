@@ -15,4 +15,15 @@ public class CardModel : MonoBehaviour
     public bool Drew = false;
     public bool UnderAttack = false;
     public bool used = false;
+
+    public void MoveToGraveyard()
+    {
+            GameObject playerGraveyard = GameObject.Find("PGraveyard");
+            if(playerGraveyard != null)
+            {
+                transform.position = playerGraveyard.transform.position;
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
+            }
+    }
 }

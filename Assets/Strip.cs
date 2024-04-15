@@ -155,7 +155,7 @@ public class Strip : MonoBehaviour
     {
         //searching for the augment
         GameObject army = GameObject.FindGameObjectWithTag("Army");
-        GameObject eWarZone = GameObject.Find("DistanceZone");
+        GameObject eWarZone = GameObject.Find("EDistanceZone");
 
         if(army != null)
         {
@@ -163,6 +163,7 @@ public class Strip : MonoBehaviour
             army.transform.SetParent(eWarZone.transform, false);
             army.transform.position = eWarZone.transform.position;
             army.GetComponent<Strip>().Targaryen();
+            // army.GetComponent<MoveCard>().useful = false;
         }
         else
         {
@@ -171,7 +172,9 @@ public class Strip : MonoBehaviour
             newArmy.transform.SetParent(eWarZone.transform, false);
             newArmy.transform.position = eWarZone.transform.position;
             newArmy.GetComponent<Strip>().Targaryen();
+            // newArmy.GetComponent<MoveCard>().useful = false;
         }
+
 
     } 
 
@@ -305,50 +308,61 @@ public class Strip : MonoBehaviour
     }
 
     //7th: cleans the line with less cards from the field
-    public void Ramsay(int minor)
+    public void Ramsay()
     {
-        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
+        foreach(GameObject card in CardsInStripe)
         {
-            if(CardsInStripe.Count < 4)
+            if(card.GetComponent<CardModel>().TypeOfCard != "Gold")
             {
-                if(CardsInStripe.Count == minor)
-                {
-                    foreach(GameObject card in CardsInStripe)
-                    {
-                        card.transform.position = PlayerGraveyard.transform.position;
-                        card.transform.SetParent(PlayerGraveyard.transform, true);
-                    }
-                    CardsInStripe.Clear();
-                }
+                card.GetComponent<CardModel>().Power = 0;
+                card.SetActive(false);
             }
         }
     }
+
+
+        public void MoveToGraveyard()
+        {
+            GameObject playerGraveyard = GameObject.Find("PGraveyard");
+            if(playerGraveyard != null)
+            {
+                transform.position = playerGraveyard.transform.position;
+                gameObject.SetActive(false);
+                //Destroy(gameObject);
+            }
+        }
 
     //8th: calculate the average, then equalize the power to the average (own field)
-    public void Arya()
-    {   
-        //calculate the sum
-        int totalPower = 0;
-
-        foreach(GameObject Card in CardsInStripe)
+    public int Arya()
+    {
+        int sum = 0;
+       
+        foreach(GameObject card in CardsInStripe)
         {
-            totalPower += Card.GetComponent<CardModel>().Power;
+            sum += card.GetComponent<CardModel>().Power;
         }
+        
+        return sum;
+    }
 
-        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
+    public int AryaStark()
+    {
+        int j = 0;
+        j = CardsInStripe.Count;
+        return j;
+    }
+
+    public void Replace(int us)
+    {
+        foreach(GameObject card in CardsInStripe)
         {
-            //calculate the average 
-            int averagePower = totalPower/CardsInStripe.Count;
-
-            //equalize cards power to average
-            foreach (GameObject Card in CardsInStripe)
+            if(card.GetComponent<CardModel>().TypeOfCard != "Gold")
             {
-                Card.GetComponent<CardModel>().Power = averagePower;
-                Update();
+                card.GetComponent<CardModel>().Power = us;
             }
         }
     }
-   
+
 
     //CLEARANCE
     public void Sparrow()
@@ -407,4 +421,5 @@ public class Strip : MonoBehaviour
             }
         }
     }
+    
 }

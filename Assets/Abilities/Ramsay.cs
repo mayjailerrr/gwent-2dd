@@ -25,46 +25,75 @@ public class Ramsay : MonoBehaviour
     {
         if(useful)
         {
-            int cac = CAC.CardsInStripe.Count;
-            int d = Distance.CardsInStripe.Count;
-            int s = Siege.CardsInStripe.Count;
+            int cac = CAC.AryaStark();
+            int d = Distance.AryaStark();
+            int s = Siege.AryaStark();
 
-            if(cac != 0 && d != 0 && s != 0 && cac > d && cac > s && d > s)
-            {
-                int minor = s;
-                Siege.Ramsay(minor);
-            } 
-
-            else if(cac != 0 && d != 0 && s != 0 && d > cac && d > s && s > cac)
-            {
-                int minor = cac;
-                CAC.Ramsay(minor);
-            }
-
-             else if(cac != 0 && d != 0 && s != 0 && s > cac && s > d && cac > d)
-            {
-                int minor = d;
-                Distance.Ramsay(minor);
-            }
-
-            //if some are equals
-             else if(cac != 0 && d != 0 && s != 0 && cac > d && cac > s && d == s)
-            {
-                int minor = d;
-                Distance.Ramsay(minor);
-            }
-
-             else if(cac != 0 && d != 0 && s != 0 && d > cac && d > s && cac == s)
-            {
-                int minor = s;
-                Siege.Ramsay(minor);
-            }
-
-             else if(cac != 0 && d != 0 && s != 0 && s > cac && s > d && cac == d)
-            {
-                int minor = cac;
-                CAC.Ramsay(minor);
-            }
+            Siege.Ramsay();
         }
-    }    
-}
+    }
+
+    //         if(cac == 0)
+    //         {
+    //             int m = Mathf.Min(d,s);
+
+    //             if(m == d)
+    //             {
+    //                 Distance.Ramsay(m);
+    //             }
+
+    //             if(m == s)
+    //             {
+    //                 Siege.Ramsay(m);
+    //             }
+    //         }
+
+    //         else if(d == 0)
+    //         {
+    //             int n = Mathf.Min(cac,s);
+
+    //             if(n == cac)
+    //             {
+    //                 CAC.Ramsay(n);
+    //             }
+
+    //             if(n == s)
+    //             {
+    //                 Siege.Ramsay(n);
+    //             }
+    //         }
+
+    //         else if(s == 0)
+    //         {
+    //             int r = Mathf.Min(cac, d);
+
+    //             if(r == cac)
+    //             {
+    //                 CAC.Ramsay(r);
+    //             }
+
+    //             if(r == d);
+    //             {
+    //                 Distance.Ramsay(r);
+    //             }
+    //         }
+
+    //         else if(cac == 0 && d == 0)
+    //         {
+    //             Siege.Ramsay(s);
+    //         }
+
+    //         else if(cac == 0 && s == 0)
+    //         {
+    //             Distance.Ramsay(d);
+    //         }
+
+    //         else if(d == 0 && s == 0)
+    //         {
+    //             CAC.Ramsay(cac);
+    //         }
+           
+
+    //     }
+    // }
+}  

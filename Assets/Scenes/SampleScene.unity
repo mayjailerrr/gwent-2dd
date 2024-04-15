@@ -2479,8 +2479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2b7267d69d57670ac619b56dd00d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerArea: {fileID: 1194286787}
-  player: {fileID: 0}
   CardsInStripe: []
   Cards: 0
   Surrendered: 0
@@ -2578,7 +2576,7 @@ GameObject:
   - component: {fileID: 1243034721}
   m_Layer: 0
   m_Name: PlayerGraveyard
-  m_TagString: Untagged
+  m_TagString: PGraveyard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2637,7 +2635,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 391, y: 53.8}
+  m_AnchoredPosition: {x: 391, y: -50}
   m_SizeDelta: {x: 42, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1318942982 stripped
@@ -4462,7 +4460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 391, y: -52.1}
+  m_AnchoredPosition: {x: 391, y: 52}
   m_SizeDelta: {x: 42, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2100238387
@@ -6107,8 +6105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2b7267d69d57670ac619b56dd00d1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerArea: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
-  player: {fileID: 3305819870018571289, guid: 0e1c8b1e6ef49247b896da32c729d6f5, type: 3}
   CardsInStripe: []
   Cards: 0
   Surrendered: 0
