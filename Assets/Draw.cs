@@ -40,7 +40,11 @@ public class Draw : MonoBehaviour
     public bool Stole = false;
     public bool Stole2 = false;
     public bool Stole3 = false;
+
+    public bool useful;
+
     private int Round = 1;
+
     private List<GameObject> remainingCards;
 
     List <GameObject> cards = new List<GameObject>();
@@ -93,7 +97,7 @@ public class Draw : MonoBehaviour
             ShuffleCards();
 
             //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 17; i++)
             {
                 if(remainingCards.Count > 0)
                 {
@@ -112,7 +116,7 @@ public class Draw : MonoBehaviour
             ShuffleCards();
 
             //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if(remainingCards.Count > 0)
                 {
@@ -131,7 +135,7 @@ public class Draw : MonoBehaviour
             ShuffleCards();
 
             //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 if(remainingCards.Count > 0)
                 {
@@ -144,8 +148,6 @@ public class Draw : MonoBehaviour
         }
        
     }
-
-
 
     public void ShuffleCards()
     {
@@ -163,10 +165,12 @@ public class Draw : MonoBehaviour
     //5th: steal a card
     public void Gigants()
     {
-        ShuffleCards();
+        if(useful)
+        {
+            ShuffleCards();
 
-        //instantiate 1 card from remainingCards
-            for (int i = 0; i < 2; i++)
+            //instantiate 1 card from remainingCards
+            for (int i = 0; i < 1; i++)
             {
                 if(remainingCards.Count > 0)
                 {
@@ -175,11 +179,14 @@ public class Draw : MonoBehaviour
                     GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
                 }
             }
+        }
     }
 
     void Update()
     {
         Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+
+        useful = gameObject.GetComponent<MoveCard>().useful;
     }
 
 }

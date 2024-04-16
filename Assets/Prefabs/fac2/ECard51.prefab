@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: -8521140454537103932}
   - component: {fileID: -2668612280451466235}
   - component: {fileID: 2112656509281269335}
+  - component: {fileID: -9032568336503711343}
   m_Layer: 5
   m_Name: ECard51
   m_TagString: Untagged
@@ -216,6 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -9032568336503711343}
+        m_TargetAssemblyTypeName: Cersei, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7031447197259667226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,12 +243,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Lannister's Fortune
   TypeOfCard: Follower
-  Power: 2
+  Power: 0
+  PurePower: 0
   TypeOfPower: Augment
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
   Drew: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
+  used: 0
 --- !u!61 &-8521140454537103932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -333,3 +355,20 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 556377470672438169}
+  turnManager: {fileID: 0}
+  useful: 1
+--- !u!114 &-9032568336503711343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556377470672438169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1ec998836b4ad8cbf403599070b728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useful: 0
+  CAC: {fileID: 0}
+  ECAC: {fileID: 0}

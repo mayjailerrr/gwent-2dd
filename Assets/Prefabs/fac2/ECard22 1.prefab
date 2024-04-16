@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5227857389025405826}
   - component: {fileID: 801211370157098972}
   - component: {fileID: 3662045000938061620}
-  - component: {fileID: -5760616283809084506}
+  - component: {fileID: 5126037025434750864}
   m_Layer: 5
   m_Name: ECard22 1
   m_TagString: Untagged
@@ -138,9 +138,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: -5760616283809084506}
-        m_TargetAssemblyTypeName: Strip, Assembly-CSharp
-        m_MethodName: Rhaegal
+      - m_Target: {fileID: 5126037025434750864}
+        m_TargetAssemblyTypeName: Rhaegal, Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -170,7 +170,14 @@ MonoBehaviour:
   Faction: Reign Of Punishment
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!61 &-5227857389025405826
 BoxCollider2D:
@@ -271,7 +278,7 @@ MonoBehaviour:
   Card: {fileID: 1489942551923695730}
   turnManager: {fileID: 0}
   useful: 1
---- !u!114 &-5760616283809084506
+--- !u!114 &5126037025434750864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,21 +287,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1489942551923695730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8012bcd301a91bc96bda65372e16beb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 0}
-  Faction: 
-  Stripe: 0
-  PlayerGraveyard: {fileID: 0}
-  EnemyGraveyard: {fileID: 0}
-  PlayerArea: {fileID: 0}
-  EnemyArea: {fileID: 0}
-  Card12: {fileID: 0}
+  useful: 0
+  d: {fileID: 0}
   Card53: {fileID: 7482025435920368307, guid: 04c7e94b0fa383e19b59f844dae98d3c, type: 3}
-  Card61: {fileID: 0}
+  eWarZone: {fileID: 0}
 --- !u!1 &5704841257364175581
 GameObject:
   m_ObjectHideFlags: 0

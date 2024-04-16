@@ -157,7 +157,7 @@ public class Strip : MonoBehaviour
         }
     }
 
-    public void Valyrian()
+    public void Fire()
     {
         foreach(GameObject Card in CardsInStripe)
         {
@@ -168,20 +168,8 @@ public class Strip : MonoBehaviour
         }
     }
 
-    //1st of the list of effects: put an augment in a line
-    public void Rhaegal()
-    {
-        if(used == false)
-        {
-            GameObject eWarZone = GameObject.Find("EDistanceZone");
-
-            GameObject newArmy = Instantiate(Card53, eWarZone.transform);
-            newArmy.transform.SetParent(eWarZone.transform, false);
-            newArmy.transform.position = eWarZone.transform.position;
-        }
-        used = true;
-    } 
-
+    //1st of the list of effects: put an augment in a line (is in the Rhaegal script)
+   
     //2nd: put a weather
     public void Melisandre()
     {    
@@ -334,9 +322,9 @@ public class Strip : MonoBehaviour
                 card.transform.position = player.transform.position;
                 card.GetComponent<CardModel>().Power = 0;
                 card.GetComponent<CardModel>().PurePower = 0;
-                
             }
         }
+        CardsInStripe.Clear();
     }
 
     //8th: calculate the average, then equalize the power to the average (own field)

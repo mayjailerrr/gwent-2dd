@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 617452567860091416}
   - component: {fileID: 5732727717650673188}
   - component: {fileID: -7784898489367063954}
+  - component: {fileID: 7477034267422916268}
   m_Layer: 5
   m_Name: ECard53
   m_TagString: Untagged
@@ -216,6 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7477034267422916268}
+        m_TargetAssemblyTypeName: Targaryen, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-4544457384068789404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,13 +243,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Targaryen's Army
   TypeOfCard: Follower
-  Power: 5
+  Power: 0
   PurePower: 0
   TypeOfPower: Augment
   Faction: Reign Of Punishment
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!61 &617452567860091416
 BoxCollider2D:
@@ -337,3 +357,18 @@ MonoBehaviour:
   Card: {fileID: 7482025435920368307}
   turnManager: {fileID: 0}
   useful: 1
+--- !u!114 &7477034267422916268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7482025435920368307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a57a256963564159eb5f23e9126727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Distance: {fileID: 0}
+  EDistance: {fileID: 0}
+  useful: 0

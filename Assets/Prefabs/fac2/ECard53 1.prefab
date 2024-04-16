@@ -229,13 +229,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Targaryen's Army
   TypeOfCard: Follower
-  Power: 5
+  Power: 0
   PurePower: 0
   TypeOfPower: Augment
   Faction: Reign Of Punishment
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!61 &617452567860091416
 BoxCollider2D:
