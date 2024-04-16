@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 4289480014506096492}
   - component: {fileID: 6026292473131227935}
   - component: {fileID: 6648586833223640076}
+  - component: {fileID: 7038943231544213289}
   m_Layer: 5
   m_Name: EDistanceZone
-  m_TagString: Untagged
+  m_TagString: EDistanceZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,3 +147,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 460.6, y: 42}
   m_EdgeRadius: 0
+--- !u!114 &7038943231544213289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823176967874327901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsInStripe: []
+  Plus: 0
+  punctuation: {fileID: 0}
+  Faction: Reign of Punishment
+  Stripe: 2
+  PlayerGraveyard: {fileID: 0}
+  EnemyGraveyard: {fileID: 0}
+  PlayerArea: {fileID: 0}
+  EnemyArea: {fileID: 0}
+  Card12: {fileID: 0}
+  Card53: {fileID: 0}
+  Card61: {fileID: 0}
+  used: 0

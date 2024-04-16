@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -3553557171759617151}
   - component: {fileID: -8086679898401359549}
   - component: {fileID: 1903623941655351836}
-  - component: {fileID: 7271042912440066438}
+  - component: {fileID: 9148112785451400860}
   m_Layer: 5
   m_Name: ECard62
   m_TagString: Untagged
@@ -217,8 +217,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7271042912440066438}
-        m_TargetAssemblyTypeName: Khal, Assembly-CSharp
+      - m_Target: {fileID: 9148112785451400860}
+        m_TargetAssemblyTypeName: Khal2, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
@@ -249,7 +249,13 @@ MonoBehaviour:
   Faction: Reign Of Punishment
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!61 &-3553557171759617151
 BoxCollider2D:
@@ -350,7 +356,7 @@ MonoBehaviour:
   Card: {fileID: 6986718453807437677}
   turnManager: {fileID: 0}
   useful: 1
---- !u!114 &7271042912440066438
+--- !u!114 &9148112785451400860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,9 +365,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6986718453807437677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf27ea5d0eaf3ff2d93feeeb75114631, type: 3}
+  m_Script: {fileID: 11500000, guid: d94883b30e5e770af9042e3e7d41ea9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Distance: {fileID: 0}
   EDistance: {fileID: 0}
-  useful: 0

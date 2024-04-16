@@ -231,11 +231,13 @@ MonoBehaviour:
   Name: Targaryen's Army
   TypeOfCard: Follower
   Power: 5
+  PurePower: 0
   TypeOfPower: Augment
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
   Drew: 0
+  UnderAttack: 0
+  used: 0
 --- !u!61 &617452567860091416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -333,3 +335,5 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 7482025435920368307}
+  turnManager: {fileID: 0}
+  useful: 1

@@ -94,7 +94,8 @@ GameObject:
   - component: {fileID: 518055173520356562}
   - component: {fileID: -4220430961365309186}
   - component: {fileID: -1389377868745389670}
-  - component: {fileID: -1662787905189705085}
+  - component: {fileID: -1990060822488632944}
+  - component: {fileID: -7712623704295707991}
   m_Layer: 5
   m_Name: Card31 1
   m_TagString: Untagged
@@ -204,9 +205,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -1662787905189705085}
+      - m_Target: {fileID: -1990060822488632944}
         m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
         m_MethodName: SiegeZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -7712623704295707991}
+        m_TargetAssemblyTypeName: Draw, Assembly-CSharp
+        m_MethodName: Gigants
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -234,10 +247,17 @@ MonoBehaviour:
   PurePower: 8
   TypeOfPower: Siege
   Faction: Cloud Of Fraternity
-  Index: 
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
+  used: 0
 --- !u!61 &-4220430961365309186
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -310,7 +330,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &-1662787905189705085
+--- !u!114 &-1990060822488632944
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,4 +355,51 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 8679952771776733623}
+  turnManager: {fileID: 0}
   useful: 1
+--- !u!114 &-7712623704295707991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679952771776733623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfa2bfe98fe533d8b891a7e676bf600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerArea: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
+  Card11: {fileID: 8071366615128438157, guid: 65a0f6d3b5ac7835a85a5a7dd0f1f528, type: 3}
+  Card11C1: {fileID: 8071366615128438157, guid: a4d8bce520dea10e0a533e6222b78b25, type: 3}
+  Card12: {fileID: 7525570581756852020, guid: 70330d2c482cb4485a27eb4aa94fc364, type: 3}
+  Card12C1: {fileID: 7525570581756852020, guid: 8215117f119064e37a417eabefe00069, type: 3}
+  Card12C2: {fileID: 7525570581756852020, guid: 3f9f24209577b9a99b0e17470d319f23, type: 3}
+  Card13: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
+  Card21: {fileID: 9218734456664155323, guid: 6c8ada5622d08a8609020f21853b5ecd, type: 3}
+  Card21C1: {fileID: 9218734456664155323, guid: c27aa0a73abd14ed38b4ce5fa377a3c9, type: 3}
+  Card22: {fileID: 5632851284757351919, guid: 402bd26f2fb1d281b97c8857dff325c4, type: 3}
+  Card22C1: {fileID: 5632851284757351919, guid: c9ca1d9f6efe2722d96399816dbe21db, type: 3}
+  Card22C2: {fileID: 5632851284757351919, guid: 351c99b3d2fe19c14a1a9282253716d2, type: 3}
+  Card23: {fileID: 3571612117873188876, guid: 69b1579a9cd355b2a9de961f1c8b502a, type: 3}
+  Card31: {fileID: 8679952771776733623, guid: b0df10a3d1738b027bac45c5c61e183e, type: 3}
+  Card31C1: {fileID: 8679952771776733623}
+  Card32: {fileID: 5015624831165230078, guid: 5c9539ad1d94becb1817ce8e5822785c, type: 3}
+  Card32C1: {fileID: 5015624831165230078, guid: 2a09af395e0b8e043a00c855d6b71aa6, type: 3}
+  Card32C2: {fileID: 5015624831165230078, guid: 275b496ace8592b9ca06f1aa7045a58a, type: 3}
+  Card33: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
+  Card41: {fileID: 6030625687827019222, guid: afe7ad55b65dda4fdba47b2f3c1f58b8, type: 3}
+  Card42: {fileID: 5010788314114222767, guid: cc5ac3fdd49443ac78f10edc3288eaa2, type: 3}
+  Card43: {fileID: 5602518809618502599, guid: 4ca7b31f4c2c10319a3add6745a59516, type: 3}
+  Card51: {fileID: 556377470672438169, guid: b3754b01f8bbd5e73824ef03ae9c06aa, type: 3}
+  Card52: {fileID: 6747672165475763347, guid: a9ef9a70d1efd74e3a47b009b1e45b55, type: 3}
+  Card53: {fileID: 7482025435920368307, guid: d9a8837207771412d82cbdb06ef6956b, type: 3}
+  Card54: {fileID: 3163715936950325898, guid: 26cae41f2f19dde58b9c800f434320f6, type: 3}
+  Card55: {fileID: 5604253332154783724, guid: 66426cad73bf94c2288e3d8b36951848, type: 3}
+  Card56: {fileID: 5048249163915038914, guid: 81021ac96a97b216a99fafdf21ae19eb, type: 3}
+  Card61: {fileID: 5884466880408977679, guid: ec32cf50c15130506a02bdf3f32c9bed, type: 3}
+  Card62: {fileID: 6986718453807437677, guid: 95caef20f7696275c8b7e1c07623cd23, type: 3}
+  Card63: {fileID: 8404694673516141302, guid: abde557b211f6f859b5d63337ec9ee6f, type: 3}
+  Stole: 0
+  Stole2: 0
+  Stole3: 0

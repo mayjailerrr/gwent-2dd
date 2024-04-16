@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: 73a15580e800ce137bd6bb8b55a75f27, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1191,85 +1191,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436884641}
   m_CullTransparentMesh: 1
---- !u!1 &525312565
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 525312566}
-  - component: {fileID: 525312568}
-  - component: {fileID: 525312567}
-  m_Layer: 5
-  m_Name: Text (Legacy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &525312566
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525312565}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1375366791}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &525312567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525312565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: 
---- !u!222 &525312568
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525312565}
-  m_CullTransparentMesh: 1
 --- !u!224 &529996421 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1454127823359698489, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
@@ -1922,28 +1843,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1187740260252298821, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
   m_PrefabInstance: {fileID: 8892604610112896605}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1044077606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044077601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 1949394105}
-  Faction: Reign of Punishment
-  Stripe: 1
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
-  PlayerArea: {fileID: 234077212}
-  EnemyArea: {fileID: 1194286787}
-  Card12: {fileID: 0}
 --- !u!1 &1057044374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,28 +2542,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6321213104266540586, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
   m_PrefabInstance: {fileID: 6460859708262727804}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1318942987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1318942982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 147402063}
-  Faction: Cloud Of Fraternity
-  Stripe: 2
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
-  PlayerArea: {fileID: 234077212}
-  EnemyArea: {fileID: 1194286787}
-  Card12: {fileID: 0}
 --- !u!1 &1352111298
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,285 +2752,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355580594}
   m_CullTransparentMesh: 1
---- !u!1 &1375366790
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1375366791}
-  - component: {fileID: 1375366795}
-  - component: {fileID: 1375366794}
-  - component: {fileID: 1375366793}
-  - component: {fileID: 1375366796}
-  m_Layer: 5
-  m_Name: Deck1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1375366791
+--- !u!224 &1375366791 stripped
 RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+  m_PrefabInstance: {fileID: 4450630621980026179}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375366790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 525312566}
-  m_Father: {fileID: 1771581202}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 391, y: -110.70999}
-  m_SizeDelta: {x: 35, y: 47}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1375366793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375366790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1375366794}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1375366796}
-        m_TargetAssemblyTypeName: Draw, Assembly-CSharp
-        m_MethodName: DealCards
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1375366794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375366790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 69db99b24dec62c24aa713810bd9f8fd, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1375366795
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375366790}
-  m_CullTransparentMesh: 1
---- !u!114 &1375366796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375366790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dfa2bfe98fe533d8b891a7e676bf600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerArea: {fileID: 234077212}
-  Card11: {fileID: 8071366615128438157, guid: 65a0f6d3b5ac7835a85a5a7dd0f1f528, type: 3}
-  Card11C1: {fileID: 8071366615128438157, guid: a4d8bce520dea10e0a533e6222b78b25, type: 3}
-  Card12: {fileID: 7525570581756852020, guid: 70330d2c482cb4485a27eb4aa94fc364, type: 3}
-  Card12C1: {fileID: 7525570581756852020, guid: 8215117f119064e37a417eabefe00069, type: 3}
-  Card12C2: {fileID: 7525570581756852020, guid: 3f9f24209577b9a99b0e17470d319f23, type: 3}
-  Card13: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
-  Card21: {fileID: 9218734456664155323, guid: 6c8ada5622d08a8609020f21853b5ecd, type: 3}
-  Card21C1: {fileID: 9218734456664155323, guid: c27aa0a73abd14ed38b4ce5fa377a3c9, type: 3}
-  Card22: {fileID: 5632851284757351919, guid: 402bd26f2fb1d281b97c8857dff325c4, type: 3}
-  Card22C1: {fileID: 5632851284757351919, guid: c9ca1d9f6efe2722d96399816dbe21db, type: 3}
-  Card22C2: {fileID: 5632851284757351919, guid: 351c99b3d2fe19c14a1a9282253716d2, type: 3}
-  Card23: {fileID: 3571612117873188876, guid: 69b1579a9cd355b2a9de961f1c8b502a, type: 3}
-  Card31: {fileID: 8679952771776733623, guid: b0df10a3d1738b027bac45c5c61e183e, type: 3}
-  Card31C1: {fileID: 8679952771776733623, guid: 1eed00c8890e95b02b099628ab7e08ab, type: 3}
-  Card32: {fileID: 5015624831165230078, guid: 5c9539ad1d94becb1817ce8e5822785c, type: 3}
-  Card32C1: {fileID: 5015624831165230078, guid: 2a09af395e0b8e043a00c855d6b71aa6, type: 3}
-  Card32C2: {fileID: 5015624831165230078, guid: 275b496ace8592b9ca06f1aa7045a58a, type: 3}
-  Card33: {fileID: 7894338261374197898, guid: 68837432047a0e833a00f9c161fc0fae, type: 3}
-  Card41: {fileID: 6030625687827019222, guid: afe7ad55b65dda4fdba47b2f3c1f58b8, type: 3}
-  Card42: {fileID: 5010788314114222767, guid: cc5ac3fdd49443ac78f10edc3288eaa2, type: 3}
-  Card43: {fileID: 5602518809618502599, guid: 4ca7b31f4c2c10319a3add6745a59516, type: 3}
-  Card51: {fileID: 556377470672438169, guid: b3754b01f8bbd5e73824ef03ae9c06aa, type: 3}
-  Card52: {fileID: 6747672165475763347, guid: a9ef9a70d1efd74e3a47b009b1e45b55, type: 3}
-  Card53: {fileID: 7482025435920368307, guid: d9a8837207771412d82cbdb06ef6956b, type: 3}
-  Card54: {fileID: 3163715936950325898, guid: 26cae41f2f19dde58b9c800f434320f6, type: 3}
-  Card55: {fileID: 5604253332154783724, guid: 66426cad73bf94c2288e3d8b36951848, type: 3}
-  Card56: {fileID: 5048249163915038914, guid: 81021ac96a97b216a99fafdf21ae19eb, type: 3}
-  Card61: {fileID: 5884466880408977679, guid: ec32cf50c15130506a02bdf3f32c9bed, type: 3}
-  Card62: {fileID: 6986718453807437677, guid: 95caef20f7696275c8b7e1c07623cd23, type: 3}
-  Card63: {fileID: 8404694673516141302, guid: abde557b211f6f859b5d63337ec9ee6f, type: 3}
-  Stole: 0
-  Stole2: 0
-  Stole3: 0
 --- !u!224 &1510649899 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2379464152459297366, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
   m_PrefabInstance: {fileID: 3183055311544939447}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1510649904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 978349524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 1057044376}
-  Faction: Reign of Punishment
-  Stripe: 3
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
-  PlayerArea: {fileID: 234077212}
-  EnemyArea: {fileID: 1194286787}
-  Card12: {fileID: 0}
 --- !u!1 &1588181648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
   m_PrefabInstance: {fileID: 1164711885481625673}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1588181653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588181648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 1355580596}
-  Faction: Cloud Of Fraternity
-  Stripe: 1
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
-  PlayerArea: {fileID: 234077212}
-  EnemyArea: {fileID: 1194286787}
-  Card12: {fileID: 0}
---- !u!61 &1588181654
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588181648}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 460, y: 42}
-  m_EdgeRadius: 0
 --- !u!1 &1605807960
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,28 +3576,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4331062375960018225, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
   m_PrefabInstance: {fileID: 6140126258879457205}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1922904942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136927839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 436884643}
-  Faction: Reign of Punishment
-  Stripe: 2
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
-  PlayerArea: {fileID: 234077212}
-  EnemyArea: {fileID: 1194286787}
-  Card12: {fileID: 0}
 --- !u!1 &1944786655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4509,16 +4100,28 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1771581202}
     m_Modifications:
+    - target: {fileID: 1047784591704632623, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
+      propertyPath: EnemyArea
+      value: 
+      objectReference: {fileID: 1194286787}
+    - target: {fileID: 1047784591704632623, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
+      propertyPath: PlayerArea
+      value: 
+      objectReference: {fileID: 234077212}
+    - target: {fileID: 1047784591704632623, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
+      propertyPath: punctuation
+      value: 
+      objectReference: {fileID: 1355580596}
+    - target: {fileID: 1047784591704632623, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 1047784591704632623, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
       propertyPath: m_Name
-      value: CACZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: m_TagString
       value: CACZone
       objectReference: {fileID: 0}
     - target: {fileID: 4946519365742269818, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
@@ -4601,18 +4204,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 0}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1588181653}
-    - targetCorrespondingSourceObject: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1588181654}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
 --- !u!1001 &1899876837640036439
 PrefabInstance:
@@ -4702,6 +4297,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4366189629826093216, guid: e7adce342b16e7e8a8263ec88f30815e, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 4366189629826093216, guid: e7adce342b16e7e8a8263ec88f30815e, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 5404762339923798659, guid: e7adce342b16e7e8a8263ec88f30815e, type: 3}
       propertyPath: m_Name
       value: SiegeWZone
@@ -4709,32 +4312,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5404762339923798659, guid: e7adce342b16e7e8a8263ec88f30815e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1899876837640036441}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7adce342b16e7e8a8263ec88f30815e, type: 3}
---- !u!1 &1899876837640036440 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5404762339923798659, guid: e7adce342b16e7e8a8263ec88f30815e, type: 3}
-  m_PrefabInstance: {fileID: 1899876837640036439}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1899876837640036441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899876837640036440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Faction: Cloud Of Fraternity
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
 --- !u!1001 &2052391617677712314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4823,6 +4402,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3809079682988814364, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 3809079682988814364, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 6777135022121940394, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
       propertyPath: m_Name
       value: DistanceWZone
@@ -4830,32 +4417,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6777135022121940394, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2052391617677712316}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
---- !u!1 &2052391617677712315 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6777135022121940394, guid: 7f0aecfd2b5c9960c934fae53b693853, type: 3}
-  m_PrefabInstance: {fileID: 2052391617677712314}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2052391617677712316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052391617677712315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Faction: Cloud Of Fraternity
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
 --- !u!1001 &2086342573913293302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4966,6 +4529,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1771581202}
     m_Modifications:
+    - target: {fileID: 127149791582640147, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
+      propertyPath: EnemyArea
+      value: 
+      objectReference: {fileID: 1194286787}
+    - target: {fileID: 127149791582640147, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
+      propertyPath: PlayerArea
+      value: 
+      objectReference: {fileID: 234077212}
+    - target: {fileID: 127149791582640147, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
+      propertyPath: punctuation
+      value: 
+      objectReference: {fileID: 1057044376}
+    - target: {fileID: 127149791582640147, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 127149791582640147, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 2379464152459297366, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5050,17 +4633,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ESiegeZone
       objectReference: {fileID: 0}
-    - target: {fileID: 8156885458144037830, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      propertyPath: m_TagString
-      value: ESiegeZone
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8156885458144037830, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1510649904}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
 --- !u!1001 &3192174731921718318
 PrefabInstance:
@@ -5074,6 +4650,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EDistanceWZone
       objectReference: {fileID: 0}
+    - target: {fileID: 8474925590220781215, guid: 3fdfd7c7dc0c0e5b2ba29c8d44c0db8e, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 8474925590220781215, guid: 3fdfd7c7dc0c0e5b2ba29c8d44c0db8e, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 8969319656969024921, guid: 3fdfd7c7dc0c0e5b2ba29c8d44c0db8e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.50000006
@@ -5157,32 +4741,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3080588903429627042, guid: 3fdfd7c7dc0c0e5b2ba29c8d44c0db8e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3192174731921718320}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdfd7c7dc0c0e5b2ba29c8d44c0db8e, type: 3}
---- !u!1 &3192174731921718319 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3080588903429627042, guid: 3fdfd7c7dc0c0e5b2ba29c8d44c0db8e, type: 3}
-  m_PrefabInstance: {fileID: 3192174731921718318}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3192174731921718320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3192174731921718319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Faction: Reign Of Punishment
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
 --- !u!1001 &3496656083775975834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5191,6 +4751,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1771581202}
     m_Modifications:
+    - target: {fileID: 3512465827936415453, guid: a2e4cf48b9c4068c0bde97c759021e61, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 3512465827936415453, guid: a2e4cf48b9c4068c0bde97c759021e61, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 7749386922072883695, guid: a2e4cf48b9c4068c0bde97c759021e61, type: 3}
       propertyPath: m_Name
       value: ECACWZone
@@ -5278,32 +4846,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7749386922072883695, guid: a2e4cf48b9c4068c0bde97c759021e61, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3496656083775975836}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2e4cf48b9c4068c0bde97c759021e61, type: 3}
---- !u!1 &3496656083775975835 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7749386922072883695, guid: a2e4cf48b9c4068c0bde97c759021e61, type: 3}
-  m_PrefabInstance: {fileID: 3496656083775975834}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3496656083775975836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3496656083775975835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Faction: Reign Of Punishment
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
 --- !u!1001 &4094409092598131202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5334,10 +4878,6 @@ PrefabInstance:
       objectReference: {fileID: 1243034720}
     - target: {fileID: 7072047331985567274, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
       propertyPath: m_Name
-      value: SiegeZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 7072047331985567274, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
-      propertyPath: m_TagString
       value: SiegeZone
       objectReference: {fileID: 0}
     - target: {fileID: 7772135701819354045, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
@@ -5425,6 +4965,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
+--- !u!1001 &4450630621980026179
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1771581202}
+    m_Modifications:
+    - target: {fileID: 677873501141725500, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: Card31C1
+      value: 
+      objectReference: {fileID: 8679952771776733623, guid: c77867f6e3a7bac529fe1f943dc3b347, type: 3}
+    - target: {fileID: 677873501141725500, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: PlayerArea
+      value: 
+      objectReference: {fileID: 234077212}
+    - target: {fileID: 2234026045123963226, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_Name
+      value: Deck1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 391
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -110.70999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2698497715630909168, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42210f05839b1610d951b6a8a22aa94a, type: 3}
 --- !u!1001 &5321861827503539387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5517,35 +5162,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: CACWZone
       objectReference: {fileID: 0}
+    - target: {fileID: 7301486338217172318, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 7301486338217172318, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6113286687144998316, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5321861827503539389}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
---- !u!1 &5321861827503539388 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6113286687144998316, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
-  m_PrefabInstance: {fileID: 5321861827503539387}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5321861827503539389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5321861827503539388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Faction: Cloud Of Fraternity
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
 --- !u!1001 &6140126258879457205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5634,21 +5263,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7038943231544213289, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
+      propertyPath: EnemyArea
+      value: 
+      objectReference: {fileID: 1194286787}
+    - target: {fileID: 7038943231544213289, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
+      propertyPath: PlayerArea
+      value: 
+      objectReference: {fileID: 234077212}
+    - target: {fileID: 7038943231544213289, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
+      propertyPath: punctuation
+      value: 
+      objectReference: {fileID: 436884643}
+    - target: {fileID: 7038943231544213289, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 7038943231544213289, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 7823176967874327901, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
       propertyPath: m_Name
-      value: EDistanceZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 7823176967874327901, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      propertyPath: m_TagString
       value: EDistanceZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7823176967874327901, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1922904942}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
 --- !u!1001 &6324932213224260901
 PrefabInstance:
@@ -5835,25 +5477,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6246582689633466362, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
+      propertyPath: EnemyArea
+      value: 
+      objectReference: {fileID: 1194286787}
+    - target: {fileID: 6246582689633466362, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
+      propertyPath: PlayerArea
+      value: 
+      objectReference: {fileID: 234077212}
+    - target: {fileID: 6246582689633466362, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
+      propertyPath: punctuation
+      value: 
+      objectReference: {fileID: 147402063}
+    - target: {fileID: 6246582689633466362, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 6246582689633466362, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 6321213104266540586, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
       propertyPath: m_Name
-      value: DistanceZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 6321213104266540586, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6321213104266540586, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      propertyPath: m_TagString
       value: DistanceZone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6321213104266540586, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1318942987}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
 --- !u!1001 &6548419672441735265
 PrefabInstance:
@@ -5947,35 +5598,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: ESiegeWZone
       objectReference: {fileID: 0}
+    - target: {fileID: 8916751328392207813, guid: abf2d25c7dfff70429d502d3075bd9fb, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 8916751328392207813, guid: abf2d25c7dfff70429d502d3075bd9fb, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5457352143782209518, guid: abf2d25c7dfff70429d502d3075bd9fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6548419672441735267}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abf2d25c7dfff70429d502d3075bd9fb, type: 3}
---- !u!1 &6548419672441735266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5457352143782209518, guid: abf2d25c7dfff70429d502d3075bd9fb, type: 3}
-  m_PrefabInstance: {fileID: 6548419672441735265}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6548419672441735267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6548419672441735266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Faction: Reign Of Punishment
-  PlayerGraveyard: {fileID: 1243034720}
-  EnemyGraveyard: {fileID: 2100238385}
 --- !u!1001 &8196469109342208359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6120,10 +5755,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECACZone
       objectReference: {fileID: 0}
-    - target: {fileID: 1187740260252298821, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      propertyPath: m_TagString
-      value: ECACZone
-      objectReference: {fileID: 0}
+    - target: {fileID: 8259232918201176358, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
+      propertyPath: EnemyArea
+      value: 
+      objectReference: {fileID: 1194286787}
+    - target: {fileID: 8259232918201176358, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
+      propertyPath: PlayerArea
+      value: 
+      objectReference: {fileID: 234077212}
+    - target: {fileID: 8259232918201176358, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
+      propertyPath: punctuation
+      value: 
+      objectReference: {fileID: 1949394105}
+    - target: {fileID: 8259232918201176358, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
+      propertyPath: EnemyGraveyard
+      value: 
+      objectReference: {fileID: 2100238385}
+    - target: {fileID: 8259232918201176358, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
+      propertyPath: PlayerGraveyard
+      value: 
+      objectReference: {fileID: 1243034720}
     - target: {fileID: 8436950068442918091, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6207,10 +5858,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1187740260252298821, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1044077606}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

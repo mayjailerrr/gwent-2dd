@@ -91,13 +91,11 @@ GameObject:
   - component: {fileID: 7389788945223181379}
   - component: {fileID: 6882182525419086824}
   - component: {fileID: 3164738069260243267}
-  - component: {fileID: 3787841020553033805}
-  - component: {fileID: 8149970355745571404}
-  - component: {fileID: 5681754897357262724}
-  - component: {fileID: 1828813205035654467}
-  - component: {fileID: -5467096065572169961}
-  m_Layer: 5
-  m_Name: ECard61
+  - component: {fileID: 8634921568851034504}
+  - component: {fileID: 5996123570402156568}
+  - component: {fileID: -971242703446300073}
+  m_Layer: 6
+  m_Name: Card61 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,7 +110,7 @@ RectTransform:
   m_GameObject: {fileID: 5884466880408977679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 97.184}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.007353, y: 1.007353, z: 1.007353}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2821219947458877241}
@@ -204,32 +202,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6882182525419086824}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1828813205035654467}
-        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
-        m_MethodName: ECACWZone
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: -5467096065572169961}
-        m_TargetAssemblyTypeName: John2, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &3787841020553033805
+      m_Calls: []
+--- !u!114 &8634921568851034504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,18 +220,12 @@ MonoBehaviour:
   Power: 5
   PurePower: 0
   TypeOfPower: Weather
-  Faction: Reign Of Punishment
+  Faction: Cloud Of Fraternity
   Stripe: 0
   Drew: 0
-  UnderAttackJM: 0
-  UnderAttackJ1: 0
-  UnderAttackJ2: 0
-  UnderAttackK1: 0
-  UnderAttackK2: 0
-  UnderAttackT1: 0
-  UnderAttackT2: 0
+  UnderAttack: 0
   used: 0
---- !u!61 &8149970355745571404
+--- !u!61 &5996123570402156568
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -302,7 +270,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 40, y: 43}
   m_EdgeRadius: 0
---- !u!50 &5681754897357262724
+--- !u!50 &-971242703446300073
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -329,48 +297,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &1828813205035654467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5884466880408977679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WarZone1: {fileID: 0}
-  WarZone2: {fileID: 0}
-  WarZone3: {fileID: 0}
-  WarZone4: {fileID: 0}
-  WarZone5: {fileID: 0}
-  WarZone6: {fileID: 0}
-  EWarZone1: {fileID: 0}
-  EWarZone2: {fileID: 0}
-  EWarZone3: {fileID: 0}
-  EWarZone4: {fileID: 0}
-  EWarZone5: {fileID: 0}
-  EWarZone6: {fileID: 0}
-  Card: {fileID: 5884466880408977679}
-  turnManager: {fileID: 0}
-  useful: 1
---- !u!114 &-5467096065572169961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5884466880408977679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd8ef9de8e729b62a47ff1a74550c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CAC: {fileID: 0}
-  Distance: {fileID: 0}
-  Siege: {fileID: 0}
-  ECAC: {fileID: 0}
-  EDistance: {fileID: 0}
-  ESiege: {fileID: 0}

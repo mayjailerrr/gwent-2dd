@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2662660459486575464}
   m_Layer: 7
   m_Name: SiegeZone
-  m_TagString: Untagged
+  m_TagString: SiegeZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,3 +168,7 @@ MonoBehaviour:
   EnemyGraveyard: {fileID: 0}
   PlayerArea: {fileID: 0}
   EnemyArea: {fileID: 0}
+  Card12: {fileID: 0}
+  Card53: {fileID: 0}
+  Card61: {fileID: 0}
+  used: 0

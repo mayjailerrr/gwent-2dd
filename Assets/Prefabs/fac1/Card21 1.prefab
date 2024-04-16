@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 1962417669746389411}
   - component: {fileID: -1956160104211960256}
   - component: {fileID: 8487540754391019600}
+  - component: {fileID: -6965958032927670063}
+  - component: {fileID: -734252678184359027}
   m_Layer: 5
   m_Name: Card21 1
   m_TagString: Untagged
@@ -216,6 +218,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -6965958032927670063}
+        m_TargetAssemblyTypeName: Strip, Assembly-CSharp
+        m_MethodName: Melisandre
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -734252678184359027}
+        m_TargetAssemblyTypeName: JohnM2, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7902378734625406676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,10 +260,17 @@ MonoBehaviour:
   PurePower: 7
   TypeOfPower: Distance
   Faction: Cloud Of Fraternity
-  Index: 
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
+  used: 0
 --- !u!61 &1962417669746389411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -335,4 +368,48 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 9218734456664155323}
+  turnManager: {fileID: 0}
   useful: 1
+--- !u!114 &-6965958032927670063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218734456664155323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsInStripe: []
+  Plus: 0
+  punctuation: {fileID: 0}
+  Faction: 
+  Stripe: 0
+  PlayerGraveyard: {fileID: 0}
+  EnemyGraveyard: {fileID: 0}
+  PlayerArea: {fileID: 0}
+  EnemyArea: {fileID: 0}
+  Card12: {fileID: 0}
+  Card53: {fileID: 0}
+  Card61: {fileID: 5884466880408977679, guid: fa16e5003b54d9062b4f680e5e176804, type: 3}
+  used: 0
+--- !u!114 &-734252678184359027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218734456664155323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cf4a877339fc51fb21d619f8673955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CAC: {fileID: 0}
+  Distance: {fileID: 0}
+  Siege: {fileID: 0}
+  ECAC: {fileID: 0}
+  EDistance: {fileID: 0}
+  ESiege: {fileID: 0}

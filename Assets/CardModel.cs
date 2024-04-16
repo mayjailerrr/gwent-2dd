@@ -13,17 +13,19 @@ public class CardModel : MonoBehaviour
     public int Stripe;
 
     public bool Drew = false;
-    public bool UnderAttack = false;
+
+    public bool UnderAttackJM1 = false;
+    public bool UnderAttackJM2 = false;
+
+    public bool UnderAttackJ1 = false;
+    public bool UnderAttackJ2 = false;
+
+    public bool UnderAttackK1 = false;
+    public bool UnderAttackK2 = false;
+
+    public bool UnderAttackT1 = false;
+    public bool UnderAttackT2 = false;
+
     public bool used = false;
 
-    public void MoveToGraveyard()
-    {
-            GameObject playerGraveyard = GameObject.Find("PGraveyard");
-            if(playerGraveyard != null)
-            {
-                transform.position = playerGraveyard.transform.position;
-                gameObject.SetActive(false);
-                //Destroy(gameObject);
-            }
-    }
 }

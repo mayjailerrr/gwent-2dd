@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3491867491054099491}
   - component: {fileID: 2931251567884709059}
   - component: {fileID: 6858353418078828890}
+  - component: {fileID: 3512465827936415453}
   m_Layer: 5
   m_Name: ECACWZone
   m_TagString: Untagged
@@ -37,7 +38,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -147.2, y: 23}
   m_SizeDelta: {x: 42, y: 42}
-  m_Pivot: {x: 0.50000006, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3491867491054099491
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -121,3 +122,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 42, y: 42}
   m_EdgeRadius: 0
+--- !u!114 &3512465827936415453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7749386922072883695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93857d77c58447f539b47177810e27fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsInStripe: []
+  Faction: Reign Of Punishment
+  PlayerGraveyard: {fileID: 0}
+  EnemyGraveyard: {fileID: 0}

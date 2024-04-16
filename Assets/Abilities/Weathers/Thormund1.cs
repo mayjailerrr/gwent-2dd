@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Thormund : MonoBehaviour
+public class Thormund1 : MonoBehaviour
 {
     public bool useful;
 
@@ -19,19 +19,17 @@ public class Thormund : MonoBehaviour
 
         ECAC = GameObject.FindGameObjectWithTag("ECACZone").GetComponent<Strip>();
         ESiege = GameObject.FindGameObjectWithTag("ESiegeZone").GetComponent<Strip>();
-
-        useful = gameObject.GetComponent<MoveCard>().useful;
     }
 
     public void Attack()
     {
-        if(useful && Siege != null && ESiege != null && CAC != null && ECAC != null)
+        if(Siege != null && ESiege != null && CAC != null && ECAC != null)
         {
-            CAC.Thormund();
-            ECAC.Thormund();
+            CAC.Thormund1();
+            ECAC.Thormund1();
 
-            Siege.Thormund();
-            ESiege.Thormund();
+            Siege.Thormund1();
+            ESiege.Thormund1();
         }
     }
 }
