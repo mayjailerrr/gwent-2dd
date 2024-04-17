@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: -4544457384068789404}
   - component: {fileID: 617452567860091416}
   - component: {fileID: 5732727717650673188}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ECard53 1
   m_TagString: Army
   m_Icon: {fileID: 0}

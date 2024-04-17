@@ -29,25 +29,11 @@ public class Strip : MonoBehaviour
     private int PartialPlus = 0;
 
 
-    void Start()
-    {
-        // GameObject cc = GameObject.FindGam("CACZone");
-        // GameObject d = GameObject.Find("DistanceZone");
-        // GameObject s = GameObject.Find("SiegeZone");
-
-        // GameObject ecc = GameObject.Find("ECACZone");
-        // GameObject ed = GameObject.Find("EDistanceZone");
-        // GameObject es = GameObject.Find("ESiegeZone");
-    }
-
     private void OnCollisionEnter2D(Collision2D collision) //when collision it sends the cards in the list of the strip
     {
         CardEntry = collision.gameObject;
         CardsInStripe.Add(CardEntry);
     }
-
-
-    
 
 
     public void Update()
@@ -64,39 +50,37 @@ public class Strip : MonoBehaviour
         }
         Plus = PartialPlus;
         punctuation.text = Plus.ToString();  //ends the Plus
-        
-
-
-        // // //when the round has finished it restarts everything and the cards go to their proper graveyard
-        // if(RoundChecker != Round)
-        // {
-        //     RoundChecker = Round;
-        //     if(Faction == "Cloud Of Fraternity")
-        //     {
-        //         foreach(GameObject Card in CardsInStripe)
-        //         {
-        //             Card.transform.SetParent(PlayerGraveyard.transform, true);
-        //             Card.transform.position = PlayerGraveyard.transform.position;
-        //         }
-        //         CardsInStripe.Clear();
-        //         Plus = 0;
-        //         punctuation.text = Plus.ToString();
-        //     }
-
-        //     if(Faction == "Reign Of Punishment")
-        //     {
-        //         foreach(GameObject Card in CardsInStripe)
-        //         {
-        //             Card.transform.SetParent(EnemyGraveyard.transform, true);
-        //             Card.transform.position = EnemyGraveyard.transform.position;
-        //         }
-        //         CardsInStripe.Clear();
-        //         Plus = 0;
-        //         punctuation.text = Plus.ToString();
-        //     }
-        // }
 
     }
+
+      //when the round has finished it restarts everything and the cards go to their proper graveyard
+        public void Clean()
+        {
+            foreach(GameObject Card in CardsInStripe)
+            {
+                if(Card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
+                {
+                    Card.transform.SetParent(PlayerGraveyard.transform, true);
+                Card.transform.position = PlayerGraveyard.transform.position;
+                }
+                  CardsInStripe.Clear();
+            Plus = 0;
+            punctuation.text = Plus.ToString();
+            }
+        
+            foreach(GameObject Card in CardsInStripe)
+            {
+                if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
+                {
+                     Card.transform.SetParent(EnemyGraveyard.transform, true);
+                Card.transform.position = EnemyGraveyard.transform.position;
+                }
+                CardsInStripe.Clear();
+            Plus = 0;
+            punctuation.text = Plus.ToString();
+            }
+           
+        }
 
 
     // augment cards
@@ -187,27 +171,7 @@ public class Strip : MonoBehaviour
     //3rd: eliminate the card with more power from both areas 
     public void Viserion()
     {
-        // if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
-        // {
-        //     int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
-
-        //     for(int i = 0; i < CardsInStripe.Count; i++)
-        //     {
-        //         highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
-        //     }
-
-        //     foreach(GameObject Card in CardsInStripe)
-        //     {
-        //         if(Card.GetComponent<CardModel>().Power == highest && Card.GetComponent<CardModel>().TypeOfCard != "Gold")
-        //         {
-        //             Card.transform.position = EnemyGraveyard.transform.position;
-        //             Card.transform.SetParent(EnemyGraveyard.transform, true);
-        //             CardsInStripe.Remove(card);
-        //             break;
-        //         }
-        //     }
-        
-        // }
+        GameObject grave = GameObject.Find("PlayerGraveyard");
 
         if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
         {
@@ -218,24 +182,14 @@ public class Strip : MonoBehaviour
                 highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
             }
 
-            foreach(GameObject card in CardsInStripe)
+            foreach(GameObject Card in CardsInStripe)
             {
-                if(card.GetComponent<CardModel>().Power == highest && card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                if(Card.GetComponent<CardModel>().Power == highest && Card.GetComponent<CardModel>().TypeOfCard != "Gold")
                 {
-                    card.transform.SetParent(PlayerArea.transform, false);
-                    card.transform.position = PlayerArea.transform.position;
-                    card.GetComponent<MoveCard>().useful = true;
-                    CardsInStripe.Remove(card);
+                    Card.transform.position = grave.transform.position;
+                    Card.transform.SetParent(grave.transform, true);
+                    CardsInStripe.Remove(Card);
                 }
-
-                else if(card.GetComponent<CardModel>().Power == highest && card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
-                {
-                    card.transform.SetParent(EnemyArea.transform, false);
-                    card.transform.position = EnemyArea.transform.position;
-                    card.GetComponent<MoveCard>().useful = true;
-                    CardsInStripe.Remove(card);
-                }
-                break;
             }
         }
     }
@@ -243,26 +197,24 @@ public class Strip : MonoBehaviour
     //4th effect of the list: eliminate the card with less power from the enemy area
     public void RedKeep()
     {
-        if(Faction == "Cloud Of Fraternity")
+        GameObject grave = GameObject.Find("PlayerGraveyard");
+
+        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
         {
-            if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
+            int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
+
+            for(int i = 0; i < CardsInStripe.Count; i++)
             {
-                int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
+                lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
+            }
 
-                for(int i = 0; i < CardsInStripe.Count; i++)
+            foreach(GameObject card in CardsInStripe)
+            {
+                if(card.GetComponent<CardModel>().Power == lowest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
                 {
-                    lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
-                }
-
-                foreach(GameObject card in CardsInStripe)
-                {
-                    if(card.GetComponent<CardModel>().Power == lowest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
-                    {
-                        card.transform.position = PlayerGraveyard.transform.position;
-                        card.transform.SetParent(PlayerGraveyard.transform, true);
-                        CardsInStripe.Remove(card);
-                        break;
-                    }
+                    card.transform.position = grave.transform.position;
+                    card.transform.SetParent(grave.transform, true);
+                    CardsInStripe.Remove(card);
                 }
             }
         }
@@ -286,26 +238,6 @@ public class Strip : MonoBehaviour
             }
         }
         return count;
-
-
-        // int count = 1;
-        // int power = 7;
-        // GameObject player1 = GameObject.FindGameObjectWithTag("CACZone");
-
-        // foreach (GameObject Card in CardsInStripe)
-        // {
-        //     //the effect is used in the moment
-        //     if(Card.GetComponent<CardModel>().Power == 7)
-        //     {
-        //         count += 2;
-        //     }
-        //      power *= count;
-
-        //     Card12.GetComponent<CardModel>().Power = power; 
-        //     Card12.transform.SetParent(player1.transform, false);
-        //     Card12.transform.position = player1.transform.position;
-        //     Debug.Log(power);
-        // }
            
     }
 

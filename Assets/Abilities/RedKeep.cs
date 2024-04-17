@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Viserion : MonoBehaviour
+public class RedKeep : MonoBehaviour
 {
     public Strip CAC;
     public Strip Distance;
@@ -33,15 +33,13 @@ public class Viserion : MonoBehaviour
     {
         if(useful)
         {
-            CAC.Viserion();
-            Distance.Viserion();
-            Siege.Viserion();
+            CAC.RedKeep();
+            Distance.RedKeep();
+            Siege.RedKeep();
 
-            ECAC.Viserion();
-            EDistance.Viserion();
-            ESiege.Viserion();
+            ECAC.RedKeep();
+            EDistance.RedKeep();
+            ESiege.RedKeep();
         }
     }
-    
 }
-

@@ -249,7 +249,8 @@ MonoBehaviour:
   Faction: Cloud Of Fraternity
   Stripe: 0
   Drew: 0
-  UnderAttackJM: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
   UnderAttackJ1: 0
   UnderAttackJ2: 0
   UnderAttackK1: 0

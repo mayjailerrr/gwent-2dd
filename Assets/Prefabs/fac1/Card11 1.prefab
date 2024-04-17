@@ -253,7 +253,14 @@ MonoBehaviour:
   Faction: Cloud Of Fraternity
   Stripe: 1
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!114 &1593552928140722617
 MonoBehaviour:
@@ -362,3 +369,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5c9b567792216dc936fd9d90bc8898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pCC: {fileID: 0}
+  pD: {fileID: 0}
+  pS: {fileID: 0}
+  eCC: {fileID: 0}
+  eD: {fileID: 0}
+  eS: {fileID: 0}
+  useful: 0

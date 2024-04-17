@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5732727717650673188}
   - component: {fileID: -7784898489367063954}
   - component: {fileID: 7477034267422916268}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ECard53
   m_TagString: Untagged
   m_Icon: {fileID: 0}

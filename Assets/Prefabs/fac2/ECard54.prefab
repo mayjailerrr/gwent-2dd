@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4293425919241489301}
   - component: {fileID: 6883310533110097722}
   - component: {fileID: -2330868840372884714}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ECard54
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3268243730598056654}
   - component: {fileID: -378611798671343401}
   - component: {fileID: -1420572907053412424}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Card51
   m_TagString: Untagged
   m_Icon: {fileID: 0}

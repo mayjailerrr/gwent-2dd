@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -6587787396264367704}
   - component: {fileID: 1187435042748078368}
   - component: {fileID: 8186241840240767277}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ECard11 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,14 @@ MonoBehaviour:
   Faction: Reign Of Punishment
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!61 &-7822875198930236667
 BoxCollider2D:

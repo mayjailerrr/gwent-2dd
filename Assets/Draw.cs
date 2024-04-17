@@ -97,7 +97,7 @@ public class Draw : MonoBehaviour
             ShuffleCards();
 
             //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 2; i++)
             {
                 if(remainingCards.Count > 0)
                 {

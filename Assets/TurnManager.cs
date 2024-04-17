@@ -8,150 +8,76 @@ using TMPro;
 public class TurnManager : MonoBehaviour
 {
     public int Round = 1;
-    public bool Turn = true;
-    public Hand PlayerArea;
-    public Hand EnemyArea;
+
+    public bool player;
+    public bool enemy;
     
-    public TextMeshProUGUI SurrenderedPlayerText;
-    public TextMeshProUGUI SurrenderedEnemyText;
-    // public bool BranStarkOff;
-    // public bool TheKingOfTheNightOff;
-    // private int BranStark = 1;
-    // private int TheKingOfTheNight = 1;
+    public TextMeshProUGUI PSurrendered;
+    public TextMeshProUGUI ESurrendered;
+
     private int Hand1 = 0;
     private int Hand2 = 0;
-    // private int Equalizer1 = 0;
-    // private int Equalizer2 = 0;
+
     public GameObject player1TurnIndicator;
     public GameObject player2TurnIndicator;
 
-    private bool ESteals;
-    private bool ESteals2;
-    private bool ESteals3;
-    private bool PSteals;
-    private bool PSteals2;
-    private bool PSteals3;
+    public GameObject leader1;
+    public GameObject leader2;
+
+    public GameObject give1;
+    public GameObject give2;
+
+    private Hand zone;
+    private Hand zone2;
+
+    public GameObject PlayerArea;
+    public GameObject EnemyArea;
+
+
+    public void SwitchTurns()
+    {
+        if(zone.Surrendered == false && zone2.Surrendered == false)
+        {
+            //toggle the active state of the turn indicators
+            player1TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
+            player2TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
+
+            leader1.SetActive(!leader1.activeSelf);
+            leader2.SetActive(!leader2.activeSelf);
+
+            give1.gameObject.SetActive(!give1.activeSelf);
+            give2.gameObject.SetActive(!give2.activeSelf);
+        }
+    }
 
 
     void Start()
     {
+        //the game is started by the first player
         player1TurnIndicator.SetActive(false);
         player2TurnIndicator.SetActive(true); 
-    }
 
-    public void SwitchTurns()
-    {
-        //toggle the active state of the turn indicators
-        player1TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
-        player2TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
-    }
+        leader1.SetActive(true);
+        leader2.SetActive(false);
+
+        PSurrendered.gameObject.SetActive(false);
+        ESurrendered.gameObject.SetActive(false);
+
+        give1.gameObject.SetActive(true);
+        give2.gameObject.SetActive(false);
 
 
-    void Update()
-    {
-        // BranStarkOff = GameObject.Find("BranStark").GetComponent<BranStarkAbility>().Utilizada;
-        // TheKingOfTheNightOff = GameObject.Find("TheKingOfTheNight").GetComponent<TheKingOfTheNightAbility>().Usada;
-
-        PlayerArea = GameObject.FindGameObjectWithTag("PlayerArea").GetComponent<Hand>();
-        EnemyArea = GameObject.FindGameObjectWithTag("EnemyArea").GetComponent<Hand>();
-
-        ESteals = GameObject.Find("Deck2").GetComponent<Draw>().Stole;
-        PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
-        ESteals2 = GameObject.Find("Deck2").GetComponent<Draw>().Stole2;
-        PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
-        ESteals3 = GameObject.Find("Deck2").GetComponent<Draw>().Stole3;
-        PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
+        player = GameObject.FindGameObjectWithTag("PlayerArea").GetComponent<Hand>().Surrendered;
+        enemy = GameObject.FindGameObjectWithTag("EnemyArea").GetComponent<Hand>().Surrendered;
 
         Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+
         Hand1 = GameObject.Find("PlayerArea").GetComponent<Hand>().Cards;
         Hand2 = GameObject.Find("EnemyArea").GetComponent<Hand>().Cards;
+
+        zone = PlayerArea.GetComponent<Hand>();
+        zone2 = EnemyArea.GetComponent<Hand>();
     }
-
-           
-        // if(BranStarkOff && BranStark == 1) // changing the turn when the ability of the leader is off (already used)
-        // {
-        //     BranStark += 1;
-        //     Turn = false;
-        // }
-        // if(TheKingOfTheNightOff && TheKingOfTheNight == 1)
-        // {
-        //     TheKingOfTheNight += 1;
-        //     Turn = true;
-        // }
-
-
-
-
-
-
-
-//         if(PlayerArea.Surrendered) //when the player has surrendered it will be the oponent's turn
-//         {
-//             Turn = false;
-//             SurrenderedPlayerText.text = "Player has surrendered siu";
-//         }
-//         else
-//         {
-//             SurrenderedPlayerText.text = "";
-//         }
-
-//         if(EnemyArea.Surrendered)
-//         {
-//             Turn = true;
-//             SurrenderedEnemyText.text = "Enemy has surrendered siu";
-//         }
-//         else
-//         {
-//             SurrenderedEnemyText.text = "";
-//         }
-        
-//         if(EnemyArea.Surrendered && PlayerArea.Surrendered) //when both has surrendered then we cant see the cards from any area
-//         {
-//             hiddenEnemy.sizeDelta = new Vector2(850, 56);
-//             hiddenPlayer.sizeDelta = new Vector2(850, 56);
-//         }
-
-
-//         // if(Hand1 == 0 && Round == 1 && PSteals)
-//         // {
-//         //     Turn = true;
-//         // }
-//         // if(Hand1 == 0 && Round == 2 && PSteals2)
-//         // {
-//         //     Turn = true;
-//         // }
-//         // if(Hand1 == 0 && Round == 3 && PSteals3)
-//         // {
-//         //     Turn = true;
-//         // }
-
-//     //     if(Equalizer1 != Hand1)
-//     //     {
-//     //         Equalizer1 = Hand1;
-//     //         Turn = false;
-//     //     }
-//     //    }
-
-
-//        
-//         // if(Hand2 == 0 && Round == 1 && ESteals)
-//         // {
-//         //     Turn = true;
-//         // }
-//         // if(Hand2 == 0 && Round == 2 && ESteals2)
-//         // {
-//         //     Turn = true;
-//         // }
-//         // if(Hand2 == 0 && Round == 3 && ESteals3)
-//         // {
-//         //     Turn = true;
-//         // }
-
-//         // if(Equalizer2 != Hand2)
-//         // {
-//         //     Equalizer2 = Hand2;
-//         //     Turn = true;
-//         // }
-//     //    }
-//     }
+    
 }
+

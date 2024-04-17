@@ -95,7 +95,8 @@ GameObject:
   - component: {fileID: -3433651606537404485}
   - component: {fileID: -8384572455897944598}
   - component: {fileID: -1306562263066209758}
-  m_Layer: 5
+  - component: {fileID: -1361259749371255893}
+  m_Layer: 6
   m_Name: ECard31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,6 +217,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -1361259749371255893}
+        m_TargetAssemblyTypeName: RedKeep, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-3163232588349868688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,10 +247,17 @@ MonoBehaviour:
   PurePower: 8
   TypeOfPower: Siege
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
+  used: 0
 --- !u!61 &-3433651606537404485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -335,4 +355,24 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 5924509004813675233}
+  turnManager: {fileID: 0}
   useful: 1
+--- !u!114 &-1361259749371255893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924509004813675233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c835a2929c0649eb74e48fd2f8d683, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CAC: {fileID: 0}
+  Distance: {fileID: 0}
+  Siege: {fileID: 0}
+  ECAC: {fileID: 0}
+  EDistance: {fileID: 0}
+  ESiege: {fileID: 0}
+  useful: 0

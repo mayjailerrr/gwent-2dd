@@ -3,49 +3,64 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Weather : MonoBehaviour
+public class Graveyard : MonoBehaviour
 {
     private GameObject CardEntry;
     public List<GameObject> CardsInStripe;
-    public string Faction;
+
     public GameObject PlayerGraveyard;
     public GameObject EnemyGraveyard;
-    private int RoundChecker = 1;
+
     private int Round = 1;
 
-    private void OnCollisionEnter2D(Collision2D collision) //when collision it gets the cards in the list of the stripe
+    public int Hand1;
+    public int Hand2;
+
+    public GameObject PlayerArea;
+    public GameObject EnemyArea;
+    
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        CardEntry = collision.gameObject;   //designs the new card to whatever she collides
-        CardsInStripe.Add(CardEntry);    // it gets the new cards in the list
+        CardEntry = collision.gameObject;  
+        CardsInStripe.Add(CardEntry);  
     }
 
 
     void Update()
     {
-            Round =  GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+        Round =  GameObject.Find("GameManager").GetComponent<GameManager>().Round;
 
-        if(RoundChecker != Round)
+        Hand1 = PlayerArea.GetComponent<Hand>().Cards;
+        Hand2 = EnemyArea.GetComponent<Hand>().Cards;
+
+    }
+
+    public void Clean()
+    {
+        if(Hand1 == 0 && Hand2 == 0)
         {
-            RoundChecker = Round;
-            if(Faction == "Cloud Of Fraternity")
+            foreach(GameObject Card in CardsInStripe)
             {
-                foreach(GameObject Card in CardsInStripe)
+                if(Card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
                 {
                     Card.transform.SetParent(PlayerGraveyard.transform, false);
                     Card.transform.position = PlayerGraveyard.transform.position;
                 }
+
                 CardsInStripe.Clear();
             }
 
-            if(Faction == "Reign Of Punishment")
+            foreach(GameObject Card in CardsInStripe)
             {
-                foreach(GameObject Card in CardsInStripe)
+                if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
                 {
                     Card.transform.SetParent(EnemyGraveyard.transform, false);
                     Card.transform.position = EnemyGraveyard.transform.position;
                 }
+
                 CardsInStripe.Clear();
             }
         }
-    }
+    }      
 }

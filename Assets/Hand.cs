@@ -7,6 +7,7 @@ public class Hand : MonoBehaviour
     private GameObject CardEntry;
     public List<GameObject> CardsInStripe;
     public int Cards = 0;
+
     public bool Surrendered = false;
 
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8537792173845256289}
   - component: {fileID: 7488032772863524197}
   - component: {fileID: -3493757957707597024}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Card41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,11 +152,20 @@ MonoBehaviour:
   Name: Joffrey Baratheon
   TypeOfCard: Follower
   Power: 0
+  PurePower: 0
   TypeOfPower: Lure
   Faction: Cloud Of Fraternity
-  Index: 
   Stripe: 0
   Drew: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
+  used: 0
 --- !u!61 &8537792173845256289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,7 +256,15 @@ MonoBehaviour:
   WarZone4: {fileID: 0}
   WarZone5: {fileID: 0}
   WarZone6: {fileID: 0}
+  EWarZone1: {fileID: 0}
+  EWarZone2: {fileID: 0}
+  EWarZone3: {fileID: 0}
+  EWarZone4: {fileID: 0}
+  EWarZone5: {fileID: 0}
+  EWarZone6: {fileID: 0}
   Card: {fileID: 6030625687827019222}
+  turnManager: {fileID: 0}
+  useful: 1
 --- !u!1 &6063367231816144078
 GameObject:
   m_ObjectHideFlags: 0

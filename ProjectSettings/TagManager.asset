@@ -17,6 +17,14 @@ TagManager:
   - PGraveyard
   - John
   - Deck
+  - Bran
+  - King
+  - CACWZone
+  - DistanceWZone
+  - SiegeWZone
+  - ECACWZone
+  - EDistanceWZone
+  - ESiegeWZone
   layers:
   - Default
   - TransparentFX

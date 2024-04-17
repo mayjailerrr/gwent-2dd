@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -3540253777918110493}
   - component: {fileID: -8855810505601320813}
   - component: {fileID: 8586128231905941223}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Card21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,14 @@ MonoBehaviour:
   Faction: Cloud Of Fraternity
   Stripe: 0
   Drew: 0
-  UnderAttack: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
   used: 0
 --- !u!61 &1962417669746389411
 BoxCollider2D:
@@ -400,3 +407,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b16fe732a55a94ccd90de61310ccbca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CAC: {fileID: 0}
+  Distance: {fileID: 0}
+  Siege: {fileID: 0}
+  ECAC: {fileID: 0}
+  EDistance: {fileID: 0}
+  ESiege: {fileID: 0}

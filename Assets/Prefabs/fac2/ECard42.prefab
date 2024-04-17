@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2939752928526294182}
   - component: {fileID: 6462879931237512231}
   - component: {fileID: 8038758588351705695}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ECard42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,11 +152,20 @@ MonoBehaviour:
   Name: Margaery Tyrell
   TypeOfCard: Follower
   Power: 0
+  PurePower: 0
   TypeOfPower: Lure
   Faction: Reign Of Punishment
-  Index: 
   Stripe: 0
   Drew: 0
+  UnderAttackJM1: 0
+  UnderAttackJM2: 0
+  UnderAttackJ1: 0
+  UnderAttackJ2: 0
+  UnderAttackK1: 0
+  UnderAttackK2: 0
+  UnderAttackT1: 0
+  UnderAttackT2: 0
+  used: 0
 --- !u!61 &2939752928526294182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -254,6 +263,8 @@ MonoBehaviour:
   EWarZone5: {fileID: 0}
   EWarZone6: {fileID: 0}
   Card: {fileID: 5010788314114222767}
+  turnManager: {fileID: 0}
+  useful: 1
 --- !u!1 &5642774554938502093
 GameObject:
   m_ObjectHideFlags: 0

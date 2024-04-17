@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8209182977097600040}
   - component: {fileID: 7600142032406981288}
   - component: {fileID: 5934422421237034223}
-  - component: {fileID: 8916751328392207813}
+  - component: {fileID: 4121649101274231490}
   m_Layer: 5
   m_Name: ESiegeWZone
   m_TagString: Untagged
@@ -122,7 +122,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 42, y: 42}
   m_EdgeRadius: 0
---- !u!114 &8916751328392207813
+--- !u!114 &4121649101274231490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CardsInStripe: []
-  Faction: Reign Of Punishment
   PlayerGraveyard: {fileID: 0}
   EnemyGraveyard: {fileID: 0}
+  Hand1: 0
+  Hand2: 0
+  PlayerArea: {fileID: 0}
+  EnemyArea: {fileID: 0}

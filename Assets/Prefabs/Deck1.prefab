@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 536540906328805028}
   - component: {fileID: 6934204034683539046}
   - component: {fileID: 677873501141725500}
-  - component: {fileID: 3449664625219671952}
   m_Layer: 5
   m_Name: Deck1
   m_TagString: Deck
@@ -161,7 +160,7 @@ MonoBehaviour:
   Card22C2: {fileID: 5632851284757351919, guid: 351c99b3d2fe19c14a1a9282253716d2, type: 3}
   Card23: {fileID: 3571612117873188876, guid: 69b1579a9cd355b2a9de961f1c8b502a, type: 3}
   Card31: {fileID: 8679952771776733623, guid: b0df10a3d1738b027bac45c5c61e183e, type: 3}
-  Card31C1: {fileID: 8679952771776733623, guid: 1eed00c8890e95b02b099628ab7e08ab, type: 3}
+  Card31C1: {fileID: 8679952771776733623, guid: c77867f6e3a7bac529fe1f943dc3b347, type: 3}
   Card32: {fileID: 5015624831165230078, guid: 5c9539ad1d94becb1817ce8e5822785c, type: 3}
   Card32C1: {fileID: 5015624831165230078, guid: 2a09af395e0b8e043a00c855d6b71aa6, type: 3}
   Card32C2: {fileID: 5015624831165230078, guid: 275b496ace8592b9ca06f1aa7045a58a, type: 3}
@@ -181,35 +180,7 @@ MonoBehaviour:
   Stole: 0
   Stole2: 0
   Stole3: 0
---- !u!114 &3449664625219671952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2234026045123963226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 677873501141725500}
-          m_TargetAssemblyTypeName: Draw, Assembly-CSharp
-          m_MethodName: Gigants
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 0
+  useful: 0
 --- !u!1 &6882271915284696330
 GameObject:
   m_ObjectHideFlags: 0
