@@ -482,7 +482,7 @@ MonoBehaviour:
   WinnerIsEnemy: {fileID: 1713152530}
   PlayerPoints: 
   EnemyPoints: 
-  WinnerText: {fileID: 0}
+  WinnerText: {fileID: 402737112}
   PlayerArea: {fileID: 234077212}
   EnemyArea: {fileID: 1194286787}
   cac: {fileID: 0}
@@ -4757,29 +4757,9 @@ PrefabInstance:
       propertyPath: PlayerGraveyard
       value: 
       objectReference: {fileID: 1243034720}
-    - target: {fileID: 1465679942040099696, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: EnemyArea
-      value: 
-      objectReference: {fileID: 1194286787}
-    - target: {fileID: 1465679942040099696, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: PlayerArea
-      value: 
-      objectReference: {fileID: 234077212}
-    - target: {fileID: 1465679942040099696, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: EnemyGraveyard
-      value: 
-      objectReference: {fileID: 2100238385}
-    - target: {fileID: 1465679942040099696, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: PlayerGraveyard
-      value: 
-      objectReference: {fileID: 1243034720}
     - target: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
       propertyPath: m_Name
       value: CACZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 4642579935541140140, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4946519365742269818, guid: 86a5667c87a47d578877bbb5fb03ea5a, type: 3}
       propertyPath: m_Pivot.x
@@ -5390,29 +5370,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2551259211999987201, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      propertyPath: EnemyArea
-      value: 
-      objectReference: {fileID: 1194286787}
-    - target: {fileID: 2551259211999987201, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      propertyPath: PlayerArea
-      value: 
-      objectReference: {fileID: 234077212}
-    - target: {fileID: 2551259211999987201, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      propertyPath: EnemyGraveyard
-      value: 
-      objectReference: {fileID: 2100238385}
-    - target: {fileID: 2551259211999987201, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      propertyPath: PlayerGraveyard
-      value: 
-      objectReference: {fileID: 1243034720}
     - target: {fileID: 8156885458144037830, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
       propertyPath: m_Name
       value: ESiegeZone
-      objectReference: {fileID: 0}
-    - target: {fileID: 8156885458144037830, guid: c16ecdad462f89884bd0e2d7370970af, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5686,22 +5646,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100238385}
     - target: {fileID: 2662660459486575464, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
-      propertyPath: PlayerGraveyard
-      value: 
-      objectReference: {fileID: 1243034720}
-    - target: {fileID: 5002056479807592380, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
-      propertyPath: EnemyArea
-      value: 
-      objectReference: {fileID: 1194286787}
-    - target: {fileID: 5002056479807592380, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
-      propertyPath: PlayerArea
-      value: 
-      objectReference: {fileID: 234077212}
-    - target: {fileID: 5002056479807592380, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
-      propertyPath: EnemyGraveyard
-      value: 
-      objectReference: {fileID: 2100238385}
-    - target: {fileID: 5002056479807592380, guid: 9965ef258db58f5fc85cf21f7f219d61, type: 3}
       propertyPath: PlayerGraveyard
       value: 
       objectReference: {fileID: 1243034720}
@@ -5987,10 +5931,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CACWZone
       objectReference: {fileID: 0}
-    - target: {fileID: 6113286687144998316, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
-      propertyPath: m_TagString
-      value: CACWZone
-      objectReference: {fileID: 0}
     - target: {fileID: 7301486338217172318, guid: f6fbfe9f7f8a88e7da7113cd56a70fbb, type: 3}
       propertyPath: EnemyArea
       value: 
@@ -6124,26 +6064,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EDistanceZone
       objectReference: {fileID: 0}
-    - target: {fileID: 7823176967874327901, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9167489958832321114, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      propertyPath: EnemyArea
-      value: 
-      objectReference: {fileID: 1194286787}
-    - target: {fileID: 9167489958832321114, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      propertyPath: PlayerArea
-      value: 
-      objectReference: {fileID: 234077212}
-    - target: {fileID: 9167489958832321114, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      propertyPath: EnemyGraveyard
-      value: 
-      objectReference: {fileID: 2100238385}
-    - target: {fileID: 9167489958832321114, guid: 959111732522dba248f2ddd62e21bc8f, type: 3}
-      propertyPath: PlayerGraveyard
-      value: 
-      objectReference: {fileID: 1243034720}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6413,22 +6333,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DistanceZone
       objectReference: {fileID: 0}
-    - target: {fileID: 6428552088483784093, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      propertyPath: EnemyArea
-      value: 
-      objectReference: {fileID: 1194286787}
-    - target: {fileID: 6428552088483784093, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      propertyPath: PlayerArea
-      value: 
-      objectReference: {fileID: 234077212}
-    - target: {fileID: 6428552088483784093, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      propertyPath: EnemyGraveyard
-      value: 
-      objectReference: {fileID: 2100238385}
-    - target: {fileID: 6428552088483784093, guid: 70bac4fee48562c5a9b58665cead6f77, type: 3}
-      propertyPath: PlayerGraveyard
-      value: 
-      objectReference: {fileID: 1243034720}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6699,26 +6603,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ECACZone
       objectReference: {fileID: 0}
-    - target: {fileID: 1187740260252298821, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7207373220750200014, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      propertyPath: EnemyArea
-      value: 
-      objectReference: {fileID: 1194286787}
-    - target: {fileID: 7207373220750200014, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      propertyPath: PlayerArea
-      value: 
-      objectReference: {fileID: 234077212}
-    - target: {fileID: 7207373220750200014, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      propertyPath: EnemyGraveyard
-      value: 
-      objectReference: {fileID: 2100238385}
-    - target: {fileID: 7207373220750200014, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
-      propertyPath: PlayerGraveyard
-      value: 
-      objectReference: {fileID: 1243034720}
     - target: {fileID: 8259232918201176358, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
       propertyPath: EnemyArea
       value: 

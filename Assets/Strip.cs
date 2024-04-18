@@ -24,7 +24,7 @@ public class Strip : MonoBehaviour
 
     public bool used = false;
 
-    // private int RoundChecker = 1;
+    private int RoundChecker = 1;
     private int Round = 1;
     private int PartialPlus = 0;
 
@@ -51,36 +51,38 @@ public class Strip : MonoBehaviour
         Plus = PartialPlus;
         punctuation.text = Plus.ToString();  //ends the Plus
 
-    }
-
-      //when the round has finished it restarts everything and the cards go to their proper graveyard
-        public void Clean()
+        if(RoundChecker != Round)
         {
+            GameObject player = GameObject.Find("PlayerGraveyard");
+            GameObject enemy = GameObject.Find("EnemyGraveyard");
+
             foreach(GameObject Card in CardsInStripe)
             {
                 if(Card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
                 {
-                    Card.transform.SetParent(PlayerGraveyard.transform, true);
-                Card.transform.position = PlayerGraveyard.transform.position;
+                    Card.transform.SetParent(player.transform, false);
+                    Card.transform.position = player.transform.position;
+                    Plus = 0;
+                    punctuation.text = Plus.ToString();
                 }
-                  CardsInStripe.Clear();
-            Plus = 0;
-            punctuation.text = Plus.ToString();
             }
-        
+
             foreach(GameObject Card in CardsInStripe)
             {
                 if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
                 {
-                     Card.transform.SetParent(EnemyGraveyard.transform, true);
-                Card.transform.position = EnemyGraveyard.transform.position;
+                    Card.transform.SetParent(enemy.transform, false);
+                    Card.transform.position = enemy.transform.position;
+                    Plus = 0;
+                    punctuation.text = Plus.ToString();
                 }
-                CardsInStripe.Clear();
-            Plus = 0;
-            punctuation.text = Plus.ToString();
             }
-           
+                
+            CardsInStripe.Clear();
+            RoundChecker = Round;
         }
+
+    }
 
 
     // augment cards

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Graveyard : MonoBehaviour
+public class Weather : MonoBehaviour
 {
     private GameObject CardEntry;
     public List<GameObject> CardsInStripe;
@@ -12,6 +12,7 @@ public class Graveyard : MonoBehaviour
     public GameObject EnemyGraveyard;
 
     private int Round = 1;
+    private int RoundChecker = 1;
 
     public int Hand1;
     public int Hand2;
@@ -34,33 +35,30 @@ public class Graveyard : MonoBehaviour
         Hand1 = PlayerArea.GetComponent<Hand>().Cards;
         Hand2 = EnemyArea.GetComponent<Hand>().Cards;
 
-    }
-
-    public void Clean()
-    {
-        if(Hand1 == 0 && Hand2 == 0)
+        if(RoundChecker != Round)
         {
+            GameObject player = GameObject.Find("PlayerGraveyard");
+            GameObject enemy = GameObject.Find("EnemyGraveyard");
+
             foreach(GameObject Card in CardsInStripe)
             {
                 if(Card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
                 {
-                    Card.transform.SetParent(PlayerGraveyard.transform, false);
-                    Card.transform.position = PlayerGraveyard.transform.position;
+                    Card.transform.SetParent(player.transform, false);
+                    Card.transform.position = player.transform.position;
                 }
-
-                CardsInStripe.Clear();
             }
 
             foreach(GameObject Card in CardsInStripe)
             {
                 if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
                 {
-                    Card.transform.SetParent(EnemyGraveyard.transform, false);
-                    Card.transform.position = EnemyGraveyard.transform.position;
+                    Card.transform.SetParent(enemy.transform, false);
+                    Card.transform.position = enemy.transform.position;
                 }
-
-                CardsInStripe.Clear();
             }
+            CardsInStripe.Clear();
+            RoundChecker = Round;
         }
     }      
 }
