@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gigants : MonoBehaviour
+public class Lure : MonoBehaviour
 {
-    public Draw deck;
+    public Strip cac;
     public bool useful;
 
-    void Update()
+    void Start()
     {
         useful = gameObject.GetComponent<MoveCard>().useful;
 
-        GameObject deck = GameObject.FindGameObjectWithTag("Deck");
+        cac = GameObject.FindGameObjectWithTag("CACZone").GetComponent<Strip>(); 
     }
 
     public void Attack()
     {
-        if(useful && deck != null)
+        if(useful)
         {
-            deck.Gigants();
+            cac.Lure();
+            useful = false;
         }
     }
+   
 }

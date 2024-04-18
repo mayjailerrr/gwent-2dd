@@ -6,7 +6,9 @@ using UnityEngine.EventSystems;
 
 public class MoveCard : MonoBehaviour
 {
-    // public GameObject contextMenuPanel;
+    public Draw deck;
+    private int Hand1;
+    private int Round = 1;
     public GameObject WarZone1;
     public GameObject WarZone2;
     public GameObject WarZone3;
@@ -26,10 +28,8 @@ public class MoveCard : MonoBehaviour
     public GameObject Card;
     public GameObject turnManager;
     public bool useful = true;
+    public bool used = false;
 
-    // private bool panelActive = true;
-    
-    // Start is called before the first frame update
     void Start()
     {
         WarZone1 = GameObject.Find("CACWZone");
@@ -49,6 +49,14 @@ public class MoveCard : MonoBehaviour
         EWarZone6 = GameObject.Find("ESiegeZone");
 
         turnManager = GameObject.Find("TurnManager");
+        deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Draw>();
+      
+    }
+
+    void Update()
+    {
+        Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+        Hand1 = GameObject.Find("PlayerArea").GetComponent<Hand>().Cards;
     }
 
 
@@ -190,6 +198,26 @@ public class MoveCard : MonoBehaviour
             useful = false;
             turnManager.GetComponent<TurnManager>().SwitchTurns();
         }
+    }
+
+    public void Deal()
+    {
+        if(used == false)
+        {
+            if(Round == 1 && Hand1 != 10)
+            {
+                deck.Steal();
+            }
+            else if(Round == 2 && Hand1 != 2)
+            {
+                deck.Steal();
+            }
+            else if(Round == 3 && Hand1 != 2)
+            {
+                deck.Steal();
+            }
+            used = true;
+        }   
     }
    
 }

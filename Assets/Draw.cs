@@ -43,7 +43,7 @@ public class Draw : MonoBehaviour
 
     public bool useful;
 
-    private int Round = 1;
+    public int Round = 1;
 
     private List<GameObject> remainingCards;
 
@@ -87,6 +87,13 @@ public class Draw : MonoBehaviour
 
     }
 
+     void Update()
+    {
+        Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+
+        useful = gameObject.GetComponent<MoveCard>().useful;
+    }
+
 
     public void DealCards()
     {
@@ -97,7 +104,7 @@ public class Draw : MonoBehaviour
             ShuffleCards();
 
             //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 17; i++)
             {
                 if(remainingCards.Count > 0)
                 {
@@ -115,7 +122,7 @@ public class Draw : MonoBehaviour
              //shuffle remaining cards
             ShuffleCards();
 
-            //instantiate 10 cards from remainingCards
+            //instantiate 2 cards from remainingCards
             for (int i = 0; i < 2; i++)
             {
                 if(remainingCards.Count > 0)
@@ -129,13 +136,13 @@ public class Draw : MonoBehaviour
         }
 
          //third round
-        if (Stole3 == true && Round == 3)
+        if (Stole3 == false && Round == 3)
         {
               //shuffle remaining cards
             ShuffleCards();
 
-            //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 3; i++)
+            //instantiate 2 cards from remainingCards
+            for (int i = 0; i < 2; i++)
             {
                 if(remainingCards.Count > 0)
                 {
@@ -144,7 +151,7 @@ public class Draw : MonoBehaviour
                     GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
                 }
             }
-            Stole3 = false;
+            Stole3 = true;
         }
        
     }
@@ -163,10 +170,8 @@ public class Draw : MonoBehaviour
     }
 
     //5th: steal a card
-    public void Gigants()
+    public void Steal()
     {
-        if(useful)
-        {
             ShuffleCards();
 
             //instantiate 1 card from remainingCards
@@ -179,14 +184,6 @@ public class Draw : MonoBehaviour
                     GameObject cardInstance = Instantiate(Card, PlayerArea.transform);
                 }
             }
-        }
-    }
-
-    void Update()
-    {
-        Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
-
-        useful = gameObject.GetComponent<MoveCard>().useful;
     }
 
 }

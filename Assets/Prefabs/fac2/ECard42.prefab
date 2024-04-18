@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2939752928526294182}
   - component: {fileID: 6462879931237512231}
   - component: {fileID: 8038758588351705695}
+  - component: {fileID: -7904142260361455358}
   m_Layer: 6
   m_Name: ECard42
   m_TagString: Untagged
@@ -128,6 +129,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8038758588351705695}
         m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
         m_MethodName: EDistanceZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -7904142260361455358}
+        m_TargetAssemblyTypeName: Tyrell2, Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deck: {fileID: 0}
   WarZone1: {fileID: 0}
   WarZone2: {fileID: 0}
   WarZone3: {fileID: 0}
@@ -265,6 +279,21 @@ MonoBehaviour:
   Card: {fileID: 5010788314114222767}
   turnManager: {fileID: 0}
   useful: 1
+  used: 0
+--- !u!114 &-7904142260361455358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010788314114222767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6825a5f8f34e7a569858ec68ae4707d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ed: {fileID: 0}
+  useful: 0
 --- !u!1 &5642774554938502093
 GameObject:
   m_ObjectHideFlags: 0

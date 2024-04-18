@@ -12,12 +12,11 @@ public class Viserion : MonoBehaviour
     public Strip EDistance;
     public Strip ESiege;
 
-    public bool useful;
+    private bool useful;
 
     void Start()
     {
-        
-       useful = gameObject.GetComponent<MoveCard>().useful;
+        useful = gameObject.GetComponent<MoveCard>().useful;
 
        CAC = GameObject.FindGameObjectWithTag("CACZone").GetComponent<Strip>(); 
        Distance = GameObject.FindGameObjectWithTag("DistanceZone").GetComponent<Strip>(); 
@@ -40,6 +39,8 @@ public class Viserion : MonoBehaviour
             ECAC.Viserion();
             EDistance.Viserion();
             ESiege.Viserion();
+
+            useful = false;
         }
     }
     

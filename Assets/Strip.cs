@@ -10,8 +10,6 @@ public class Strip : MonoBehaviour
     public List<GameObject> CardsInStripe;
     public int Plus = 0;
     public TextMeshProUGUI punctuation;
-    public string Faction;
-    public int Stripe;
 
     public GameObject PlayerGraveyard;
     public GameObject EnemyGraveyard;
@@ -298,57 +296,23 @@ public class Strip : MonoBehaviour
     {
         foreach(GameObject card in CardsInStripe)
         {
-            if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackJM1 == true)
+            if(card.GetComponent<CardModel>().TypeOfCard != "Gold")
             {
                 card.GetComponent<CardModel>().UnderAttackJM1 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
 
-             if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackJM2 == true)
-            {
                 card.GetComponent<CardModel>().UnderAttackJM2 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
-
-            if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackJ1 == true)
-            {
+                
                 card.GetComponent<CardModel>().UnderAttackJ1 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
 
-            if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackJ2 == true)
-            {
                 card.GetComponent<CardModel>().UnderAttackJ2 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
-
-            if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackK1 == true)
-            {
+            
                 card.GetComponent<CardModel>().UnderAttackK1 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
-
-             if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackK2 == true)
-            {
+            
                 card.GetComponent<CardModel>().UnderAttackK2 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
-
-            if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackT1 == true)
-            {
+                
                 card.GetComponent<CardModel>().UnderAttackT1 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
-
-             if(card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().UnderAttackT2 == true)
-            {
+                
                 card.GetComponent<CardModel>().UnderAttackT2 = false;
-                card.GetComponent<CardModel>().Power = card.GetComponent<CardModel>().PurePower;
-            }
-
-            if(card.GetComponent<CardModel>().TypeOfPower == "Weather")
-            {
-                CardsInStripe.Remove(card);
             }
         }
     }
@@ -450,5 +414,36 @@ public class Strip : MonoBehaviour
             }
         }
     }
+
+    public void Lure()
+    {
+        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
+        {
+            int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
+
+            for(int i = 0; i < CardsInStripe.Count; i++)
+            {
+                highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
+            }
+            
+            foreach(GameObject card in CardsInStripe)
+            {
+                if(card.GetComponent<CardModel>().Power == highest && card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity" && card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().TypeOfPower != "Lure")
+                {
+                    card.transform.SetParent(PlayerArea.transform, false);
+                    card.transform.position = PlayerArea.transform.position;
+                    card.GetComponent<MoveCard>().useful = true;
+                    CardsInStripe.Remove(card);
+                }
+                if(card.GetComponent<CardModel>().Power == highest && card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && card.GetComponent<CardModel>().TypeOfCard != "Gold" && card.GetComponent<CardModel>().TypeOfPower != "Lure")
+                {
+                    card.transform.SetParent(EnemyArea.transform, false);
+                    card.transform.position = EnemyArea.transform.position;
+                    card.GetComponent<MoveCard>().useful = true;
+                    CardsInStripe.Remove(card);
+                }
+            }
+        }
+    }   
     
 }

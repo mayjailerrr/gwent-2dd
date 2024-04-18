@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class Sparrow : MonoBehaviour
 {
-    public Strip CAC;
-    public Strip Distance;
-    public Strip Siege;
+    public Strip cac;
+    public Strip d;
+    public Strip s;
 
-    public Strip ECAC;
-    public Strip EDistance;
-    public Strip ESiege;
+    public Strip ecac;
+    public Strip ed;
+    public Strip es;
+
+    public Weather cacW;
+    public Weather dW;
+    public Weather sW;
+
+    public Weather ecacW;
+    public Weather edW;
+    public Weather esW;
 
     public bool useful;
 
@@ -19,13 +27,21 @@ public class Sparrow : MonoBehaviour
     {
        useful = gameObject.GetComponent<MoveCard>().useful;
 
-       CAC = GameObject.FindGameObjectWithTag("CACZone").GetComponent<Strip>(); 
-       Distance = GameObject.FindGameObjectWithTag("DistanceZone").GetComponent<Strip>(); 
-       Siege = GameObject.FindGameObjectWithTag("SiegeZone").GetComponent<Strip>(); 
+       cac = GameObject.FindGameObjectWithTag("CACZone").GetComponent<Strip>(); 
+       d = GameObject.FindGameObjectWithTag("DistanceZone").GetComponent<Strip>(); 
+       s = GameObject.FindGameObjectWithTag("SiegeZone").GetComponent<Strip>(); 
 
-       ECAC = GameObject.FindGameObjectWithTag("ECACZone").GetComponent<Strip>(); 
-       EDistance = GameObject.FindGameObjectWithTag("EDistance").GetComponent<Strip>(); 
-       ESiege = GameObject.FindGameObjectWithTag("ESiegeZone").GetComponent<Strip>();  
+       ecac = GameObject.FindGameObjectWithTag("ECACZone").GetComponent<Strip>(); 
+       ed = GameObject.FindGameObjectWithTag("EDistanceZone").GetComponent<Strip>(); 
+       es = GameObject.FindGameObjectWithTag("ESiegeZone").GetComponent<Strip>();  
+
+       cacW = GameObject.FindGameObjectWithTag("CACWZone").GetComponent<Weather>(); 
+       dW = GameObject.FindGameObjectWithTag("DistanceWZone").GetComponent<Weather>(); 
+       sW = GameObject.FindGameObjectWithTag("SiegeWZone").GetComponent<Weather>(); 
+
+       ecacW = GameObject.FindGameObjectWithTag("ECACWZone").GetComponent<Weather>(); 
+       edW = GameObject.FindGameObjectWithTag("EDistanceWZone").GetComponent<Weather>(); 
+       esW = GameObject.FindGameObjectWithTag("ESiegeWZone").GetComponent<Weather>(); 
     }
 
 
@@ -33,23 +49,22 @@ public class Sparrow : MonoBehaviour
     {
         if(useful)
         {
-            if(gameObject.GetComponent<CardModel>().Stripe == 1)
-            {
-                CAC.Sparrow();
-                ECAC.Sparrow();
-            }
+            cac.Sparrow();
+            ecac.Sparrow();
+            cacW.Clean();
+            ecacW.Clean();
+        
+            d.Sparrow();
+            ed.Sparrow();
+            dW.Clean();
+            edW.Clean();
+        
+            s.Sparrow();
+            es.Sparrow();
+            sW.Clean();
+            esW.Clean();
 
-            if(gameObject.GetComponent<CardModel>().Stripe == 2)
-            {
-                Distance.Sparrow();
-                EDistance.Sparrow();
-            }
-
-            if(gameObject.GetComponent<CardModel>().Stripe == 3)
-            {
-                Siege.Sparrow();
-                ESiege.Sparrow();
-            }
+            useful = false;
         }
     }
 

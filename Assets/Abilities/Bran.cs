@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Bran : MonoBehaviour
 {
-    public GameObject card;
-
     public Strip cac;
 
     public bool used = false;
+
+    public Draw deck;
+    public int Hand1;
+    public int Round = 1;
    
     public GameObject player1TurnIndicator;
     public GameObject player2TurnIndicator;
@@ -20,19 +22,29 @@ public class Bran : MonoBehaviour
     public GameObject PlayerArea;
     public GameObject EnemyArea;
 
-     void Start()
+    private bool PSteals;
+    private bool PSteals2;
+    private bool PSteals3;
+
+     void Update()
     {
         zone = PlayerArea.GetComponent<Hand>();
         zone2 = EnemyArea.GetComponent<Hand>();
+        Hand1 = PlayerArea.GetComponent<Hand>().Cards;
+        deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Draw>();
+
+        PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
+        PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
+        PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
+
+        Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
     }
 
     public void Attack()
     {
-        if(used == false)
+        if(used == false && PSteals && Hand1 != 10 && Round == 1)
         {
-            GameObject instance = Instantiate(card, new Vector2(0,0), Quaternion.identity);
-            instance.transform.SetParent(cac.transform, false);
-            instance.transform.position = cac.transform.position;
+            deck.Steal();
             
             if(zone.Surrendered == false && zone2.Surrendered == false)
             {
@@ -46,10 +58,35 @@ public class Bran : MonoBehaviour
 
             used = true;
         }
-    }
+        else if(used == false && PSteals2 && Hand1 != 2 && Round == 2)
+        {
+            deck.Steal();
+            
+            if(zone.Surrendered == false && zone2.Surrendered == false)
+            {
+                 //toggle the active state of the turn indicators
+                player1TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
+                player2TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
 
-    void Update()
-    {
-        cac = GameObject.FindGameObjectWithTag("CACZone").GetComponent<Strip>();
+                leader1.SetActive(!leader1.activeSelf);
+                leader2.SetActive(!leader2.activeSelf);
+            }
+            used = true;
+        }
+        else if(used == false && PSteals3 && Hand1 != 2 && Round == 3)
+        {
+            deck.Steal();
+            
+            if(zone.Surrendered == false && zone2.Surrendered == false)
+            {
+                 //toggle the active state of the turn indicators
+                player1TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
+                player2TurnIndicator.SetActive(!player1TurnIndicator.activeSelf);
+
+                leader1.SetActive(!leader1.activeSelf);
+                leader2.SetActive(!leader2.activeSelf);
+            }
+            used = true;
+        }
     }
 }

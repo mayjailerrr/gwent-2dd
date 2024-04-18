@@ -21,9 +21,6 @@ public class GameManager : MonoBehaviour
     private int PlayerVictories = 0;
     private int EnemyVictories = 0;
 
-//     private int PlayerArea;
-//     private int EnemyArea;
-
     private bool ESteals;
     private bool ESteals2;
     private bool ESteals3;
@@ -67,24 +64,36 @@ public class GameManager : MonoBehaviour
         if(GameOver == false && PlayerVictories == 2)
         {
             GameOver = true;
-            WinnerText.text = "Player is the winner siu";
+            WinnerText.text = "Player1 is the winner siu";
         }
         else if(GameOver == false && EnemyVictories == 2)
         {
             GameOver = true;
-            WinnerText.text = "Enemy is the winner siu";
+            WinnerText.text = "Player2 is the winner siu";
         }
-        else if(GameOver == false && PlayerVictories == EnemyVictories && EnemyVictories == 2)
+        else if(GameOver == false && Round == 0 && PlayerVictories == EnemyVictories && EnemyVictories == 2)
         {
             GameOver = true;
             WinnerText.text = "Tie";
         }
+        else if(GameOver == false && Round == 0 && EnemyVictories > PlayerVictories)
+        {
+            GameOver = true;
+            WinnerText.text = "Player2 is the winner siu";
+        }
+        else if(GameOver == false && Round == 0 && EnemyVictories < PlayerVictories)
+        {
+            GameOver = true;
+            WinnerText.text = "Player1 is the winner siu";
+        }
+        
+        
     }
 
         //first Round
     public void WhoWon()
     {               
-        if(Round == 1 && Hand1 == 0 && Hand2 == 0 && PSteals && ESteals) //1st round finished
+        if(Round == 1 && Hand1 == 0 && Hand2 == 0 && PSteals && ESteals) //1st round finished normally
         {
             int PlayerPts = int.Parse(PlayerPoints);
             int EnemyPts = int.Parse(EnemyPoints);
@@ -103,203 +112,268 @@ public class GameManager : MonoBehaviour
 
             Round += 1;
         }
-        // if(Round == 1 && PlayerSurrendered && EnemySurrendered && PSteals && ESteals) //both surrendered
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+        if(Round == 1 && zone.Surrendered && zone2.Surrendered && PSteals && ESteals) //both surrendered in a middle of a round
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
-        // if(Round == 1 && PlayerSurrendered && EnemyArea == 0 && PSteals && ESteals)  //player has surrendered & enemy has no cards
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
-        // if(Round == 1 && PlayerArea == 0 && EnemySurrendered && PSteals && ESteals)  //player has no cards & enemy has surrendered 
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 1 && zone.Surrendered && zone2.Surrendered) //both surrendered in the start of the round
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
 
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 1 && zone.Surrendered && Hand2 == 0 && PSteals && ESteals)  //player has surrendered & enemy has no cards
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+            if(PlayerPts >= EnemyPts)
 
-        
-        
-        // //second Round
-        // if(Round == 2 && PlayerArea == 0 && EnemyArea == 0 && PSteals2 && ESteals2)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
-        // if(Round == 2 && PlayerSurrendered && EnemySurrendered && PSteals2 && ESteals2)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 1 && Hand1 == 0 && zone2.Surrendered && PSteals && ESteals)  //player has no cards & enemy has surrendered 
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+            
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
-        // if(Round == 2 && PlayerSurrendered && EnemyArea == 0 && PSteals2 && ESteals2)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
-
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
-        // if(Round == 2 && PlayerArea == 0 && EnemySurrendered && PSteals2 && ESteals2)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
-
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round += 1;
-        // }
-
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
 
 
         
-        // //third Round
-        // if(Round == 3 && PlayerArea == 0 && EnemyArea == 0 && PSteals3 && ESteals3)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+        
+        //second Round
+        if(Round == 2 && Hand1 == 0 && Hand2 == 0 && PSteals2 && ESteals2) //second round ends normally
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+            if(PlayerPts >= EnemyPts)
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round = 0;
-        // }
-        // if(Round == 3 && PlayerSurrendered && EnemySurrendered && PSteals3 && ESteals3)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round = 0;
-        // }
-        // if(Round == 3 && PlayerSurrendered && EnemyArea == 0 && PSteals3 && ESteals3)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 2 && zone.Surrendered && zone2.Surrendered && PSteals2 && ESteals2) //both surrendered in the middle of the round
+    {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round = 0;
-        // }
-        // if(Round == 3 && PlayerArea == 0 && EnemySurrendered && PSteals3 && ESteals3)
-        // {
-        //         int PlayerPts = int.Parse(PlayerPoints);
-        //         int EnemyPts = int.Parse(EnemyPoints);
-        //         if(PlayerPts >= EnemyPts)
-        //         {
-        //         PlayerVictories += 1;
-        //         WinnerIsPlayer.text = PlayerVictories.ToString();
-        //         }
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
 
-        //         if(EnemyPts >= PlayerPts)
-        //         {
-        //         EnemyVictories += 1;
-        //         WinnerIsEnemy.text = EnemyVictories.ToString();
-        //         }
-        //         Round = 0;
-        // }
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 2 && zone.Surrendered && zone2.Surrendered) //both surrendered in the start of the round
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 1 && zone.Surrendered && Hand2 == 0 && PSteals && ESteals)  //player has surrendered & enemy has no cards
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+            if(PlayerPts >= EnemyPts)
+
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+        if(Round == 2 && Hand1 == 0 && zone2.Surrendered && PSteals2 && ESteals2) //player has no cards and enemy surrendered
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+            
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round += 1;
+        }
+
+
+
+        
+        //third Round
+        if(Round == 3 && Hand1 == 0 && Hand2 == 0 && PSteals3 && ESteals3) //3rd round ends normally
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round = 0;
+        }
+        if(Round == 3 && zone.Surrendered && zone2.Surrendered && PSteals3 && ESteals3) //both surrendered in the middle of the round
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round = 0;
+        }
+        if(Round == 3 && zone.Surrendered && zone2.Surrendered) //both surrendered in the start of the round
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round = 0;
+        }
+        if(Round == 3 && zone.Surrendered && Hand2 == 0 && PSteals3 && ESteals3) //player has surrendered and enemy has no cards
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round = 0;
+        }
+        if(Round == 3 && Hand1 == 0 && zone2.Surrendered && PSteals3 && ESteals3)//player has no cards and enemy surrendered
+        {
+            int PlayerPts = int.Parse(PlayerPoints);
+            int EnemyPts = int.Parse(EnemyPoints);
+
+            if(PlayerPts >= EnemyPts)
+            {
+            PlayerVictories += 1;
+            WinnerIsPlayer.text = PlayerVictories.ToString();
+            }
+
+            if(EnemyPts >= PlayerPts)
+            {
+            EnemyVictories += 1;
+            WinnerIsEnemy.text = EnemyVictories.ToString();
+            }
+            Round = 0;
+        }
    }
 }
 

@@ -485,18 +485,6 @@ MonoBehaviour:
   WinnerText: {fileID: 402737112}
   PlayerArea: {fileID: 234077212}
   EnemyArea: {fileID: 1194286787}
-  cac: {fileID: 0}
-  d: {fileID: 0}
-  s: {fileID: 0}
-  cacW: {fileID: 0}
-  dW: {fileID: 0}
-  sW: {fileID: 0}
-  ecac: {fileID: 0}
-  ed: {fileID: 0}
-  es: {fileID: 0}
-  ecacW: {fileID: 0}
-  edW: {fileID: 0}
-  esW: {fileID: 0}
 --- !u!224 &214201154 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8436950068442918091, guid: 0f1fb33335fff18a191406b89e488446, type: 3}
@@ -1929,9 +1917,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1194286793}
-    - targetCorrespondingSourceObject: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1194286797}
   m_SourcePrefab: {fileID: 100100000, guid: 15d161953c793a118916cfcf910c26df, type: 3}
 --- !u!1 &978349524 stripped
@@ -2510,6 +2495,7 @@ MonoBehaviour:
   Stole2: 0
   Stole3: 0
   useful: 0
+  Round: 1
 --- !u!1 &1194286787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
@@ -2520,51 +2506,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1329160018102972910, guid: 15d161953c793a118916cfcf910c26df, type: 3}
   m_PrefabInstance: {fileID: 975185521}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &1194286793
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194286787}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 877, y: 56}
-  m_EdgeRadius: 0
 --- !u!114 &1194286797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3301,9 +3242,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e3b4b5d0c9b0ea78d8f8ee62822168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 8203202939795233134, guid: afe0604f349ba6672ad9cfec77de0594, type: 3}
   cac: {fileID: 0}
-  used: 0
+  used1: 0
+  used2: 0
+  used3: 0
+  deck: {fileID: 0}
+  Hand1: 0
+  Round: 1
   player1TurnIndicator: {fileID: 767854546}
   player2TurnIndicator: {fileID: 2059399059}
   leader1: {fileID: 1676772224}
@@ -6500,10 +6445,6 @@ PrefabInstance:
       value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 1329160018102972910, guid: 15d161953c793a118916cfcf910c26df, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1329160018102972910, guid: 15d161953c793a118916cfcf910c26df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -6555,42 +6496,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArea
       objectReference: {fileID: 0}
-    - target: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
-      propertyPath: m_TagString
-      value: PlayerArea
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8196469109342208361}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15d161953c793a118916cfcf910c26df, type: 3}
 --- !u!224 &8196469109342208360 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1329160018102972910, guid: 15d161953c793a118916cfcf910c26df, type: 3}
   m_PrefabInstance: {fileID: 8196469109342208359}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8196469109342208361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234077212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2b7267d69d57670ac619b56dd00d1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Cards: 0
-  Surrendered: 0
 --- !u!1001 &8892604610112896605
 PrefabInstance:
   m_ObjectHideFlags: 0

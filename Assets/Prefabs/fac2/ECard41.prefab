@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -7761341293707968158}
   - component: {fileID: -829773698401467720}
   - component: {fileID: -1649702299198439475}
+  - component: {fileID: -1581833202327515220}
   m_Layer: 6
   m_Name: ECard41
   m_TagString: Untagged
@@ -128,6 +129,18 @@ MonoBehaviour:
       - m_Target: {fileID: -1649702299198439475}
         m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
         m_MethodName: ECACZone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -1581833202327515220}
+        m_TargetAssemblyTypeName: Joffrey2, Assembly-CSharp
+        m_MethodName: Attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deck: {fileID: 0}
   WarZone1: {fileID: 0}
   WarZone2: {fileID: 0}
   WarZone3: {fileID: 0}
@@ -265,6 +279,21 @@ MonoBehaviour:
   Card: {fileID: 6030625687827019222}
   turnManager: {fileID: 0}
   useful: 1
+  used: 0
+--- !u!114 &-1581833202327515220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6030625687827019222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd12c24a5f687ede3b57ae03de6b26db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ecac: {fileID: 0}
+  useful: 0
 --- !u!1 &6063367231816144078
 GameObject:
   m_ObjectHideFlags: 0

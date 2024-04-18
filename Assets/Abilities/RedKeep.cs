@@ -12,7 +12,7 @@ public class RedKeep : MonoBehaviour
     public Strip EDistance;
     public Strip ESiege;
 
-    public bool useful;
+    private bool useful;
 
     void Start()
     {
@@ -33,6 +33,7 @@ public class RedKeep : MonoBehaviour
     {
         if(useful)
         {
+            useful = false;
             CAC.RedKeep();
             Distance.RedKeep();
             Siege.RedKeep();

@@ -27,6 +27,7 @@ public class Jaime : MonoBehaviour
             }
 
             gameObject.GetComponent<CardModel>().Power = gameObject.GetComponent<CardModel>().PurePower * power;
+            useful = false;
         }
     }
 

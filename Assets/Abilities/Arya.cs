@@ -46,6 +46,8 @@ public class Arya : MonoBehaviour
             eCC.Replace(us);
             eD.Replace(us);
             eS.Replace(us);
+
+            useful = false;
         }
     }
 

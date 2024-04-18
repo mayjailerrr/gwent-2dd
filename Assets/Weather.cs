@@ -60,5 +60,30 @@ public class Weather : MonoBehaviour
             CardsInStripe.Clear();
             RoundChecker = Round;
         }
-    }      
+    }  
+
+    public void Clean()
+    {
+        GameObject player = GameObject.Find("PlayerGraveyard");
+        GameObject enemy = GameObject.Find("EnemyGraveyard");
+
+        foreach(GameObject Card in CardsInStripe)
+        {
+            if(Card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity" && Card.GetComponent<CardModel>().TypeOfPower == "Weather")
+            {
+                Card.transform.SetParent(player.transform, false);
+                Card.transform.position = player.transform.position;
+            }
+        }
+
+        foreach(GameObject Card in CardsInStripe)
+        {
+            if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && Card.GetComponent<CardModel>().TypeOfPower == "Weather")
+            {
+                Card.transform.SetParent(enemy.transform, false);
+                Card.transform.position = enemy.transform.position;
+            }
+        }
+        CardsInStripe.Clear();
+    }    
 }
