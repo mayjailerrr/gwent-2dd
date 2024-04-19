@@ -23,7 +23,7 @@ public class GiveUp : MonoBehaviour
 
     private Hand zone;
     private Hand zone2;
-    private bool use = false;
+    // private bool use = false;
 
     void Start()
     {
@@ -34,8 +34,6 @@ public class GiveUp : MonoBehaviour
 
     public void  Surrender()
     {
-        if(use == false)
-        {
             if(zone != null)
             {
                 zone.Surrendered = !zone.Surrendered;
@@ -56,27 +54,25 @@ public class GiveUp : MonoBehaviour
                 give1.gameObject.SetActive(!give1.activeSelf);
                 give2.gameObject.SetActive(!give2.activeSelf);
             }
-            use = true;
-        }  
 
     }
 
-    public void both()
-    {
-        if(zone.Surrendered == true && zone2.Surrendered == true)
-            {
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(true); 
+    // public void both()
+    // {
+    //     if(zone.Surrendered == true && zone2.Surrendered == true)
+    //         {
+    //             player1TurnIndicator.SetActive(true);
+    //             player2TurnIndicator.SetActive(true); 
 
-                leader1.SetActive(false);
-                leader2.SetActive(false);
+    //             leader1.SetActive(false);
+    //             leader2.SetActive(false);
 
-                PSurrendered.gameObject.SetActive(true);
-                ESurrendered.gameObject.SetActive(true);
+    //             PSurrendered.gameObject.SetActive(true);
+    //             ESurrendered.gameObject.SetActive(true);
 
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(false);
-            }
-    }
+    //             give1.gameObject.SetActive(false);
+    //             give2.gameObject.SetActive(false);
+    //         }
+    // }
 
 }

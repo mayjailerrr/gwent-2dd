@@ -74,11 +74,8 @@ public class Weather : MonoBehaviour
                 Card.transform.SetParent(player.transform, false);
                 Card.transform.position = player.transform.position;
             }
-        }
 
-        foreach(GameObject Card in CardsInStripe)
-        {
-            if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && Card.GetComponent<CardModel>().TypeOfPower == "Weather")
+            else if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && Card.GetComponent<CardModel>().TypeOfPower == "Weather")
             {
                 Card.transform.SetParent(enemy.transform, false);
                 Card.transform.position = enemy.transform.position;

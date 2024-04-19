@@ -177,10 +177,12 @@ MonoBehaviour:
   Card61: {fileID: 5884466880408977679, guid: ec32cf50c15130506a02bdf3f32c9bed, type: 3}
   Card62: {fileID: 6986718453807437677, guid: 95caef20f7696275c8b7e1c07623cd23, type: 3}
   Card63: {fileID: 8404694673516141302, guid: abde557b211f6f859b5d63337ec9ee6f, type: 3}
+  Card71: {fileID: 8071366615128438157, guid: a435a1aa16ce778619fcff5b19c4eabf, type: 3}
   Stole: 0
   Stole2: 0
   Stole3: 0
   useful: 0
+  Round: 1
 --- !u!1 &6882271915284696330
 GameObject:
   m_ObjectHideFlags: 0

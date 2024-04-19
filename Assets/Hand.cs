@@ -10,6 +10,12 @@ public class Hand : MonoBehaviour
 
     public bool Surrendered = false;
 
+    public GameObject PlayerGraveyard;
+    public GameObject EnemyGraveyard;
+
+    private int RoundChecker = 1;
+    private int Round = 1;
+
 
     private void OnCollisionEnter2D(Collision2D collision) //when collision it gets them on the list of the Stripe
     {
@@ -22,5 +28,33 @@ public class Hand : MonoBehaviour
     {
         CardsInStripe.RemoveAt(0);
         Cards -= 1;
+    }
+
+    void Update()
+    {
+        Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
+
+        if(RoundChecker != Round)
+        {
+            GameObject player = GameObject.Find("PlayerGraveyard");
+            GameObject enemy = GameObject.Find("EnemyGraveyard");
+
+            foreach(GameObject Card in CardsInStripe)
+            {
+                if(Card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
+                {
+                    Card.transform.SetParent(player.transform, false);
+                    Card.transform.position = player.transform.position;
+                }
+                else if(Card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
+                {
+                    Card.transform.SetParent(enemy.transform, false);
+                    Card.transform.position = enemy.transform.position;
+                }
+            }
+            
+            CardsInStripe.Clear();
+            RoundChecker = Round;
+        }
     }
 }

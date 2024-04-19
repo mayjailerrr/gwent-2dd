@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deck: {fileID: 0}
   WarZone1: {fileID: 0}
   WarZone2: {fileID: 0}
   WarZone3: {fileID: 0}
@@ -278,6 +279,7 @@ MonoBehaviour:
   Card: {fileID: 1489942551923695730}
   turnManager: {fileID: 0}
   useful: 1
+  used: 0
 --- !u!114 &7171816231539493829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useful: 0
   d: {fileID: 0}
-  Card53: {fileID: 7482025435920368307, guid: 04c7e94b0fa383e19b59f844dae98d3c, type: 3}
+  Card53: {fileID: 7482025435920368307, guid: 447228948a4da1d649045a872f0b9b07, type: 3}
   eWarZone: {fileID: 0}
 --- !u!1 &5704841257364175581
 GameObject:

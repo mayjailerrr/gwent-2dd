@@ -36,6 +36,9 @@ public class Draw : MonoBehaviour
     public GameObject Card61;
     public GameObject Card62;
     public GameObject Card63;
+    public GameObject Card71;
+    public GameObject Card71C1;
+    public GameObject Card71C2;
 
     public bool Stole = false;
     public bool Stole2 = false;
@@ -45,7 +48,7 @@ public class Draw : MonoBehaviour
 
     public int Round = 1;
 
-    private List<GameObject> remainingCards;
+    public List<GameObject> remainingCards;
 
     List <GameObject> cards = new List<GameObject>();
 
@@ -82,6 +85,10 @@ public class Draw : MonoBehaviour
        cards.Add(Card61);
        cards.Add(Card62);
        cards.Add(Card63);
+       cards.Add(Card71);
+       cards.Add(Card71C1);
+       cards.Add(Card71C2);
+       
 
         remainingCards = new List<GameObject>(cards);
 
@@ -90,8 +97,6 @@ public class Draw : MonoBehaviour
      void Update()
     {
         Round = GameObject.Find("GameManager").GetComponent<GameManager>().Round;
-
-        useful = gameObject.GetComponent<MoveCard>().useful;
     }
 
 
@@ -104,7 +109,7 @@ public class Draw : MonoBehaviour
             ShuffleCards();
 
             //instantiate 10 cards from remainingCards
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if(remainingCards.Count > 0)
                 {

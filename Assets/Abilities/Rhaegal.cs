@@ -28,6 +28,7 @@ public class Rhaegal : MonoBehaviour
             GameObject newArmy = Instantiate(Card53, eWarZone.transform);
             newArmy.transform.SetParent(eWarZone.transform, false);
             newArmy.transform.position = eWarZone.transform.position;
+            newArmy.GetComponent<MoveCard>().useful = false;
 
             d.Targaryen();
 

@@ -16,8 +16,6 @@ public class Strip : MonoBehaviour
     public GameObject PlayerArea;
     public GameObject EnemyArea;
 
-    public GameObject Card12;
-    public GameObject Card53;
     public GameObject Card61;
 
     public bool used = false;
@@ -298,21 +296,53 @@ public class Strip : MonoBehaviour
         {
             if(card.GetComponent<CardModel>().TypeOfCard != "Gold")
             {
-                card.GetComponent<CardModel>().UnderAttackJM1 = false;
-
-                card.GetComponent<CardModel>().UnderAttackJM2 = false;
+                if(card.GetComponent<CardModel>().UnderAttackJM1 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackJM1 = false;
+                    card.GetComponent<CardModel>().Power += 5;
+                }
                 
-                card.GetComponent<CardModel>().UnderAttackJ1 = false;
-
-                card.GetComponent<CardModel>().UnderAttackJ2 = false;
-            
-                card.GetComponent<CardModel>().UnderAttackK1 = false;
-            
-                card.GetComponent<CardModel>().UnderAttackK2 = false;
+                if(card.GetComponent<CardModel>().UnderAttackJM2 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackJM2 = false;
+                    card.GetComponent<CardModel>().Power += 5;
+                }
                 
-                card.GetComponent<CardModel>().UnderAttackT1 = false;
+                if(card.GetComponent<CardModel>().UnderAttackJ1 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackJ1 = false;
+                    card.GetComponent<CardModel>().Power += 5;
+                }
                 
-                card.GetComponent<CardModel>().UnderAttackT2 = false;
+                if(card.GetComponent<CardModel>().UnderAttackJ2 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackJ2 = false;
+                    card.GetComponent<CardModel>().Power += 5;
+                }
+               
+                if(card.GetComponent<CardModel>().UnderAttackK1 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackK1 = false;
+                    card.GetComponent<CardModel>().Power += 5;
+                }
+                
+                if(card.GetComponent<CardModel>().UnderAttackK2 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackK2 = false;
+                    card.GetComponent<CardModel>().Power += 5;
+                }
+               
+                if(card.GetComponent<CardModel>().UnderAttackT1 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackT1 = false;
+                    card.GetComponent<CardModel>().Power += 4;
+                }
+                
+                if(card.GetComponent<CardModel>().UnderAttackT2 == true)
+                {
+                    card.GetComponent<CardModel>().UnderAttackT2 = false;
+                    card.GetComponent<CardModel>().Power += 4;
+                }
             }
         }
     }
