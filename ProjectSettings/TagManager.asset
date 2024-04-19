@@ -25,6 +25,7 @@ TagManager:
   - ECACWZone
   - EDistanceWZone
   - ESiegeWZone
+  - Deck2
   layers:
   - Default
   - TransparentFX

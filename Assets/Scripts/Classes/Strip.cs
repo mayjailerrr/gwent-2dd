@@ -19,6 +19,7 @@ public class Strip : MonoBehaviour
     public GameObject Card61;
 
     public bool used = false;
+    public bool usedV = false;
 
     private int RoundChecker = 1;
     private int Round = 1;
@@ -167,52 +168,76 @@ public class Strip : MonoBehaviour
     }
 
     //3rd: eliminate the card with more power from both areas 
+
     public void Viserion()
     {
         GameObject grave = GameObject.Find("PlayerGraveyard");
+        GameObject grave2 = GameObject.Find("EnemyGraveyard");
 
-        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
+        if (CardsInStripe.Count > 0)
         {
             int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
 
-            for(int i = 0; i < CardsInStripe.Count; i++)
+            foreach (GameObject card in CardsInStripe)
             {
-                highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
+                highest = Mathf.Max(highest, card.GetComponent<CardModel>().Power);
             }
 
-            foreach(GameObject Card in CardsInStripe)
+            // Iterate over the list to remove cards with the highest power
+            for (int i = CardsInStripe.Count - 1; i >= 0; i--)
             {
-                if(Card.GetComponent<CardModel>().Power == highest && Card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                GameObject card = CardsInStripe[i];
+
+                if (card.GetComponent<CardModel>().Power == highest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
                 {
-                    Card.transform.position = grave.transform.position;
-                    Card.transform.SetParent(grave.transform, true);
-                    CardsInStripe.Remove(Card);
+                    if (card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
+                    {
+                        card.transform.position = grave2.transform.position;
+                        card.transform.SetParent(grave2.transform, true);
+                    }
+                    else if (card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
+                    {
+                        card.transform.position = grave.transform.position;
+                        card.transform.SetParent(grave.transform, true);
+                    }
+
+                    CardsInStripe.RemoveAt(i);
                 }
             }
         }
     }
 
+
     //4th effect of the list: eliminate the card with less power from the enemy area
+
     public void RedKeep()
     {
         GameObject grave = GameObject.Find("PlayerGraveyard");
 
-        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
+        if (CardsInStripe.Count > 0)
         {
-            int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
+            // Create a list to store all card powers
+            List<int> allPowers = new List<int>();
 
-            for(int i = 0; i < CardsInStripe.Count; i++)
+            // Add powers of all cards to the list
+            foreach (GameObject card in CardsInStripe)
             {
-                lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
+                allPowers.Add(card.GetComponent<CardModel>().Power);
             }
 
-            foreach(GameObject card in CardsInStripe)
+            // Find the lowest power among all cards
+            int lowest = Mathf.Min(allPowers.ToArray());
+
+            // Iterate over the list to remove cards with the lowest power
+            for (int i = CardsInStripe.Count - 1; i >= 0; i--)
             {
-                if(card.GetComponent<CardModel>().Power == lowest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                GameObject card = CardsInStripe[i];
+
+                if (card.GetComponent<CardModel>().Power == lowest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
                 {
                     card.transform.position = grave.transform.position;
                     card.transform.SetParent(grave.transform, true);
-                    CardsInStripe.Remove(card);
+                    CardsInStripe.RemoveAt(i);
                 }
             }
         }
@@ -248,7 +273,7 @@ public class Strip : MonoBehaviour
         {
             if(card.GetComponent<CardModel>().TypeOfCard != "Gold")
             {
-                card.transform.SetParent(player.transform, false);
+                card.transform.SetParent(player.transform, true);
                 card.transform.position = player.transform.position;
                 card.GetComponent<CardModel>().Power = 0;
                 card.GetComponent<CardModel>().PurePower = 0;

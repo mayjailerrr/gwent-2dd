@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -6697410681714809132}
   - component: {fileID: 936688391782128153}
   - component: {fileID: -66124518426415236}
+  - component: {fileID: 2527221327391280437}
+  - component: {fileID: -8671370595346401738}
   m_Layer: 6
   m_Name: ECard63
   m_TagString: Untagged
@@ -263,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deck: {fileID: 0}
   WarZone1: {fileID: 0}
   WarZone2: {fileID: 0}
   WarZone3: {fileID: 0}
@@ -278,6 +281,7 @@ MonoBehaviour:
   Card: {fileID: 8404694673516141302}
   turnManager: {fileID: 0}
   useful: 1
+  used: 0
 --- !u!114 &-66124518426415236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +299,53 @@ MonoBehaviour:
   Siege: {fileID: 0}
   ECAC: {fileID: 0}
   ESiege: {fileID: 0}
+--- !u!114 &2527221327391280437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404694673516141302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -8671370595346401738}
+          m_TargetAssemblyTypeName: Change, Assembly-CSharp
+          m_MethodName: Swapping2
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &-8671370595346401738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404694673516141302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce051fd76b8754c17ac8f4c8fb774a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck: {fileID: 0}
+  deck2: {fileID: 0}
+  use1: 0
+  use2: 0
+  Hand1: 0
+  Hand2: 0
 --- !u!1 &8742188537097651611
 GameObject:
   m_ObjectHideFlags: 0

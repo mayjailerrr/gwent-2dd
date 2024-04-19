@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: -7909626119102801474}
   - component: {fileID: -2850246806296211232}
   - component: {fileID: -2864155961177251944}
+  - component: {fileID: -4446476867723800555}
+  - component: {fileID: 1550636743527558888}
   m_Layer: 6
   m_Name: ECard52
   m_TagString: Untagged
@@ -168,7 +170,7 @@ MonoBehaviour:
   PurePower: 0
   TypeOfPower: Augment
   Faction: Reign Of Punishment
-  Stripe: 0
+  Stripe: 1
   Drew: 0
   UnderAttackJM1: 0
   UnderAttackJM2: 0
@@ -263,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfd0ed7b0ea121f7af0c9aba34b63a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deck: {fileID: 0}
   WarZone1: {fileID: 0}
   WarZone2: {fileID: 0}
   WarZone3: {fileID: 0}
@@ -278,6 +281,7 @@ MonoBehaviour:
   Card: {fileID: 6747672165475763347}
   turnManager: {fileID: 0}
   useful: 1
+  used: 0
 --- !u!114 &-2864155961177251944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +297,53 @@ MonoBehaviour:
   useful: 0
   CAC: {fileID: 0}
   ECAC: {fileID: 0}
+--- !u!114 &-4446476867723800555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747672165475763347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1550636743527558888}
+          m_TargetAssemblyTypeName: Change, Assembly-CSharp
+          m_MethodName: Swapping2
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1550636743527558888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6747672165475763347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce051fd76b8754c17ac8f4c8fb774a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck: {fileID: 0}
+  deck2: {fileID: 0}
+  use1: 0
+  use2: 0
+  Hand1: 0
+  Hand2: 0
 --- !u!1 &9121361220782803893
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,10 +8,6 @@ public class RedKeep : MonoBehaviour
     public Strip Distance;
     public Strip Siege;
 
-    public Strip ECAC;
-    public Strip EDistance;
-    public Strip ESiege;
-
     private bool useful;
 
     void Start()
@@ -22,10 +18,6 @@ public class RedKeep : MonoBehaviour
        CAC = GameObject.FindGameObjectWithTag("CACZone").GetComponent<Strip>(); 
        Distance = GameObject.FindGameObjectWithTag("DistanceZone").GetComponent<Strip>(); 
        Siege = GameObject.FindGameObjectWithTag("SiegeZone").GetComponent<Strip>(); 
-
-       ECAC = GameObject.FindGameObjectWithTag("ECACZone").GetComponent<Strip>(); 
-       EDistance = GameObject.FindGameObjectWithTag("EDistanceZone").GetComponent<Strip>(); 
-       ESiege = GameObject.FindGameObjectWithTag("ESiegeZone").GetComponent<Strip>();
     }
 
 
@@ -37,10 +29,6 @@ public class RedKeep : MonoBehaviour
             CAC.RedKeep();
             Distance.RedKeep();
             Siege.RedKeep();
-
-            ECAC.RedKeep();
-            EDistance.RedKeep();
-            ESiege.RedKeep();
         }
     }
 }

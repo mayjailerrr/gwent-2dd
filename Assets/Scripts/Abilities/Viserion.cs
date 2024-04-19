@@ -32,6 +32,7 @@ public class Viserion : MonoBehaviour
     {
         if(useful)
         {
+            useful = false;
             CAC.Viserion();
             Distance.Viserion();
             Siege.Viserion();
@@ -39,8 +40,6 @@ public class Viserion : MonoBehaviour
             ECAC.Viserion();
             EDistance.Viserion();
             ESiege.Viserion();
-
-            useful = false;
         }
     }
     

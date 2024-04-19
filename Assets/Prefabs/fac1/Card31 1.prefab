@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: -4220430961365309186}
   - component: {fileID: -1389377868745389670}
   - component: {fileID: -1990060822488632944}
+  - component: {fileID: -414267548885425409}
+  - component: {fileID: -5676021878121822930}
   m_Layer: 6
   m_Name: Card31 1
   m_TagString: Untagged
@@ -246,7 +248,7 @@ MonoBehaviour:
   PurePower: 8
   TypeOfPower: Siege
   Faction: Cloud Of Fraternity
-  Stripe: 0
+  Stripe: 3
   Drew: 0
   UnderAttackJM1: 0
   UnderAttackJM2: 0
@@ -357,3 +359,51 @@ MonoBehaviour:
   Card: {fileID: 8679952771776733623}
   turnManager: {fileID: 0}
   useful: 1
+  used: 0
+--- !u!114 &-414267548885425409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679952771776733623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce051fd76b8754c17ac8f4c8fb774a78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deck: {fileID: 0}
+  deck2: {fileID: 0}
+  use1: 0
+  use2: 0
+  Hand1: 0
+  Hand2: 0
+--- !u!114 &-5676021878121822930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679952771776733623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -414267548885425409}
+          m_TargetAssemblyTypeName: Change, Assembly-CSharp
+          m_MethodName: Swapping
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
