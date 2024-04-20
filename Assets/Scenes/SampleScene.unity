@@ -183,6 +183,8 @@ MonoBehaviour:
   leader2: {fileID: 1992014142}
   give1: {fileID: 1996117609}
   give2: {fileID: 885685557}
+  swap1: {fileID: 1119560073}
+  swap2: {fileID: 370726063}
   PlayerArea: {fileID: 234077212}
   EnemyArea: {fileID: 4158577451175794973}
 --- !u!1 &147402061
@@ -723,7 +725,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 370726065}
         m_TargetAssemblyTypeName: Swap1, Assembly-CSharp
-        m_MethodName: Change
+        m_MethodName: Button2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

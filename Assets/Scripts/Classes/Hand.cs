@@ -7,6 +7,7 @@ public class Hand : MonoBehaviour
     private GameObject CardEntry;
     public List<GameObject> CardsInStripe;
     public int Cards = 0;
+    public int siu;
 
     public bool Surrendered = false;
 
@@ -15,6 +16,11 @@ public class Hand : MonoBehaviour
 
     private int RoundChecker = 1;
     private int Round = 1;
+
+    void Start()
+    {
+        siu = 0;
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision) //when collision it gets them on the list of the Stripe

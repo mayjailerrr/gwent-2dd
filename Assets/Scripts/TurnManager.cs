@@ -27,6 +27,10 @@ public class TurnManager : MonoBehaviour
     public GameObject give1;
     public GameObject give2;
 
+    public GameObject swap1;
+    public GameObject swap2;
+
+
     private Hand zone;
     private Hand zone2;
 

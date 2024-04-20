@@ -30,7 +30,9 @@ public class Bran : MonoBehaviour
     {
         zone = PlayerArea.GetComponent<Hand>();
         zone2 = EnemyArea.GetComponent<Hand>();
+
         Hand1 = PlayerArea.GetComponent<Hand>().Cards;
+        
         deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Draw>();
 
         PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;

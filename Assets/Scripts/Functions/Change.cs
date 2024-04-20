@@ -11,42 +11,45 @@ public class Change : MonoBehaviour
     public bool use1;
     public bool use2;
 
-    public int Hand1 = 0;
-    public int Hand2 = 0;
+    public Hand Hand1;
+    public Hand Hand2;
 
-    void Update()
+    void Start()
     {
         use1 = GameObject.Find("Swap1").GetComponent<Swap1>().player1;
         use2 = GameObject.Find("Swap2").GetComponent<Swap1>().player2;
 
         deck = GameObject.FindGameObjectWithTag("Deck").GetComponent<Draw>();
         deck2 = GameObject.FindGameObjectWithTag("Deck2").GetComponent<Draw>();
+
+        Hand1 = GameObject.FindGameObjectWithTag("PlayerArea").GetComponent<Hand>();
+        Hand2 = GameObject.FindGameObjectWithTag("EnemyArea").GetComponent<Hand>();
     }
 
      public void Swapping()
     {
-        if(use1 == false && Hand1 < 2)
+        if(use1 == false && Hand1.siu < 2)
         {
             if(Input.GetMouseButtonUp(1))
             {
                 gameObject.GetComponent<MoveCard>().useful = true;
                 deck.Steal();
                 Destroy(gameObject);
-                Hand1 += 1;
+                Hand1.siu += 1;
             }
         }
     }
 
     public void Swapping2()
     {
-        if(use2 == false && Hand2 < 2)
+        if(use2 == false && Hand2.siu < 2)
         {
             if(Input.GetMouseButtonUp(1))
             {
                 gameObject.GetComponent<MoveCard>().useful = true;
                 deck2.Steal();
                 Destroy(gameObject);
-                Hand2 += 1;
+                Hand2.siu += 1;
             }
         }
     }
