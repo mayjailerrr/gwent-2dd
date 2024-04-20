@@ -1,2 +1,11 @@
 # Implementacion de un juego de cartas digitales inspirado en The Witcher's Gwent con un mazo tematico a la reconocida saga "Game of thrones". 
-_Se ha creado un juego de cartas a traves del motor de videojuegos multiplataforma Unity y mediante el empleo de C# como lenguaje de programcion principal. En la inspeccion de este repositorio es posible acceder a una serie de secciones de la aplicacion para el propio uso y/o modificacion.
+_Se ha creado un juego de cartas a traves del motor de videojuegos multiplataforma Unity y mediante el empleo de C# como lenguaje de programcion principal. En la inspeccion de este repositorio es posible acceder a una serie de secciones de la aplicacion para el propio uso y/o modificacion._
+## Table de contenidos:
+### Como jugar?
+_Al comenzar una partida, cada jugador roba 10 cartas de su deck. Todas las partidas son iniciadas por el jugador especificado en el juego. Antes de que arranque la batalla, los jugadores pueden escoger hasta 2 cartas para regresarlas a la baraja y robar la misma cantidad, simplemente mediante un clic derecho sobre la carta a cambiar. La máxima cantidad de cartas que se puede tener en la mano es 10, cualquier carta que sea robada (por algún efecto durante el juego) mientras se está en este lı́mite será obviada._
+_Un turno consiste en jugar una carta, utilizar una habilidad de lı́der o pasar. El hecho de pasar implica que el jugador terminó de jugar por la ronda actual y por tanto no utilizará ninguna otra carta. En el momento en que los dos jugadores hayan pasado, la ronda termina, todas las cartas son enviadas al cementerio y la persona con mayor fuerza en el tablero ganará. Dos rondas ganadas marcan la victoria. Si la ronda termina en empate, cada jugador obtiene un punto de ronda._
+_1. El jugador que gane la ronda anterior, será quien comience la siguiente. En caso de empate, la partida es iniciada por el jugador especificado en el juego._
+_2. Al inicio de la segunda ronda, cada jugador roba dos cartas._
+_3. Si el juego alcanza una tercera ronda, cada jugador roba también dos cartas antes de comenzarla._
+### Assets
+_En cuanto al backend y a la interfaz visual del proyecto, es posible encontrar las imagenes, los prefabs y disimiles scriptable game objects que fueron utilizados durante el desarrollo. A la par se implementaron cuantiosos scripts donde se hallan fundamentalmente las bases del funcionamiento logico del juego, ademas son apreciables una serie de clases y funciones basicas debidamente planteadas para la facil comprensin del lector y futuros contribuidores._
