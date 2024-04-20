@@ -19,7 +19,6 @@ public class Strip : MonoBehaviour
     public GameObject Card61;
 
     public bool used = false;
-    public bool usedV = false;
 
     private int RoundChecker = 1;
     private int Round = 1;
@@ -169,76 +168,69 @@ public class Strip : MonoBehaviour
 
     //3rd: eliminate the card with more power from both areas 
 
-    public void Viserion()
+    public int Viserion()
+    {
+        int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
+
+        for(int i = 0; i < CardsInStripe.Count; i++)
+        {
+            highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
+        }
+        return highest;
+    }
+
+    public void Viserion2(int high)
     {
         GameObject grave = GameObject.Find("PlayerGraveyard");
         GameObject grave2 = GameObject.Find("EnemyGraveyard");
 
-        if (CardsInStripe.Count > 0)
+        foreach(GameObject card in CardsInStripe)
         {
-            int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
-
-            foreach (GameObject card in CardsInStripe)
+            if(card.GetComponent<CardModel>().Power == high)
             {
-                highest = Mathf.Max(highest, card.GetComponent<CardModel>().Power);
-            }
-
-            // Iterate over the list to remove cards with the highest power
-            for (int i = CardsInStripe.Count - 1; i >= 0; i--)
-            {
-                GameObject card = CardsInStripe[i];
-
-                if (card.GetComponent<CardModel>().Power == highest)
-                {
-                    if(card.GetComponent<CardModel>().TypeOfCard == "Gold")
-                    {
-                        return;
-                    }
-                    else if(card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
-                    {
-                        card.transform.position = grave2.transform.position;
-                        card.transform.SetParent(grave2.transform, true);
-                    }
-                    else if (card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity")
-                    {
-                        card.transform.position = grave.transform.position;
-                        card.transform.SetParent(grave.transform, true);
-                    }
-
-                    CardsInStripe.RemoveAt(i);
-                }
-            }
-        }
-    }
-
-
-    //4th effect of the list: eliminate the card with less power from the enemy area
-
-    public void RedKeep()
-    {
-        GameObject grave = GameObject.Find("PlayerGraveyard");
-
-        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
-        {
-            int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
-
-            for(int i = 0; i < CardsInStripe.Count; i++)
-            {
-                lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
-            }
-
-            foreach(GameObject card in CardsInStripe)
-            {
-                if(card.GetComponent<CardModel>().TypeOfCard == "Gold" && lowest == card.GetComponent<CardModel>().Power)
-                {
-                    return;
-                }
-                else if(card.GetComponent<CardModel>().Power == lowest)
+                if(card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
                 {
                     card.transform.position = grave.transform.position;
                     card.transform.SetParent(grave.transform, true);
                     CardsInStripe.Remove(card);
                 }
+                else if(card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                {
+                    card.transform.position = grave2.transform.position;
+                    card.transform.SetParent(grave2.transform, true);
+                    CardsInStripe.Remove(card);
+                }
+            }
+           
+        }
+
+    }
+
+
+    //4th effect of the list: eliminate the card with less power from the enemy area
+
+    public int RedKeep()
+    {
+        int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
+
+        for(int i = 0; i < CardsInStripe.Count; i++)
+        {
+            lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
+        }
+        return lowest;
+    }
+
+    public void RedKeep2(int low)
+    {
+        GameObject grave = GameObject.Find("PlayerGraveyard");
+
+        foreach(GameObject card in CardsInStripe)
+        {
+            if(card.GetComponent<CardModel>().Power == low && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+            {
+                card.transform.position = grave.transform.position;
+                card.transform.SetParent(grave.transform, true);
+                CardsInStripe.Remove(card);
             }
         }
     }

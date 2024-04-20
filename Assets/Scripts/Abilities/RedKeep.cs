@@ -9,6 +9,7 @@ public class RedKeep : MonoBehaviour
     public Strip Siege;
 
     private bool useful;
+    public int lowest;
 
     void Start()
     {
@@ -26,9 +27,28 @@ public class RedKeep : MonoBehaviour
         if(useful)
         {
             useful = false;
-            CAC.RedKeep();
-            Distance.RedKeep();
-            Siege.RedKeep();
+
+            int val1 = CAC.RedKeep();
+            int val2 = Distance.RedKeep();
+            int val3 = Siege.RedKeep();
+
+            lowest = Mathf.Min(val1, Mathf.Min(val2, val3));
+
+            if(lowest == val1)
+            {
+                CAC.RedKeep2(lowest);
+                return;
+            }
+            else if(lowest == val2)
+            {
+                Distance.RedKeep2(lowest);
+                return;
+            }
+            else if(lowest == val3)
+            {
+                Siege.RedKeep2(lowest);
+                return;
+            }
         }
     }
 }
