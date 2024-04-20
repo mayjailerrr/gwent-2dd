@@ -188,9 +188,13 @@ public class Strip : MonoBehaviour
             {
                 GameObject card = CardsInStripe[i];
 
-                if (card.GetComponent<CardModel>().Power == highest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                if (card.GetComponent<CardModel>().Power == highest)
                 {
-                    if (card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
+                    if(card.GetComponent<CardModel>().TypeOfCard == "Gold")
+                    {
+                        return;
+                    }
+                    else if(card.GetComponent<CardModel>().Faction == "Reign Of Punishment")
                     {
                         card.transform.position = grave2.transform.position;
                         card.transform.SetParent(grave2.transform, true);
@@ -214,30 +218,26 @@ public class Strip : MonoBehaviour
     {
         GameObject grave = GameObject.Find("PlayerGraveyard");
 
-        if (CardsInStripe.Count > 0)
+        if(CardsInStripe.Count == 1 || CardsInStripe.Count > 1)
         {
-            // Create a list to store all card powers
-            List<int> allPowers = new List<int>();
+            int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
 
-            // Add powers of all cards to the list
-            foreach (GameObject card in CardsInStripe)
+            for(int i = 0; i < CardsInStripe.Count; i++)
             {
-                allPowers.Add(card.GetComponent<CardModel>().Power);
+                lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
             }
 
-            // Find the lowest power among all cards
-            int lowest = Mathf.Min(allPowers.ToArray());
-
-            // Iterate over the list to remove cards with the lowest power
-            for (int i = CardsInStripe.Count - 1; i >= 0; i--)
+            foreach(GameObject card in CardsInStripe)
             {
-                GameObject card = CardsInStripe[i];
-
-                if (card.GetComponent<CardModel>().Power == lowest && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                if(card.GetComponent<CardModel>().TypeOfCard == "Gold" && lowest == card.GetComponent<CardModel>().Power)
+                {
+                    return;
+                }
+                else if(card.GetComponent<CardModel>().Power == lowest)
                 {
                     card.transform.position = grave.transform.position;
                     card.transform.SetParent(grave.transform, true);
-                    CardsInStripe.RemoveAt(i);
+                    CardsInStripe.Remove(card);
                 }
             }
         }
@@ -277,6 +277,10 @@ public class Strip : MonoBehaviour
                 card.transform.position = player.transform.position;
                 card.GetComponent<CardModel>().Power = 0;
                 card.GetComponent<CardModel>().PurePower = 0;
+            }
+            else if(card.GetComponent<CardModel>().TypeOfCard == "Gold")
+            {
+                return;
             }
         }
         CardsInStripe.Clear();

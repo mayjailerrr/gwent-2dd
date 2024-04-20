@@ -27,9 +27,7 @@ public class TurnManager : MonoBehaviour
     public GameObject give1;
     public GameObject give2;
 
-    public GameObject swap1;
-    public GameObject swap2;
-
+    public int controller;
 
     private Hand zone;
     private Hand zone2;
@@ -51,6 +49,11 @@ public class TurnManager : MonoBehaviour
 
             give1.gameObject.SetActive(!give1.activeSelf);
             give2.gameObject.SetActive(!give2.activeSelf);
+
+            if(controller < 2)
+            {
+                controller += 1;
+            }
         }
     }
 
@@ -81,6 +84,8 @@ public class TurnManager : MonoBehaviour
 
         zone = PlayerArea.GetComponent<Hand>();
         zone2 = EnemyArea.GetComponent<Hand>();
+
+        controller = 0;
     }
     
 }
