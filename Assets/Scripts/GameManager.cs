@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
             PSurrendered.gameObject.SetActive(false);
             ESurrendered.gameObject.SetActive(false);
         }
-        else if(GameOver == false && Round == 0 && PlayerVictories == EnemyVictories && EnemyVictories == 3)
+        else if(GameOver == false && Round == 0 && PlayerVictories == EnemyVictories)
         {
             GameOver = true;
             WinnerText.text = "Tie";

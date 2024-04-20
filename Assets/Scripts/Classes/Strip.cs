@@ -170,13 +170,17 @@ public class Strip : MonoBehaviour
 
     public int Viserion()
     {
-        int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
-
-        for(int i = 0; i < CardsInStripe.Count; i++)
+        if(CardsInStripe.Count >=1)
         {
-            highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
+             int highest = CardsInStripe[0].GetComponent<CardModel>().Power;
+
+            for(int i = 0; i < CardsInStripe.Count; i++)
+            {
+                highest = Mathf.Max(highest, CardsInStripe[i].GetComponent<CardModel>().Power);
+            }
+            return highest;
         }
-        return highest;
+        else{return 0;}
     }
 
     public void Viserion2(int high)
@@ -201,23 +205,24 @@ public class Strip : MonoBehaviour
                     CardsInStripe.Remove(card);
                 }
             }
-           
-        }
-
+        }  
     }
 
 
     //4th effect of the list: eliminate the card with less power from the enemy area
 
     public int RedKeep()
-    {
-        int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
-
-        for(int i = 0; i < CardsInStripe.Count; i++)
+    {   if(CardsInStripe.Count >= 1)
         {
-            lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
-        }
-        return lowest;
+            int lowest = CardsInStripe[0].GetComponent<CardModel>().Power;
+
+            for(int i = 0; i < CardsInStripe.Count; i++)
+            {
+                lowest = Mathf.Min(lowest, CardsInStripe[i].GetComponent<CardModel>().Power);
+            }
+            return lowest;
+        } 
+        else{return 0;} 
     }
 
     public void RedKeep2(int low)

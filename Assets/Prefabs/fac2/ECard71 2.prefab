@@ -308,9 +308,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2137656056699635442}
-        m_TargetAssemblyTypeName: Sparrow, Assembly-CSharp
-        m_MethodName: Attack
+      - m_Target: {fileID: -5151737142421161913}
+        m_TargetAssemblyTypeName: MoveCard, Assembly-CSharp
+        m_MethodName: EDistanceWZone
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -429,7 +429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck: {fileID: 0}
   deck2: {fileID: 0}
-  use1: 0
-  use2: 0
-  Hand1: 0
-  Hand2: 0
+  Hand1: {fileID: 0}
+  Hand2: {fileID: 0}
+  stop: 0

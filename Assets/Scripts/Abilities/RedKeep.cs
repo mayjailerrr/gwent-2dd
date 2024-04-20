@@ -26,8 +26,6 @@ public class RedKeep : MonoBehaviour
     {
         if(useful)
         {
-            useful = false;
-
             int val1 = CAC.RedKeep();
             int val2 = Distance.RedKeep();
             int val3 = Siege.RedKeep();
@@ -49,6 +47,8 @@ public class RedKeep : MonoBehaviour
                 Siege.RedKeep2(lowest);
                 return;
             }
+            useful = false;
+
         }
     }
 }
