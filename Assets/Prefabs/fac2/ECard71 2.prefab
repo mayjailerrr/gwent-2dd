@@ -251,7 +251,7 @@ MonoBehaviour:
   TypeOfCard: Follower
   Power: 0
   PurePower: 0
-  TypeOfPower: Clearance
+  TypeOfPower: Weather
   Faction: Reign Of Punishment
   Stripe: 0
   Drew: 0

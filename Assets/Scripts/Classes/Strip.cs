@@ -180,7 +180,7 @@ public class Strip : MonoBehaviour
             }
             return highest;
         }
-        else{return 0;}
+        else return 0;
     }
 
     public void Viserion2(int high)
@@ -188,24 +188,27 @@ public class Strip : MonoBehaviour
         GameObject grave = GameObject.Find("PlayerGraveyard");
         GameObject grave2 = GameObject.Find("EnemyGraveyard");
 
-        foreach(GameObject card in CardsInStripe)
+        if(CardsInStripe.Count >= 1)
         {
-            if(card.GetComponent<CardModel>().Power == high)
+            foreach(GameObject card in CardsInStripe)
             {
-                if(card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                if(card.GetComponent<CardModel>().Power == high)
                 {
-                    card.transform.position = grave.transform.position;
-                    card.transform.SetParent(grave.transform, true);
-                    CardsInStripe.Remove(card);
+                    if(card.GetComponent<CardModel>().Faction == "Cloud Of Fraternity" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                    {
+                        card.transform.position = grave.transform.position;
+                        card.transform.SetParent(grave.transform, true);
+                        CardsInStripe.Remove(card);
+                    }
+                    else if(card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
+                    {
+                        card.transform.position = grave2.transform.position;
+                        card.transform.SetParent(grave2.transform, true);
+                        CardsInStripe.Remove(card);
+                    }
                 }
-                else if(card.GetComponent<CardModel>().Faction == "Reign Of Punishment" && card.GetComponent<CardModel>().TypeOfCard != "Gold")
-                {
-                    card.transform.position = grave2.transform.position;
-                    card.transform.SetParent(grave2.transform, true);
-                    CardsInStripe.Remove(card);
-                }
-            }
-        }  
+            }  
+        }   
     }
 
 

@@ -95,10 +95,10 @@ GameObject:
   - component: {fileID: 1962417669746389411}
   - component: {fileID: -1956160104211960256}
   - component: {fileID: 8487540754391019600}
-  - component: {fileID: -6965958032927670063}
   - component: {fileID: -734252678184359027}
   - component: {fileID: -3746992744415181831}
   - component: {fileID: 7377997348958741678}
+  - component: {fileID: 9027405162445438959}
   m_Layer: 6
   m_Name: Card21 1
   m_TagString: Untagged
@@ -220,7 +220,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: -6965958032927670063}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Strip, Assembly-CSharp
         m_MethodName: Melisandre
         m_Mode: 1
@@ -386,28 +386,6 @@ MonoBehaviour:
   turnManager: {fileID: 0}
   useful: 1
   used: 0
---- !u!114 &-6965958032927670063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9218734456664155323}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInStripe: []
-  Plus: 0
-  punctuation: {fileID: 0}
-  PlayerGraveyard: {fileID: 0}
-  EnemyGraveyard: {fileID: 0}
-  PlayerArea: {fileID: 0}
-  EnemyArea: {fileID: 0}
-  Card61: {fileID: 5884466880408977679, guid: fa16e5003b54d9062b4f680e5e176804, type: 3}
-  used: 0
-  usedV: 0
 --- !u!114 &-734252678184359027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,10 +418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck: {fileID: 0}
   deck2: {fileID: 0}
-  use1: 0
-  use2: 0
-  Hand1: 0
-  Hand2: 0
+  Hand1: {fileID: 0}
+  Hand2: {fileID: 0}
+  stop: 0
 --- !u!114 &7377997348958741678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,3 +450,24 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &9027405162445438959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218734456664155323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb6d5b09cb143430bb81c9609c6f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardsInStripe: []
+  Plus: 0
+  punctuation: {fileID: 2166315574837514991, guid: 5184d4b678125871ab013b39cb1162cd, type: 3}
+  PlayerGraveyard: {fileID: 1607008838482352717, guid: bc63217d888be6c02973c5d3efc3ff26, type: 3}
+  EnemyGraveyard: {fileID: 2433300742735414205, guid: cfd6c13e99e151386a7dd9319f90f65d, type: 3}
+  PlayerArea: {fileID: 4158577451077238636, guid: 15d161953c793a118916cfcf910c26df, type: 3}
+  EnemyArea: {fileID: 739784692878189503, guid: d07027fd6cb8aabf286a7c6142e61e88, type: 3}
+  Card61: {fileID: 5884466880408977679, guid: fa16e5003b54d9062b4f680e5e176804, type: 3}
+  used: 0

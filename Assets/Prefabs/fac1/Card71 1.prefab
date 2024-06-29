@@ -251,7 +251,7 @@ MonoBehaviour:
   TypeOfCard: Follower
   Power: 0
   PurePower: 0
-  TypeOfPower: Clearance
+  TypeOfPower: Weather
   Faction: Cloud Of Fraternity
   Stripe: 0
   Drew: 0
@@ -400,10 +400,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck: {fileID: 0}
   deck2: {fileID: 0}
-  use1: 0
-  use2: 0
-  Hand1: 0
-  Hand2: 0
+  Hand1: {fileID: 0}
+  Hand2: {fileID: 0}
+  stop: 0
 --- !u!114 &2926117615825495240
 MonoBehaviour:
   m_ObjectHideFlags: 0
