@@ -1,0 +1,264 @@
+{
+    "meleeCards": [
+        {
+            "cardName": "Arya",
+            "power": 8,
+            "attackType": "Melee",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Arya",
+            "rank": "Gold"
+        },
+        {
+            "cardName": "Jaime",
+            "power": 7,
+            "attackType": "Melee",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Jaime",
+            "rank": "Silver"
+        },
+        {
+            "cardName": "Brienne",
+            "power": 6,
+            "attackType": "Melee",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Brienne",
+            "rank": "None"
+        },
+        {
+            "cardName": "Ramsay",
+            "power": 7,
+            "attackType": "Melee",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Ramsay",
+            "rank": "Gold"
+        },
+        {
+            "cardName": "The Hound",
+            "power": 6,
+            "attackType": "Melee",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/TheHound",
+            "rank": "Silver"
+        },
+        {
+            "cardName": "Greyjoy",
+            "power": 5,
+            "attackType": "Melee",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Greyjoy",
+            "rank": "None"
+        }
+    ],
+
+    "rangedCards": [
+        {
+            "cardName": "Melisandre",
+            "power": 7,
+            "attackType": "Ranged",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Melisandre",
+            "rank": "Gold"
+        },
+        {
+            "cardName": "Dragonglass",
+            "power": 6,
+            "attackType": "Ranged",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Dragonglass",
+            "rank": "Silver"
+        },
+        {
+            "cardName": "Drogon",
+            "power": 5,
+            "attackType": "Ranged",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Drogon",
+            "rank": "None"
+        },
+        {
+            "cardName": "Viserion",
+            "power": 9,
+            "attackType": "Ranged",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Viserion",
+            "rank": "Gold"
+        },
+        {
+            "cardName": "Rhaegal",
+            "power": 7,
+            "attackType": "Ranged",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Rhaegal",
+            "rank": "Silver"
+        },
+        {
+            "cardName": "Igritte",
+            "power": 5,
+            "attackType": "Ranged",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Igritte",
+            "rank": "None"
+        }
+    ],
+    
+    "siegeCards": [
+        {
+            "cardName": "Gigants",
+            "power": 8,
+            "attackType": "Siege",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Gigants",
+            "rank": "Gold"
+        },
+        {
+            "cardName": "Dragonstone",
+            "power": 6,
+            "attackType": "Siege",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Dragonstone",
+            "rank": "Silver"
+        },
+        {
+            "cardName": "Ariete",
+            "power": 3,
+            "attackType": "Siege",
+            "faction": "Cloud of Fraternity",
+            "cardImagePath": "Images/Ariete",
+            "rank": "None"
+        },
+        {
+            "cardName": "Red Keep",
+            "power": 8,
+            "attackType": "Siege",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/RedKeep",
+            "rank": "Gold"
+        },
+        {
+            "cardName": "Ships",
+            "power": 4,
+            "attackType": "Siege",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Ships",
+            "rank": "Silver"
+        },
+       
+        {
+            "cardName": "Catapults",
+            "power": 7,
+            "attackType": "Siege",
+            "faction": "Reign of Punishment",
+            "cardImagePath": "Images/Catapults",
+            "rank": "None"
+        }
+    ],
+
+    "weatherCards": [
+        {
+            "cardName": "John",
+            "power": 5,
+            "attackType": "Weather",
+            "faction": "None",
+            "cardImagePath": "Images/John",
+            "rank": "None"
+        },
+        {
+            "cardName": "Khal",
+            "power": 5,
+            "attackType": "Weather",
+            "faction": "None",
+            "cardImagePath": "Images/Khal",
+            "rank": "None"
+        },
+        {
+            "cardName": "Thormund",
+            "power": 4,
+            "attackType": "Weather",
+            "faction": "None",
+            "cardImagePath": "Images/Thormund",
+            "rank": "None"
+        }
+    ],
+
+
+    "lureCards": [
+        {
+            "cardName": "Tyrion",
+            "power": 0,
+            "attackType": "Lure",
+            "faction": "None",
+            "cardImagePath": "Images/Tyrion",
+            "rank": "None"
+        },
+        {
+            "cardName": "Joffrey",
+            "power": 0,
+            "attackType": "Lure",
+            "faction": "None",
+            "cardImagePath": "Images/Joffrey",
+            "rank": "None"
+        },
+        {
+            "cardName": "Margaery",
+            "power": 0,
+            "attackType": "Lure",
+            "faction": "None",
+            "cardImagePath": "Images/Margaery",
+            "rank": "None"
+        }
+    ],
+
+    "bonusCards": [
+        {
+            "cardName": "Cersei",
+            "power": 2,
+            "attackType": "Bonus",
+            "faction": "None",
+            "cardImagePath": "Images/Cersei",
+            "rank": "None"
+        },
+        {
+            "cardName": "Army",
+            "power": 5,
+            "attackType": "Bonus",
+            "faction": "None",
+            "cardImagePath": "Images/Army",
+            "rank": "None"
+        },
+        {
+            "cardName": "Knights",
+            "power": 4,
+            "attackType": "Bonus",
+            "faction": "None",
+            "cardImagePath": "Images/Knights",
+            "rank": "None"
+        },
+        {
+            "cardName": "Huargos",
+            "power": 2,
+            "attackType": "Bonus",
+            "faction": "None",
+            "cardImagePath": "Images/Huargos",
+            "rank": "None"
+        },
+        {
+            "cardName": "Fire",
+            "power": 3,
+            "attackType": "Bonus",
+            "faction": "None",
+            "cardImagePath": "Images/Fire",
+            "rank": "None"
+        },
+        {
+            "cardName": "Wildlings",
+            "power": 4,
+            "attackType": "Bonus",
+            "faction": "None",
+            "cardImagePath": "Images/Wildlings",
+            "rank": "None"
+        }
+    ]
+}
+
+
+
