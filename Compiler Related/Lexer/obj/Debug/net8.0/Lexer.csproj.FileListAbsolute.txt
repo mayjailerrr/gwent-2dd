@@ -12,3 +12,17 @@
 /home/anitamaxwyn/coding/Lexer/obj/Debug/net8.0/Lexer.pdb
 /home/anitamaxwyn/coding/Lexer/obj/Debug/net8.0/Lexer.genruntimeconfig.cache
 /home/anitamaxwyn/coding/Lexer/obj/Debug/net8.0/ref/Lexer.dll
+/home/anitamaxwyn/coding/COMPILER/Lexer/bin/Debug/net8.0/Lexer
+/home/anitamaxwyn/coding/COMPILER/Lexer/bin/Debug/net8.0/Lexer.deps.json
+/home/anitamaxwyn/coding/COMPILER/Lexer/bin/Debug/net8.0/Lexer.runtimeconfig.json
+/home/anitamaxwyn/coding/COMPILER/Lexer/bin/Debug/net8.0/Lexer.dll
+/home/anitamaxwyn/coding/COMPILER/Lexer/bin/Debug/net8.0/Lexer.pdb
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.GeneratedMSBuildEditorConfig.editorconfig
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.AssemblyInfoInputs.cache
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.AssemblyInfo.cs
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.csproj.CoreCompileInputs.cache
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.dll
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/refint/Lexer.dll
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.pdb
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/Lexer.genruntimeconfig.cache
+/home/anitamaxwyn/coding/COMPILER/Lexer/obj/Debug/net8.0/ref/Lexer.dll

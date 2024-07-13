@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/anitamaxwyn/coding/Lexer/Lexer.csproj": {}
+    "/home/anitamaxwyn/coding/COMPILER/Lexer/Lexer.csproj": {}
   },
   "projects": {
-    "/home/anitamaxwyn/coding/Lexer/Lexer.csproj": {
+    "/home/anitamaxwyn/coding/COMPILER/Lexer/Lexer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/anitamaxwyn/coding/Lexer/Lexer.csproj",
+        "projectUniqueName": "/home/anitamaxwyn/coding/COMPILER/Lexer/Lexer.csproj",
         "projectName": "Lexer",
-        "projectPath": "/home/anitamaxwyn/coding/Lexer/Lexer.csproj",
+        "projectPath": "/home/anitamaxwyn/coding/COMPILER/Lexer/Lexer.csproj",
         "packagesPath": "/home/anitamaxwyn/.nuget/packages/",
-        "outputPath": "/home/anitamaxwyn/coding/Lexer/obj/",
+        "outputPath": "/home/anitamaxwyn/coding/COMPILER/Lexer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/anitamaxwyn/.nuget/NuGet/NuGet.Config"

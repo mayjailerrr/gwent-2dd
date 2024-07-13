@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 public class CodeLocation
 {
-    public string File { get; set; }
+    public string File { get; set; } = string.Empty;
     public int Line { get; set; }
     public int Column { get; set; }
 
@@ -64,7 +64,6 @@ public enum ErrorCode
     MissingBrace,
     UnmatchedBrace,
     MissingColon,
-    UnexpectedColon,
 }
 
 
@@ -94,7 +93,6 @@ public class LexicalAnalyzer
     public IEnumerable<Token> GetTokens(string fileName, string code, List<CompilingError> errors)
     {
         List<Token> tokens = new List<Token>();
-        TokenReader stream = new TokenReader(fileName, code);
 
         var tokenPatterns = new Dictionary<string, string>
         {
@@ -102,7 +100,7 @@ public class LexicalAnalyzer
             { "Identifier", @"\b[a-zA-Z_]\w*\b" },
             { "Number", @"\b\d+(\.\d+)?\b" },
             { "String", @"""([^""\\]|\\.)*""" },
-            { "Symbol", @"[{}:;,\[\]]|--|\+\+|[-+*/]" },
+            { "Symbol", @"[{}:;,\[\]()\.\+\-*/]|--|\+\+" },
             { "Whitespace", @"\s+" }
         };
 
@@ -112,7 +110,7 @@ public class LexicalAnalyzer
         var matches = regex.Matches(code);
         foreach (Match match in matches)
         {
-            CodeLocation location = new CodeLocation { File = fileName, Line = stream.Location.Line, Column = match.Index };
+            CodeLocation location = new CodeLocation { File = fileName, Line = 0, Column = 1 };
 
             if (match.Groups["Keyword"].Success)
             {
@@ -139,9 +137,17 @@ public class LexicalAnalyzer
                 errors.Add(new CompilingError(location, ErrorCode.Unknown, $"Unexpected token: {match.Value}"));
             }
 
-            for (int i = 0; i < match.Value.Length; i++)
+            for (int i = 0; i < match.Index - 1; i++)
             {
-                stream.ReadAny();
+                if (code[i] == '\n')
+                {
+                    location.Line++;
+                    location.Column = 1;
+                }
+                else
+                {
+                    location.Column++;
+                }
             }
         }
 
@@ -153,7 +159,6 @@ public class LexicalAnalyzer
     private void CheckSyntax(List<Token> tokens, List<CompilingError> errors)
     {
         Stack<Token> braces = new Stack<Token>();
-        bool expectColon = false;
 
         for (int i = 0; i < tokens.Count; i++)
         {
@@ -180,33 +185,27 @@ public class LexicalAnalyzer
                         }
                     }
                 }
-                else if (token.Value == ":")
-                {
-                    if (!expectColon)
-                    {
-                        errors.Add(new CompilingError(token.Location, ErrorCode.UnexpectedColon, "Unexpected colon"));
-                    }
-                    expectColon = false;
-                }
             }
             else if (token.Type == TokenType.Keyword)
             {
                 if (char.IsUpper(token.Value[0]))
                 {
-                    // Check if the next token is a colon
-                    if (i + 1 < tokens.Count && tokens[i + 1].Value == ":")
+                    //Check if the previous token is a point or a colon
+                    if (tokens[i - 1].Value == "." || tokens[i + 1].Value == ":")
                     {
-                        expectColon = true;
+                        continue;      
                     }
+                    
                     else
                     {
-                        errors.Add(new CompilingError(token.Location, ErrorCode.MissingColon, $"Expected colon after keyword: {token.Value}"));
+                        errors.Add(new CompilingError(token.Location, ErrorCode.MissingColon, "Expected colon after keyword"));
                     }
                 }
+                
             }
             else if (token.Type == TokenType.Identifier || token.Type == TokenType.Number || token.Type == TokenType.String)
             {
-                expectColon = false;
+                continue;
             }
         }
 
@@ -216,154 +215,6 @@ public class LexicalAnalyzer
             var openBrace = braces.Pop();
             errors.Add(new CompilingError(openBrace.Location, ErrorCode.MissingBrace, $"Missing closing brace for: {openBrace.Value
             }"));
-        }
-
-        // If expectColon is still true, it means the last keyword was not followed by a colon
-        if (expectColon)
-        {
-            var lastToken = tokens[tokens.Count - 1];
-            errors.Add(new CompilingError(lastToken.Location, ErrorCode.MissingColon, "Expected colon after keyword but found end of input"));
-        }
-    }
-
-
-
-    class TokenReader
-    {
-        string FileName;
-        string code;
-        int pos;
-        int line;
-        int lastLB;
-
-        public TokenReader(string fileName, string code)
-        {
-            this.FileName = fileName;
-            this.code = code;
-            this.pos = 0;
-            this.line = 1;
-            this.lastLB = -1;
-        }
-
-        public CodeLocation Location
-        {
-            get
-            {
-                return new CodeLocation
-                {
-                    File = FileName,
-                    Line = line,
-                    Column = pos - lastLB
-                };
-            }
-        }
-
-        public char Peek()
-        {
-            if (pos < 0 || pos >= code.Length)
-                throw new InvalidOperationException();
-
-            return code[pos];
-        }
-
-        public bool EOF
-        {
-            get { return pos >= code.Length; }
-        }
-
-        public bool EOL
-        {
-            get { return EOF || code[pos] == '\n'; }
-        }
-
-        public bool ContinuesWith(string prefix)
-        {
-            if (pos + prefix.Length > code.Length)
-                return false;
-            for (int i = 0; i < prefix.Length; i++)
-                if (code[pos + i] != prefix[i])
-                    return false;
-            return true;
-        }
-
-        public bool Match(string prefix)
-        {
-            if (ContinuesWith(prefix))
-            {
-                pos += prefix.Length;
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool ValidIdCharacter(char c, bool beginning)
-        {
-            return c == '_' || (beginning ? char.IsLetter(c) : char.IsLetterOrDigit(c));
-        }
-
-        public bool ReadID(out string id)
-        {
-            id = "";
-            while (!EOL && ValidIdCharacter(Peek(), id.Length == 0))
-                id += ReadAny();
-            return id.Length > 0;
-        }
-
-        public bool ReadNumber(out string number)
-        {
-            number = "";
-            while (!EOL && char.IsDigit(Peek()))
-                number += ReadAny();
-            if (!EOL && Match("."))
-            {
-                number += '.';
-                while (!EOL && char.IsDigit(Peek()))
-                    number += ReadAny();
-            }
-
-            if (number.Length == 0)
-                return false;
-
-            while (!EOL && char.IsLetterOrDigit(Peek()))
-                number += ReadAny();
-
-            return number.Length > 0;
-        }
-
-        public bool ReadUntil(string end, out string text)
-        {
-            text = "";
-            while (!Match(end))
-            {
-                if (EOL || EOF)
-                    return false;
-                text += ReadAny();
-            }
-            return true;
-        }
-
-        public bool ReadWhiteSpace()
-        {
-            if (char.IsWhiteSpace(Peek()))
-            {
-                ReadAny();
-                return true;
-            }
-            return false;
-        }
-
-        public char ReadAny()
-        {
-            if (EOF)
-                throw new InvalidOperationException();
-
-            if (EOL)
-            {
-                line++;
-                lastLB = pos;
-            }
-            return code[pos++];
         }
     }
 }
@@ -388,38 +239,38 @@ class Program
         // }
         // ";
 
-        // string code = @"
-        // card {
-        //     Type ""Gold"",
-        //     Name: ""Witch"",
-        //     Faction: ""Northern Realms"",
-        //     Power: 10,
-        //     Range: [""Melee"",""Ranged""],
-        //     OnActivation: [
-        //         {
-        //             Effect: {
-        //                 Name: ""Damage"", 
-        //                 Amount: 5 
-        //             },
-        //             Selector: {
-        //                 Source: ""board"", 
-        //                 Single: false, //for default is false
-        //                 Predicate: (unit) => unit.Faction == ""Northern Realms""
-        //             },
-        //             PostAction: {
-        //                 Type: ""ReturnToDeck"",
-        //                 Selector: { 
-        //                     Source: ""parent"",
-        //                     Single: false,
-        //                     Predicate: (unit) => unit.Power < 1
-        //                 }
-        //             }
-        //         },
-        //         {
-        //             Effect: ""Draw"" /*if it's put a string is equivalent to {Name: ""Draw""}*/
-        //         }
-        //     ]
-        // }";
+        string code = @"
+        card {
+            Type: ""Gold"",
+            Name: ""Witch"",
+            Faction: ""Northern Realms"",
+            Power: 10,
+            Range: [""Melee"",""Ranged""],
+            OnActivation: [
+                {
+                    Effect: {
+                        Name: ""Damage"", 
+                        Amount: 5 
+                    },
+                    Selector: {
+                        Source: ""board"", 
+                        Single: false, //for default is false
+                        Predicate: (unit) => unit.Faction == ""Northern Realms""
+                    },
+                    PostAction: {
+                        Type: ""ReturnToDeck"",
+                        Selector: { 
+                            Source: ""parent"",
+                            Single: false,
+                            Predicate: (unit) => unit.Power < 1
+                        }
+                    }
+                },
+                {
+                    Effect: ""Draw"" /*if it's put a string is equivalent to {Name: ""Draw""}*/
+                }
+            ]
+        }";
 
         LexicalAnalyzer lexer = new LexicalAnalyzer();
         lexer.RegisterKeyword("effect", "EFFECT");
