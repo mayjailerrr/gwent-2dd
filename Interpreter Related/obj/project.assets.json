@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/anitamaxwyn/coding/COMPILER/Lexer/Lexer.csproj",
-      "projectName": "Lexer",
-      "projectPath": "/home/anitamaxwyn/coding/COMPILER/Lexer/Lexer.csproj",
+      "projectUniqueName": "/home/anitamaxwyn/coding/Interpreter/Interpreter.csproj",
+      "projectName": "Interpreter",
+      "projectPath": "/home/anitamaxwyn/coding/Interpreter/Interpreter.csproj",
       "packagesPath": "/home/anitamaxwyn/.nuget/packages/",
-      "outputPath": "/home/anitamaxwyn/coding/COMPILER/Lexer/obj/",
+      "outputPath": "/home/anitamaxwyn/coding/Interpreter/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/anitamaxwyn/.nuget/NuGet/NuGet.Config"
