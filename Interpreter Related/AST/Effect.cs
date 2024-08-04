@@ -1,4 +1,5 @@
-public class Effect : ASTNode
+
+public class Effect : IExpression
 {
     public string Name { get; set; }
     public Dictionary<string, object> Parameters { get; set; }
@@ -15,9 +16,9 @@ public class Effect : ASTNode
         return true;
     }
 
-    public override void Evaluate()
+    public override void Interpret()
     {
-        // Evaluate effect
+        // Interpret effect
     }
 
     public override string ToString()
@@ -30,9 +31,9 @@ public class Selector : ASTNode
 {
     public string Source { get; set; }
     public bool Single { get; set; }
-    public Predicate<unit> Predicate { get; set; }
+    public Predicate<object> Predicate { get; set; }
 
-    public Selector(string source, bool single, Predicate<unit> predicate, CodeLocation location) : base(location)
+    public Selector(string source, bool single, Predicate<object> predicate, CodeLocation location) : base(location)
     {
         Source = source;
         Single = single;
@@ -45,9 +46,9 @@ public class Selector : ASTNode
         return true;
     }
 
-    public override void Evaluate()
+    public override void Interpret()
     {
-        // Evaluate selector
+        // Interpret selector
     }
 
     public override string ToString()
@@ -73,9 +74,9 @@ public class PostAction : ASTNode
         return valid;
     }
 
-    public override void Evaluate()
+    public override void Interpret()
     {
-        // Evaluate post-action
+        // Interpret post-action
     }
 
     public override string ToString()
@@ -84,4 +85,3 @@ public class PostAction : ASTNode
     }
 }
 
-   

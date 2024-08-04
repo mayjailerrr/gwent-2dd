@@ -1,28 +1,26 @@
-public class NumberExpression : Expression
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Interpreter
 {
-    public double Value { get; set; }
-
-    public NumberExpression(double value, CodeLocation location) : base(location)
+    public struct Number
     {
-        Value = value;
-        Type = ExpressionType.Number;
-    }
+        public double Value;
+        public Number Opposite => new Number(-Value);
+        public Number(double value) => Value = value;
+        public override string ToString() => Value.ToString();
+        public Number Plus(Number value) => new Number(this.Value + value.Value);
+        public Number Minus(Number value) => new Number(this.Value - value.Value);
+        public Number Multiply(Number value) => new Number(this.Value * value.Value);
+        public Number Divide(Number value) => new Number(this.Value / value.Value);
+        public Number Pow(Number value) => new Number(Math.Pow(this.Value, value.Value));
+        public bool GreaterThan(object ob) => ob is Number value && this.Value > value.Value;
+        public bool LessThan(object ob) => ob is Number value && this.Value < value.Value;
+        public bool GreaterOrEqual(object ob) => ob is Number value && this.Value >= value.Value;
+        public bool LessOrEqual(object ob) => ob is Number value && this.Value <= value.Value;
+        public override bool Equals(object? obj) => obj is Number value && this.Value == value.Value;
 
-    public override void Evaluate()
-    {
-        // Evaluate number
-    }
-
-    public override bool CheckSemantic(Context context, Scope scope, List<CompilingError> errors)
-    {
-        // Semantic checks for number
-        return true;
-    }
-
-    public override string ToString()
-    {
-        return Value.ToString();
+        public override int GetHashCode() => HashCode.Combine(Value);
     }
 }
-
-// Add other attribute classes as needed

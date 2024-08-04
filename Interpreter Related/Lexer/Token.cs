@@ -1,4 +1,6 @@
-public class CodeLocation
+namespace Interpreter
+{
+    public class CodeLocation
     {
         public string File { get; set; } = string.Empty;
         public int Line { get; set; }
@@ -37,3 +39,4 @@ public class CodeLocation
             return $"{Type}: {Value} at {Location}";
         }
     }
+}
