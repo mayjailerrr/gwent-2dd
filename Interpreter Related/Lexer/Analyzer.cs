@@ -2,174 +2,117 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Interpreter
 {
     public class LexicalAnalyzer
     {
-        private Dictionary<string, string> keywords = new Dictionary<string, string>();
-        public IEnumerable<string> Keywords { get { return keywords.Keys; } }
+        Regex whitespace = new Regex(@"\s+");
+        Regex phrase = new Regex(@"[_a-zA-Z]+[_a-zA-Z0-9]*"); //+
+        Regex number = new Regex(@"\d+(\.\d+)?"); //+
+        Regex symbol = new Regex(@"==|!=|<=|>=|=|--|\+\+|&&|\|\||!|@|@@|=>|<|>|^|\+|\-|\*|\/|\.|\^"); 
 
-        public void RegisterKeyword(string keyword, string tokenValue)
-        {
-            this.keywords[keyword] = tokenValue;
-        }
-
-        public IEnumerable<Token> GetTokens(string fileName, string code, List<LexicalizingError> errors)
+        public List<Token> GetTokens(string code, out string[] errors)
         {
             List<Token> tokens = new List<Token>();
+            List<string> errorList = new List<string>();
+            errors = new string[0];
+            string[] input = code.Split('\n');
+            bool quoteMarks = false;
+            code.Trim();
+            string actualToken = "";
+            
 
-            var tokenPatterns = new Dictionary<string, string>
+            string current = "";
+            int line = 0;
+            int column = 0;
+            (int, int) lastMatchEnd = (0, 0);
+
+            do 
             {
-                { "Keyword", $@"\b({string.Join("|", keywords.Keys)})\b" },
-                { "Operator", @"==|!=|<=|>=|=|--|\+\+|&&|\|\||!|@|@@|=>|<|>|^|\+|\-|\*|\/|\.|\^" },
-                { "Identifier", @"\b[a-zA-Z_]\w*\b" },
-                { "Number", @"\b\d+(\.\d+)?\b" },
-                { "String", @"""[^""\\]*(?:\\.[^""\\]*)*""" },
-                { "Symbol", @"[{}:;,\[\]()]" },
-                { "Whitespace", @"\s+" }
-            };
+                current = input[line];
 
-            var combinedPattern = string.Join("|", tokenPatterns.Select(kv => $"(?<{kv.Key}>{kv.Value})"));
-            var regex = new Regex(combinedPattern, RegexOptions.Compiled);
-
-            var matches = regex.Matches(code);
-            int lastMatchEnd = 0;
-
-            foreach (Match match in matches)
-            {
-                CodeLocation location = new CodeLocation { File = fileName, Line = 0, Column = 1 };
-
-                if (match.Groups["Keyword"].Success)
+                do
                 {
-                    tokens.Add(new Token(TokenType.Keyword, match.Value, location));
-                }
-                else if (match.Groups["Operator"].Success)
-                {
-                    tokens.Add(new Token(TokenType.Operator, match.Value, location));
-                }
-                else if (match.Groups["Identifier"].Success)
-                {
-                    tokens.Add(new Token(TokenType.Identifier, match.Value, location));
-                }
-                else if (match.Groups["Number"].Success)
-                {
-                    tokens.Add(new Token(TokenType.Number, match.Value, location));
-                }
-                else if (match.Groups["String"].Success)
-                {
-                    // Extract the content within the quotes
-                    var stringValue = match.Value.Substring(1, match.Value.Length - 2);
-                    tokens.Add(new Token(TokenType.String, stringValue, location));
-                }
-                else if (match.Groups["Symbol"].Success)
-                {
-                    tokens.Add(new Token(TokenType.Symbol, match.Value, location));
-                }
-                else if (!match.Groups["Whitespace"].Success)
-                {
-                    errors.Add(new LexicalizingError(location, ErrorCode.Unknown, $"Unexpected token: {match.Value}"));
-                }
-
-                lastMatchEnd = match.Index + match.Length;
-
-                for (int i = 0; i < match.Index - 1; i++)
-                {
-                    if (code[i] == '\n')
+                    if (current[column] == '$' && !quoteMarks && (line != input.Length - 1 && column != current.Length - 1))
                     {
-                        location.Line++;
-                        location.Column = 1;
+                        errorList.Add("Unexpected token \'$\' at " + line + "," + column);
+                        actualToken = "";
+                        column++;
+                        continue;
                     }
-                    else
+
+
+                    try
                     {
-                        location.Column++;
+                        if (current[column] == '/' && current[column + 1] == '/')
+                            break;
                     }
-                } 
-            }
+                    catch (Exception) {}
 
-            if (lastMatchEnd == code.Length)
+                    if (current[column] == '"')
+                    {
+                        quoteMarks = !quoteMarks;
+                        actualToken += current[column];
+                        lastMatchEnd = (line + 1, column + 1);
+                        
+                        if (!quoteMarks)
+                        {
+                            tokens.Add(new Token(TokenType.String, actualToken, line + 1, column + 1)); 
+                            actualToken = "";
+                        }
+                    }
+
+                    else if (quoteMarks)
+                        actualToken += current[column];
+                   
+                    else 
+                    {
+                        if (phrase.IsMatch(current[column].ToString()))
+                            AddMatch(tokens, phrase.Match(current, column).Value, line, ref column);
+                        else if (number.IsMatch(current[column].ToString()))
+                            AddMatch(tokens, number.Match(current, column).Value, line, ref column, TokenType.Number);
+                        else if (symbol.IsMatch(current[column].ToString()))
+                            AddMatch(tokens, symbol.Match(current, column).Value, line, ref column);
+                        else if (!whitespace.IsMatch(current[column].ToString()))
+                            errorList.Add("Unexpected token \'" + current[column] + "\' at " + line + "," + column);
+                    }
+
+                    column++;
+                } while (column < current.Length);
+
+                column = 0;
+                line++;
+           
+            } while (line < input.Length);
+          
+            if (quoteMarks)
+                errorList.Add("Missing closing quote at " + lastMatchEnd.Item1 + "," + lastMatchEnd.Item2);
+            if (errorList.Count > 0)
             {
-                tokens.Add(new Token(TokenType.EOF, "End of your code", new CodeLocation { File = fileName, Line = 0, Column = 0 }));
-            }
-            else
-            {
-                errors.Add(new LexicalizingError(new CodeLocation { File = fileName, Line = 0, Column = lastMatchEnd }, ErrorCode.Unknown, $"Unexpected token: {code.Substring(lastMatchEnd)}"));
+                errors = errorList.ToArray();
+                return new List<Token>();
             }
 
-            CheckSyntax(tokens, errors);
-
+            tokens.Add(new Token(TokenType.End, "$", line, column));
             return tokens;
         }
 
-        private void CheckSyntax(List<Token> tokens, List<LexicalizingError> errors)
+        private void AddMatch(List<Token> tokens, string match, int line, ref int column, TokenType type = TokenType.End)
         {
-            Stack<Token> braces = new Stack<Token>();
+           try
+           {
+                tokens.Add(new Token((type == TokenType.End? Token.allTypes[match] : type), match, line + 1, column + 1));
+           }
+           catch (KeyNotFoundException)
+           {
+                tokens.Add(new Token(TokenType.Identifier, match, line + 1, column + 1));
+                Token.allTypes.Add(match, TokenType.Identifier);
+           }
+           column += match.Length - 1;
 
-            for (int i = 0; i < tokens.Count; i++)
-            {
-                var token = tokens[i];
-
-                if (token.Type == TokenType.Symbol)
-                {
-                    if (token.Value == "{" || token.Value == "[")
-                    {
-                        braces.Push(token);
-                    }
-                    else if (token.Value == "}" || token.Value == "]")
-                    {
-                        if (braces.Count == 0)
-                        {
-                            errors.Add(new LexicalizingError(token.Location, ErrorCode.UnmatchedBrace, $"Unmatched closing brace: {token.Value}"));
-                        }
-                        else
-                        {
-                            var openBrace = braces.Pop();
-                            if ((openBrace.Value == "{" && token.Value != "}") || (openBrace.Value == "[" && token.Value != "]"))
-                            {
-                                errors.Add(new LexicalizingError(token.Location, ErrorCode.UnmatchedBrace, $"Unmatched open brace: {token.Value}"));
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Check for unmatched braces remaining in the stack
-            while (braces.Count > 0)
-            {
-                var openBrace = braces.Pop();
-                errors.Add(new LexicalizingError(openBrace.Location, ErrorCode.MissingBrace, $"Missing closing brace for: {openBrace.Value
-                }"));
-            }
         } 
     }
-
-    public class LexicalizingError
-    {
-        public CodeLocation Location { get; }
-        public ErrorCode Code { get; }
-        public string Message { get; }
-
-        public LexicalizingError(CodeLocation location, ErrorCode code, string message)
-        {
-            Location = location;
-            Code = code;
-            Message = message;
-        }
-
-        public override string ToString()
-        {
-            return $"{Location}: {Code} - {Message}";
-        }
-    }
-
-    public enum ErrorCode
-    {
-        Unknown,
-        MissingBrace,
-        UnmatchedBrace,
-        MissingColon,
-    }
-
-
 }
 
