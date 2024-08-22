@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Text;
+using System;
+
 
 namespace Interpreter.Expressions
 {
-    public abstract class BinaryExpression<T> : Expression<T>
+abstract class BinaryExpression<T> : Expression<T>
 {
     protected IExpression leftValue;
     protected Token _operator;
@@ -33,13 +34,13 @@ namespace Interpreter.Expressions
     }
 
     public override string ToString() => leftValue.ToString() + " " + _operator + " " + rightValue.ToString();
-    public override CodeLocation Location { get => _operator.Location; protected set => throw new NotImplementedException();}
+    public override (int, int) CodeLocation { get => _operator.CodeLocation; protected set => throw new NotImplementedException();}
 
 }
 
-class ArithmeticExpression : BinaryExpression<Number>
+class MathExpression : BinaryExpression<Number>
 {
-    public ArithmeticExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
+    public MathExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
 
     public override Number Accept (IVisitor<Number> visitor) => base.Accept(visitor);
     public override ExpressionType Return => ExpressionType.Number;
@@ -47,11 +48,11 @@ class ArithmeticExpression : BinaryExpression<Number>
     {
         errors = new List<string>();
 
-        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.Location}");
+        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
-            throw new Warning($"You need to check the objects at {_operator.Location} cuz' they aren't numbers and this won't work");
-        if(!(leftValue.Return is ExpressionType.Number)) errors.Add($"Left value is not a number at {_operator.Location}");
-        if(!(rightValue.Return is ExpressionType.Number)) errors.Add($"Right value is not a number at {_operator.Location}");
+            throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't numbers and this won't work");
+        if(!(leftValue.Return is ExpressionType.Number)) errors.Add($"Left value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Return is ExpressionType.Number)) errors.Add($"Right value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errors.Count == 0;
     }
     static List<string> possibleOperations = new List<string> { "+", "-", "*", "/", "^" };
@@ -78,7 +79,7 @@ class ArithmeticExpression : BinaryExpression<Number>
         }
         catch (Exception)
         {
-            throw new InterpretationError($"Error at {_operator.Location}. Invalid operation");
+            throw new RunningError($"Error at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}. Invalid operation");
 
         }
     }
@@ -96,11 +97,11 @@ class BooleanExpression : BinaryExpression<bool>
     {
         errors = new List<string>();
 
-        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.Location}");
+        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
-            throw new Warning($"You need to check the objects at {_operator.Location} cuz' they aren't booleans and this won't work");
-        if(!(leftValue.Return is ExpressionType.Boolean)) errors.Add($"Left value is not a boolean at {_operator.Location}");
-        if(!(rightValue.Return is ExpressionType.Boolean)) errors.Add($"Right value is not a boolean at {_operator.Location}");
+            throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't booleans and this won't work");
+        if(!(leftValue.Return is ExpressionType.Boolean)) errors.Add($"Left value is not a boolean at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Return is ExpressionType.Boolean)) errors.Add($"Right value is not a boolean at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errors.Count == 0;
     }
 
@@ -120,15 +121,15 @@ class BooleanExpression : BinaryExpression<bool>
         }
         catch (Exception)
         {
-            throw new InterpretationError($"Error at {_operator.Location}. Invalid operation");
+            throw new RunningError($"Error at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}. Invalid operation");
 
         }
     }
 }
 
-class StringExpression : BinaryExpression<string>
+class LiteralExpression : BinaryExpression<string>
 {
-    public StringExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
+    public LiteralExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
 
     public override string Accept (IVisitor<string> visitor) => base.Accept(visitor);
     public override ExpressionType Return => ExpressionType.String;
@@ -137,11 +138,11 @@ class StringExpression : BinaryExpression<string>
     {
         errors = new List<string>();
 
-        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.Location}");
+        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
-            throw new Warning($"You need to check the objects at {_operator.Location} cuz' they aren't strings and this won't work");
-        if(!(leftValue.Return is ExpressionType.String)) errors.Add($"Left value is not a string at {_operator.Location}");
-        if(!(rightValue.Return is ExpressionType.String)) errors.Add($"Right value is not a string at {_operator.Location}");
+            throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't strings and this won't work");
+        if(!(leftValue.Return is ExpressionType.String)) errors.Add($"Left value is not a string at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Return is ExpressionType.String)) errors.Add($"Right value is not a string at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errors.Count == 0;
     }
 
@@ -161,7 +162,7 @@ class StringExpression : BinaryExpression<string>
         }
         catch (Exception)
         {
-            throw new InterpretationError($"Error at {_operator.Location}. Invalid operation");
+            throw new RunningError($"Error at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}. Invalid operation");
 
         }
     }
@@ -178,11 +179,11 @@ class ComparisonExpression : BinaryExpression<bool>
     {
         errors = new List<string>();
 
-        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.Location}");
+        if (!possibleOperations.Contains(_operator.Value)) errors.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
-            throw new Warning($"You need to check the objects at {_operator.Location} cuz' they aren't numbers and this won't work");
-        if(!(leftValue.Return is ExpressionType.Number)) errors.Add($"Left value is not a number at {_operator.Location}");
-        if(!(rightValue.Return is ExpressionType.Number)) errors.Add($"Right value is not a number at {_operator.Location}");
+            throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't numbers and this won't work");
+        if(!(leftValue.Return is ExpressionType.Number)) errors.Add($"Left value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Return is ExpressionType.Number)) errors.Add($"Right value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errors.Count == 0;
     }
 
@@ -210,7 +211,7 @@ class ComparisonExpression : BinaryExpression<bool>
         }
         catch (Exception)
         {
-            throw new InterpretationError($"Error at {_operator.Location}. Invalid operation");
+            throw new RunningError($"Error at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}. Invalid operation");
 
         }
     }
