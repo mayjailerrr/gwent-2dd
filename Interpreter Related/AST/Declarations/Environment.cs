@@ -7,7 +7,7 @@ class Environment
 {
     static Environment? global;
     Environment? parent;
-    Dictionary<string, IExpression> variables = new Dictionary<string, IExpression>();
+    Dictionary<string, IExpression> expr = new Dictionary<string, IExpression>();
     public Environment(Environment? parent = null)
     {
         if(parent != null)
@@ -24,7 +24,7 @@ class Environment
             {
                 global = new Environment();
                 global.parent = null;
-                global.variables.Add("context", InterpreterContext.Context);
+                global.expr.Add("context", InterpreterContext.Context); //to-do
                
             }
             return global;
@@ -33,62 +33,62 @@ class Environment
 
     IExpression Get(string key)
     {
-        if (parent.variables.ContainsKey(key))
+        if (parent.expr.ContainsKey(key))
         {
-            return parent.variables[key];
+            return parent.expr[key];
         }
         else
         {
             return parent.Get(key);
         }
     }
-    public void Set(IExpression value, Token variable)
+    public void Set(IExpression value, Token token)
     {
-        if (variable.Value == "context") throw new ParsingError($"I already planned some uses for the word 'context', sorry not sorry, change it {variable.Location}");
-        if (variables.ContainsKey(variable.Value))
+        if (token.Value == "context") throw new ParsingError($"I already planned some uses for the word 'context', sorry not sorry, change it {token.CodeLocation.Item1},{token.CodeLocation}");
+        if (expr.ContainsKey(token.Value))
         {
-            this.variables[variable.Value] = value ?? throw new ParsingError($"This variable is already in use, pay attention to what you wrote in {variable.Location}");
+            this.expr[token.Value] = value ?? throw new ParsingError($"This token is already in use, pay attention to what you wrote in {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length}");
         }
-        else if (Search(variable.Value))
+        else if (Search(token.Value))
         {
-            Change(variable.Value, value);
+            Change(token.Value, value);
         } 
         else
         {
-            this.variables.Add(variable.Value, value);
+            this.expr.Add(token.Value, value);
         }
     }
     void Change(string key, IExpression value)
     {
-        if (parent.variables.ContainsKey(key))
+        if (parent.expr.ContainsKey(key))
         {
-            parent.variables[key] = value;
+            parent.expr[key] = value;
         }
         else
         {
             parent.Change(key, value);
         }
     }
-    public bool Contains(string key) => variables.ContainsKey(key) || Search(key);
+    public bool Contains(string key) => expr.ContainsKey(key) || Search(key);
     bool Search(string key) => parent is null ? false : parent.Contains(key);
     public void Reset()
     {
         global = new Environment();
     }
 
-    public IExpression this[string variable]
+    public IExpression this[string token]
     {
         get
         {
             try
             {
-                 if (variables.ContainsKey(variable))
+                 if (expr.ContainsKey(token))
                 {
-                    return variables[variable];
+                    return expr[token];
                 }
-                else if (Search(variable))
+                else if (Search(token))
                 {
-                    return Get(variable);
+                    return Get(token);
                 }
                 else
                 {
@@ -97,7 +97,7 @@ class Environment
             }
             catch (KeyNotFoundException)
             {
-                throw new ParsingError($"You have not declared this variable: {variable}");
+                throw new ParsingError($"You have not declared this token: {token}");
             }
            
         }
@@ -105,13 +105,13 @@ class Environment
         {
             try
             {
-                 if (variables.ContainsKey(variable))
+                 if (expr.ContainsKey(token))
                 {
-                    variables[variable] = value;
+                    expr[token] = value;
                 }
-                else if (Search(variable))
+                else if (Search(token))
                 {
-                    Change(variable, value);
+                    Change(token, value);
                 }
                 else
                 {
@@ -120,7 +120,7 @@ class Environment
             }
             catch (KeyNotFoundException)
             {
-                throw new ParsingError($"You have not declared this variable: {variable}");
+                throw new ParsingError($"You have not declared this token: {token}");
             }
            
         }

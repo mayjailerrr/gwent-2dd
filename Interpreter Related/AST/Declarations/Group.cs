@@ -6,20 +6,17 @@ namespace Interpreter
 {
     class Block : IStatement
     {
-        IEnumerable<IStatement> Statements;
-       // CodeLocation location;
+        IEnumerable<IStatement> statements;
+        public (int, int) CodeLocation  => throw new NotImplementedException();
 
-        public CodeLocation Location => throw new NotImplementedException();
-
-        public Block(IEnumerable<IStatement> Statements)
+        public Block(IEnumerable<IStatement> statements)
         {
-            this.Statements = Statements;
-           // this.location = location;
+            this.statements = statements;
         }
 
         public void RunIt()
         {
-            foreach (var Statement in Statements)
+            foreach (var Statement in statements)
             {
                 Statement.RunIt();
             }
@@ -30,7 +27,7 @@ namespace Interpreter
             string attention = "";
             errorsList = new List<string>();
 
-            foreach (var Statement in Statements)
+            foreach (var Statement in statements)
             {
                 try 
                 {

@@ -104,14 +104,13 @@ class For : IStatement
     }
 }
 
+//WHILE
 class While : IStatement
 {
+    public (int, int) CodeLocation => codeLocation;
     IStatement content;
     IExpression conditional;
     (int, int) codeLocation;
-
-    public (int, int) CodeLocation => codeLocation;
-
 
     public While(IExpression conditional, IStatement content, (int, int) codeLocation)
     {
@@ -151,6 +150,32 @@ class While : IStatement
             throw new RunningError("I cannot turn a conditional into a boolean expression, we don't do that in here.");
         }
     }
+}
 
-   
+//LOG
+class Log : IStatement
+{
+    public (int, int) CodeLocation => throw new NotImplementedException();
+    public IExpression Value { get; private set; }
+
+    public Log(IExpression value)
+    {
+        Value = value;
+    }
+
+    public bool CheckSemantic(out List<string> errorsList)
+    {
+        errorsList = new List<string>();
+        if (!Value.CheckSemantic(out string error))
+        {
+            errorsList.Add(error);
+        }
+        else return true;
+        return false;
+    }
+
+    public void RunIt()
+    {
+        Console.WriteLine(Value.Interpret());
+    }
 }
