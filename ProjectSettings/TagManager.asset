@@ -26,6 +26,7 @@ TagManager:
   - EDistanceWZone
   - ESiegeWZone
   - Deck2
+  - ObjetoDetectable
   layers:
   - Default
   - TransparentFX

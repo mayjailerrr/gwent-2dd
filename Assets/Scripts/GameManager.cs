@@ -1,910 +1,316 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
+using System;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Subject
 {
-    public int Round = 1;
+    public static bool GameOver = false;
+    public static GameManager gameManager;
+    public static Player player;
+    public static Player opponent;
 
-    public TextMeshProUGUI WinnerIsPlayer;
-    public TextMeshProUGUI WinnerIsEnemy;
-
-    public string PlayerPoints;
-    public string EnemyPoints;
-
-    public TextMeshProUGUI WinnerText;
-
-    private bool GameOver = false;
-
-    private int PlayerVictories = 0;
-    private int EnemyVictories = 0;
-
-    private bool ESteals;
-    private bool ESteals2;
-    private bool ESteals3;
-
-    private bool PSteals;
-    private bool PSteals2;
-    private bool PSteals3;
-
-    private Hand zone;
-    private Hand zone2;
-
-    private int Hand1;
-    private int Hand2;
-
-    public GameObject PlayerArea;
-    public GameObject EnemyArea;
-
-    public GameObject player1TurnIndicator;
-    public GameObject player2TurnIndicator;
-
-    public GameObject leader1;
-    public GameObject leader2;
-
-    public GameObject give1;
-    public GameObject give2;
-
-    public TextMeshProUGUI PSurrendered;
-    public TextMeshProUGUI ESurrendered;
-
-
-    void Update()
+    public static GameManager AwakeManager()
     {
-        Hand1 = PlayerArea.GetComponent<Hand>().Cards;
-        Hand2 = EnemyArea.GetComponent<Hand>().Cards;
+        return new GameManager();
+    }
 
-        zone = PlayerArea.GetComponent<Hand>();
-        zone2 = EnemyArea.GetComponent<Hand>();
-
-
-        PlayerPoints = GameObject.Find("PlayerCnt").GetComponent<TextMeshProUGUI>().text;
-        EnemyPoints = GameObject.Find("EnemyCnt").GetComponent<TextMeshProUGUI>().text;
-
-
-        ESteals = GameObject.Find("Deck2").GetComponent<Draw>().Stole;
-        PSteals = GameObject.Find("Deck1").GetComponent<Draw>().Stole;
-        ESteals2 = GameObject.Find("Deck2").GetComponent<Draw>().Stole2;
-        PSteals2 = GameObject.Find("Deck1").GetComponent<Draw>().Stole2;
-        ESteals3 = GameObject.Find("Deck2").GetComponent<Draw>().Stole3;
-        PSteals3 = GameObject.Find("Deck1").GetComponent<Draw>().Stole3;
-
-
-        //deciding the winner
-        if(GameOver == false && PlayerVictories == 2 && EnemyVictories == 0)
-        {
-            GameOver = true;
-            WinnerText.text = "Player1 is the winner siu";
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true); 
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-        }
-        else if(GameOver == false && EnemyVictories == 2 && PlayerVictories == 0)
-        {
-            GameOver = true;
-            WinnerText.text = "Player2 is the winner siu";
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true); 
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-        }
-        else if(GameOver == false && Round == 0 && PlayerVictories == EnemyVictories)
-        {
-            GameOver = true;
-            WinnerText.text = "Tie";
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true); 
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-        }
-        else if(GameOver == false && Round == 0 && EnemyVictories > PlayerVictories)
-        {
-            GameOver = true;
-            WinnerText.text = "Player2 is the winner siu";
-        }
-        else if(GameOver == false && Round == 0 && EnemyVictories < PlayerVictories)
-        {
-            GameOver = true;
-            WinnerText.text = "Player1 is the winner siu";
-        }
-        
-        
-    
-
-        //first Round
-    // public void WhoWon()
-    // {               
-        if(Round == 1 && Hand1 == 0 && Hand2 == 0 && PSteals && ESteals) //1st round finished normally
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            Round += 1;
-        }
-        if(Round == 1 && zone.Surrendered && zone2.Surrendered && PSteals && ESteals) //both surrendered in a middle of a round
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-        if(Round == 1 && zone.Surrendered && zone2.Surrendered) //both surrendered in the start of the round
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-        if(Round == 1 && zone.Surrendered && Hand2 == 0 && PSteals && ESteals)  //player has surrendered & enemy has no cards
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-        if(Round == 1 && Hand1 == 0 && zone2.Surrendered && PSteals && ESteals)  //player has no cards & enemy has surrendered 
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-            
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone2.Surrendered = false;
-
-            ESurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-
-
-        
-        
-        //second Round
-        if(Round == 2 && Hand1 == 0 && Hand2 == 0 && PSteals2 && ESteals2) //second round ends normally
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            Round += 1;
-        }
-        if(Round == 2 && zone.Surrendered && zone2.Surrendered && PSteals2 && ESteals2) //both surrendered in the middle of the round
+    private GameManager()
     {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
+        gameManager = this;
 
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
+        player = GameData.Player1;
+        opponent = GameData.Opponent;
 
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
+        PickPlayerAsFirst(player, opponent);
 
-                leader1.SetActive(true);
-                leader2.SetActive(false);
+        if (player.IsActive == true)
+            Debug.Log($"Player {player.PlayerName} is the first to play.");
 
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-        if(Round == 2 && zone.Surrendered && zone2.Surrendered) //both surrendered in the start of the round
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-        if(Round == 1 && zone.Surrendered && Hand2 == 0 && PSteals && ESteals)  //player has surrendered & enemy has no cards
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-        if(Round == 2 && Hand1 == 0 && zone2.Surrendered && PSteals2 && ESteals2) //player has no cards and enemy surrendered
-        {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-            
-            if(PlayerPts > EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            if(EnemyPts > PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(true);
-                player2TurnIndicator.SetActive(false); 
-
-                leader1.SetActive(false);
-                leader2.SetActive(true);
-
-                give1.gameObject.SetActive(false);
-                give2.gameObject.SetActive(true);
-            }
-
-            if(PlayerPts == EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-
-                player1TurnIndicator.SetActive(false);
-                player2TurnIndicator.SetActive(true); 
-
-                leader1.SetActive(true);
-                leader2.SetActive(false);
-
-                give1.gameObject.SetActive(true);
-                give2.gameObject.SetActive(false);
-            }
-
-            zone2.Surrendered = false;
-
-            ESurrendered.gameObject.SetActive(false);
-
-            Round += 1;
-        }
-
-
-
+        if (opponent.IsActive == true)
+            Debug.Log($"Player {opponent.PlayerName} is the first to play.");
         
-        //third Round
-        if(Round == 3 && Hand1 == 0 && Hand2 == 0 && PSteals3 && ESteals3) //3rd round ends normally
+        NotifyObservers(GameEvents.Start);
+    }
+
+    public void PlayCard(Card card, ZoneTypes zone)
+    {
+        if (player.IsActive == true)
+            InternalPlayCard(player, opponent, card, zone);
+        else InternalPlayCard(opponent, player, card, zone);
+    }
+
+    private void InternalPlayCard(Player activePlayer, Player opponentPlayer, Card card, ZoneTypes zone)
+    {
+        activePlayer.DragAndDrop(activePlayer, opponentPlayer, card, zone);
+
+        Debug.Log($"Player {activePlayer.PlayerName} played {card.Name} to the {zone} zone.");
+
+        if (card.Type == CardTypes.Lure)
+            NotifyObservers(GameEvents.DecoyEventStart);
+        else 
         {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts >= EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-            }
-
-            if(EnemyPts >= PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-            }
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true); 
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            Round = 0;
+            NotifyObservers(GameEvents.Summon, card);
+            ChangeTurn(activePlayer, opponentPlayer);
         }
-        if(Round == 3 && zone.Surrendered && zone2.Surrendered && PSteals3 && ESteals3) //both surrendered in the middle of the round
+    }
+
+    public void UseLeaderAbility()
+    {
+        if (player.IsActive == true)
+            InternalUseLeaderAbility(player, opponent);
+        else InternalUseLeaderAbility(opponent, player);
+    }
+
+    private void InternalUseLeaderAbility(Player activePlayer, Player opponentPlayer)
+    {
+        activePlayer.UseLeaderAbility(activePlayer, opponentPlayer);
+
+        NotifyObservers(GameEvents.Summon, activePlayer.PlayerLeader); //playerleader
+
+        Debug.Log($"Player {activePlayer.PlayerName} used the leader ability.");
+        ChangeTurn(activePlayer, opponentPlayer);
+    }
+
+    public void PassTurn()
+    {
+        if (player.IsActive == true)
+            InternalPassTurn(player, opponent);
+        else if (opponent.IsActive == true)
+            InternalPassTurn(opponent, player);
+    }
+
+    private void InternalPassTurn(Player activePlayer, Player opponentPlayer)
+    {
+        activePlayer.PassTurn();
+
+        if (opponentPlayer.HasPassed == false)
         {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts >= EnemyPts)
-            {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-            }
-
-            if(EnemyPts >= PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-            }
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true);  
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round = 0;
+            NotifyObservers(GameEvents.PassTurn);
+            opponentPlayer.StartTurn();
         }
-        if(Round == 3 && zone.Surrendered && zone2.Surrendered) //both surrendered in the start of the round
+        else BothPlayersPassed();
+    }
+
+    public void FinishDecoyEvent(Card cardToSwap)
+    {
+        if (player.IsActive == true)
+            InternalFinishDecoyEvent(player, opponent, cardToSwap);
+        else InternalFinishDecoyEvent(opponent, player, cardToSwap);
+    }
+
+    private void InternalFinishDecoyEvent(Player activePlayer, Player opponentPlayer, Card cardToSwap)
+    {
+        int pos = -1;
+
+        for (int i = 0; i < 3; i++)
         {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts >= EnemyPts)
+            foreach (UnityCard unityCard in activePlayer.Battlefield.GetZoneFromBattlefield(Utils.ZoneForIndex[i]))
             {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
+                if (unityCard.Type == CardTypes.Lure)
+                {
+                    pos = i;
+                }
             }
-
-            if(EnemyPts >= PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-            }
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true);  
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round = 0;
         }
-        if(Round == 3 && zone.Surrendered && Hand2 == 0 && PSteals3 && ESteals3) //player has surrendered and enemy has no cards
+
+        if (pos >= 0)
         {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts >= EnemyPts)
+            if (cardToSwap is UnityCard unityCard)
             {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
+                activePlayer.Battlefield.RemoveCardFromBattlefield(unityCard, Utils.ZoneForIndex[pos]);
+                activePlayer.PlayerHand.PlayerHand.Add(unityCard);
+
+                if (unityCard is Silver silverCard)
+                    silverCard.initialPower = silverCard.Power;
+
+                activePlayer.Battlefield.UpdateBattlefield();
+                opponentPlayer.Battlefield.UpdateBattlefield();
+
+                NotifyObservers(GameEvents.DecoyEventEnd, unityCard);
+                ChangeTurn(activePlayer, opponentPlayer);
             }
-
-            if(EnemyPts >= PlayerPts)
-            {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
-            }
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true); 
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round = 0;
         }
-        if(Round == 3 && Hand1 == 0 && zone2.Surrendered && PSteals3 && ESteals3)//player has no cards and enemy surrendered
+    }
+
+    public void AbortDecoyEvent()
+    {
+        if (player.IsActive == true)
+            InternalAbortDecoyEvent(player, opponent);
+        else InternalAbortDecoyEvent(opponent, player);
+    }
+
+    private void InternalAbortDecoyEvent(Player activePlayer, Player opponentPlayer)
+    {
+        activePlayer.Battlefield.UpdateBattlefield();
+        opponentPlayer.Battlefield.UpdateBattlefield();
+
+        NotifyObservers(GameEvents.DecoyEventAbort);
+        ChangeTurn(activePlayer, opponentPlayer);
+    }
+
+    public void InvokeCard(Card card, ZoneTypes zone)
+    {
+        if (player.IsActive == true)
+            InternalInvokeCard(player, opponent, card, zone);
+        else InternalInvokeCard(opponent, player, card, zone);
+    }
+
+    private void InternalInvokeCard(Player activePlayer, Player opponentPlayer, Card card, ZoneTypes zone)
+    {
+        InvokeMovement(activePlayer, opponentPlayer, card, zone);
+        Debug.Log($"Player {activePlayer.PlayerName} invoked {card.Name} to the {zone} zone.");
+
+        NotifyObservers(GameEvents.Invoke, card);
+    }
+
+    private void InvokeMovement(Player activePlayer, Player opponentPlayer, Card card, ZoneTypes zone)
+    {
+        if (zone == ZoneTypes.Melee || zone == ZoneTypes.Distance || zone == ZoneTypes.Siege)
         {
-            int PlayerPts = int.Parse(PlayerPoints);
-            int EnemyPts = int.Parse(EnemyPoints);
-
-            if(PlayerPts >= EnemyPts)
+            if (card is Augment augmentCard)
             {
-                PlayerVictories += 1;
-                WinnerIsPlayer.text = PlayerVictories.ToString();
-            }
+                activePlayer.Battlefield.AddCardToAugmentColumn(augmentCard, zone);
+                activePlayer.PlayerHand.RemoveCardFromDeck(card);
 
-            if(EnemyPts >= PlayerPts)
+                activePlayer.Battlefield.UpdateBattlefield();
+                opponentPlayer.Battlefield.UpdateBattlefield();
+            }
+            if (card is WeatherCard weatherCard)
             {
-                EnemyVictories += 1;
-                WinnerIsEnemy.text = EnemyVictories.ToString();
+                PlayerBattlefield.AddWeatherCardToZone(weatherCard, zone);
+                activePlayer.PlayerHand.RemoveCardFromDeck(card);
+
+                activePlayer.Battlefield.UpdateBattlefield();
+                opponentPlayer.Battlefield.UpdateBattlefield();
             }
-
-            player1TurnIndicator.SetActive(true);
-            player2TurnIndicator.SetActive(true); 
-
-            leader1.SetActive(false);
-            leader2.SetActive(false);
-
-            give1.gameObject.SetActive(false);
-            give2.gameObject.SetActive(false);
-
-            zone.Surrendered = false;
-            zone2.Surrendered = false;
-
-            PSurrendered.gameObject.SetActive(false);
-            ESurrendered.gameObject.SetActive(false);
-
-            Round = 0;
         }
-   }
-//}
+    }
+
+    public void ChangeTurn(Player activePlayer, Player opponentPlayer)
+    {
+        if (activePlayer.HasPassed == false || opponentPlayer.HasPassed == false)
+        {
+            if (activePlayer.IsActive == true)
+                InternalChangeTurn(activePlayer, opponentPlayer);
+            else InternalChangeTurn(opponentPlayer, activePlayer);
+        }
+        else 
+        {
+            throw new ArgumentException("Both players have passed.");
+        }
+    }
+
+    private void InternalChangeTurn(Player activePlayer, Player opponentPlayer)
+    {
+        if (activePlayer.HasPassed == false)
+        {
+            activePlayer.EndTurn();
+            opponentPlayer.StartTurn();
+        }
+    }
+
+    public void PickPlayerAsFirst(Player player1, Player player2)
+    {
+        System.Random random = new System.Random();
+        
+        int choice = random.Next(2);
+
+        if (choice == 0) player1.StartTurn();
+        else player2.StartTurn();
+
+    }
+
+    public void BothPlayersPassed()
+    {
+        if (player.GamesWon < 2 && opponent.GamesWon < 2)
+        {
+            NotifyObservers(GameEvents.FinishRound);
+            FinishRound(player, opponent);
+            NotifyObservers(GameEvents.StartRound);
+        }
+    }
+
+    public void FinishRound(Player player1, Player player2)
+    {
+        SetRoundWinner(player1, player2);
+
+        player1.GetNewBattlefield();
+        player2.GetNewBattlefield();
+
+        if (!GameOver)
+        {
+            player1.PlayerHand.DrawCard();
+            player2.PlayerHand.DrawCard();
+
+            player1.PlayerHand.DrawCard();
+            player2.PlayerHand.DrawCard();
+
+            NotifyObservers(GameEvents.DrawCard);
+        }
+    }
+
+    private void SetRoundWinner(Player player1, Player player2)
+    {
+        if (player1.Battlefield.TotalScore > player2.Battlefield.TotalScore)
+            InternalSetRoundWinner(player1, player2);
+        else if (player2.Battlefield.TotalScore > player1.Battlefield.TotalScore)
+            InternalSetRoundWinner(player2, player1);
+        else
+        {
+            player1.AddVictory();
+            player2.AddVictory();
+
+            if (player1.GamesWon == 2 || player2.GamesWon == 2)
+            {
+                NotifyObservers(GameEvents.FinishGame);
+                GameOver = true;
+            }
+
+            else 
+            {
+                player1.NewRound();
+                player2.NewRound();
+
+                PickPlayerAsFirst(player1, player2);
+                NotifyObservers(GameEvents.Start);
+            }
+        }
+    }
+
+    private void InternalSetRoundWinner(Player winner, Player loser)
+    {
+        winner.AddVictory();
+
+        if (winner.GamesWon == 2)
+        {
+            NotifyObservers(GameEvents.FinishGame);
+            GameOver = true;
+        }
+        else 
+        {
+            winner.NewRound();
+            loser.NewRound();
+
+            winner.StartTurn();
+        }
+    }
+}
+
+ public enum GameEvents
+{
+    Start,
+    Summon,
+    Invoke,
+    PassTurn,
+    DecoyEventStart,
+    DecoyEventEnd,
+    DecoyEventAbort,
+    FinishRound,
+    StartRound,
+    DrawCard,
+    FinishGame
 }
 
