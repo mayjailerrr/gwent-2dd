@@ -19,7 +19,7 @@ Gwent Of Thrones is a multiplayer card game for two players, where each match is
 To install and play Gwent Of Thrones, follow these steps:
 
    1. **Clone the repository**:
-     git clone https://github.com/your-username/gwent-of-thrones.git
+     git clone https://github.com/mayjailerrr/gwent-2dd.git
 
    2. **System Requirements**:
      * You need to be on a Linux system to run the game.
