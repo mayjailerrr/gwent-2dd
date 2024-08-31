@@ -22,7 +22,7 @@ class Predicate : Expression<object>
         return (bool)expression.Interpret();
     }
 
-    public override ExpressionType Return => ExpressionType.Predicate;
+    public override ExpressionType Type => ExpressionType.Predicate;
     public override (int, int) CodeLocation { get => (token.CodeLocation.Item1, token.CodeLocation.Item2 + token.Value.Length + 2) ; protected set => throw new NotImplementedException(); }
 
 
@@ -31,11 +31,11 @@ class Predicate : Expression<object>
     public override bool CheckSemantic(out string error)
     {
         error = "";
-        if (!(expression.Return is ExpressionType.Boolean))
+        if (!(expression.Type is ExpressionType.Boolean))
         {
             error = $"The expression at the right {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length} is not a boolean, check it";
         }
-        if (expression.Return is ExpressionType.Object)
+        if (expression.Type is ExpressionType.Object)
         {
             throw new Attention($"The expression at the right {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length + 2} is an object, check it");
         }
@@ -46,11 +46,11 @@ class Predicate : Expression<object>
     {
         errorsList = new List<string>();
 
-        if(!(expression.Return is ExpressionType.Boolean))
+        if(!(expression.Type is ExpressionType.Boolean))
         {
              errorsList.Add($"The expression at the right {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length} is not boolean, check it");
         }
-        if(expression.Return is ExpressionType.Object)
+        if(expression.Type is ExpressionType.Object)
            throw new Attention($"The expression at the right {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length + 2} is not boolean, check it");
         else return true;
 

@@ -21,10 +21,10 @@ using GameLibrary;
         {
             errorsList = new List<string>();
 
-            if(value.Return is ExpressionType.Object)
+            if(value.Type is ExpressionType.Object)
                 throw new Attention($"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed");
             
-            if(value.Return is ExpressionType.Number || value.Return is ExpressionType.Boolean) 
+            if(value.Type is ExpressionType.Number || value.Type is ExpressionType.Boolean) 
                 return true;
 
             errorsList.Add($"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed");
@@ -44,16 +44,16 @@ using GameLibrary;
         }
         }
 
-        public override ExpressionType Return => value.Return;
+        public override ExpressionType Type => value.Type;
         public override (int, int) CodeLocation { get => _operator.CodeLocation; protected set => throw new NotImplementedException(); }
         public override bool CheckSemantic(out string error)
         {
             error = "";
 
-            if(value.Return is ExpressionType.Object)
+            if(value.Type is ExpressionType.Object)
                 throw new Attention($"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed");
 
-            if(value.Return is ExpressionType.Number || value.Return is ExpressionType.Boolean) return true;
+            if(value.Type is ExpressionType.Number || value.Type is ExpressionType.Boolean) return true;
 
             error = $"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed";
             return false;
@@ -83,7 +83,7 @@ using GameLibrary;
     class UnaryCallable : UnaryExpression<Callable>
     {
         public override object Interpret() => value.Interpret();
-        public override ExpressionType Return => value.Return;
+        public override ExpressionType Type => value.Type;
         public UnaryCallable( Callable value)
         {
             this.value = value;
@@ -93,7 +93,7 @@ using GameLibrary;
 
     class UnaryDeclaration : UnaryExpression<Declaration>
     {
-        public override ExpressionType Return => value.Return;
+        public override ExpressionType Type => value.Type;
 
         public override object Interpret()
         {
@@ -110,7 +110,7 @@ using GameLibrary;
 
     class UnaryObject : UnaryExpression<object>
     {
-        public override ExpressionType Return => (value is int || value is double) ? ExpressionType.Number : 
+        public override ExpressionType Type => (value is int || value is double) ? ExpressionType.Number : 
                                                 value is string ? ExpressionType.String :
                                                 value is GameList ? ExpressionType.List :
                                                 value is Card ? ExpressionType.Card : ExpressionType.Object;
@@ -142,7 +142,7 @@ using GameLibrary;
                     throw new Exception($"Unexpected token type at {value.CodeLocation.Item1},{value.CodeLocation.Item2 + value.Value.Length + 1}");
             }
         }
-         public override ExpressionType Return
+         public override ExpressionType Type
         {
             get
             {

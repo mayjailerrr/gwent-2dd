@@ -7,7 +7,7 @@ namespace Interpreter
 {
     interface IExpression
     {
-        ExpressionType Return { get; }
+        ExpressionType Type { get; }
         (int, int) CodeLocation { get; }
         object Interpret();
         string? ToString();
@@ -29,7 +29,7 @@ namespace Interpreter
         public virtual T Accept(IVisitor<T> visitor) => visitor.Visit(this);
         public abstract bool CheckSemantic(out List<string> errorsList);
         public abstract bool CheckSemantic(out string error);
-        public abstract ExpressionType Return { get; }
+        public abstract ExpressionType Type { get; }
         public abstract (int, int) CodeLocation { get; protected set;}
         public abstract object Interpret();
     }

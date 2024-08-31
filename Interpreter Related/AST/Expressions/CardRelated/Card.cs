@@ -107,28 +107,28 @@ class CardState : IStatement
         if (onActivation is null) errorsList = new List<string>();
         else onActivation.CheckSemantic(out errorsList);
         
-        if (type.Return != ExpressionType.String)
+        if (type.Type != ExpressionType.String)
         {
-            errorsList.Add($"Expected string, found {type.Return}:" + pos);
+            errorsList.Add($"Expected string, found {type.Type}:" + pos);
         }
-        if (name.Return != ExpressionType.String)
+        if (name.Type != ExpressionType.String)
         {
-            errorsList.Add($"Expected string, found {name.Return}" + pos);
+            errorsList.Add($"Expected string, found {name.Type}" + pos);
         }
-        if (faction.Return != ExpressionType.String)
+        if (faction.Type != ExpressionType.String)
         {
-            errorsList.Add($"Expected string, found {faction.Return}" + pos);
+            errorsList.Add($"Expected string, found {faction.Type}" + pos);
         }
-        if (!(power is null) && power.Return != ExpressionType.Number)
+        if (!(power is null) && power.Type != ExpressionType.Number)
         {
-            errorsList.Add($"Expected number, found {power.Return}" + pos);
+            errorsList.Add($"Expected number, found {power.Type}" + pos);
         }
 
         for (int i = 0; i < range.Count; i++)
         {
-            if (range[i].Return != ExpressionType.String)
+            if (range[i].Type != ExpressionType.String)
             {
-                errorsList.Add($"Expected string, found {range[i].Return}:" + pos);
+                errorsList.Add($"Expected string, found {range[i].Type}:" + pos);
             }
         }
         return errorsList.Count == 0;

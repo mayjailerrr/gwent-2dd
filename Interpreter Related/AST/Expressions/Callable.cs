@@ -24,7 +24,7 @@ abstract class Callable : Expression<object>
         else return true;
         return false;
     }
-    public override ExpressionType Return => ExpressionType.Object;
+    public override ExpressionType Type => ExpressionType.Object;
 }
 
 class Methods : Callable

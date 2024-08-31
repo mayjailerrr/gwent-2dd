@@ -18,33 +18,33 @@ class Localizer : Expression<object>
     }
 
     public override object Interpret() => ((GameList)localizer.Interpret())[(Number)localizer.Interpret()];
-    public override ExpressionType Return => ExpressionType.Card;
+    public override ExpressionType Type => ExpressionType.Card;
 
     public override bool CheckSemantic(out string error)
     {
         error = "";
 
-        if(localizer.Return is ExpressionType.Object)
+        if(localizer.Type is ExpressionType.Object)
             throw new Attention($"The operations you are trying to make on this object at {codeLocation.Item1},{codeLocation.Item2 - 1} are not allowed cuz is not a list");
-        else if (!(localizer.Return is ExpressionType.List)) error += ($"The operation you are trying to make at {codeLocation.Item1},{codeLocation.Item2} is not valid my friend");
+        else if (!(localizer.Type is ExpressionType.List)) error += ($"The operation you are trying to make at {codeLocation.Item1},{codeLocation.Item2} is not valid my friend");
 
-        if (index.Return is ExpressionType.Object) 
+        if (index.Type is ExpressionType.Object) 
             throw new Attention($"This object need to be a number at {codeLocation.Item1},{codeLocation.Item2 - 1}");
-        else if (!(index.Return is ExpressionType.Number)) error = ($"The operations you are trying to make on this object at {codeLocation.Item1},{codeLocation.Item2} are not allowed cuz is not a number");
+        else if (!(index.Type is ExpressionType.Number)) error = ($"The operations you are trying to make on this object at {codeLocation.Item1},{codeLocation.Item2} are not allowed cuz is not a number");
         return error.Length == 0;
     }
     public override bool CheckSemantic(out List<string> errorsList)
     {
         errorsList = new List<string>();
 
-        if (localizer.Return is ExpressionType.Object)
+        if (localizer.Type is ExpressionType.Object)
             throw new Attention($"The operations you are trying to make on this object at {codeLocation.Item1},{codeLocation.Item2 - 1} are not allowed cuz is not a list");
-        else if (!(localizer.Return is ExpressionType.List))
+        else if (!(localizer.Type is ExpressionType.List))
             errorsList.Add($"The operation you are trying to make at {codeLocation.Item1},{codeLocation.Item2} is not valid my friend");
         
-        if(index.Return is ExpressionType.Object)
+        if(index.Type is ExpressionType.Object)
             throw new Attention($"This object need to be a number at {codeLocation.Item1},{codeLocation.Item2 - 1}");
-        else if (!(index.Return is ExpressionType.Number))
+        else if (!(index.Type is ExpressionType.Number))
             errorsList.Add($"The operations you are trying to make on this object at {codeLocation.Item1},{codeLocation.Item2} are not allowed cuz is not a number");
 
         return errorsList.Count == 0;

@@ -44,14 +44,14 @@ class Activation : IStatement
 
         attention += ErrorsCheck(effect, errorsList);
 
-        if (effect.Return != ExpressionType.String)
+        if (effect.Type != ExpressionType.String)
         {
             errorsList.Add($"The effect you have at {codeLocation.Item1},{codeLocation.Item2} need to be a string, buddy");
         }
 
         attention += ErrorsCheck(selector, errorsList);
 
-        if (!(selector is null) && selector.Return != ExpressionType.List)
+        if (!(selector is null) && selector.Type != ExpressionType.List)
         {
             errorsList.Add($"The selector you have at {codeLocation.Item1},{codeLocation.Item2} is wrong, my bro");
         }

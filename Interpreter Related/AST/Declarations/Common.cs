@@ -33,7 +33,7 @@ class If : IStatement
             errorsList.AddRange(temperrorsList); 
         }
 
-        if(!(conditional.Return is ExpressionType.Boolean))
+        if(!(conditional.Type is ExpressionType.Boolean))
         {
             errorsList.Add($" This expression you have at {codeLocation.Item1},{codeLocation.Item2} need to be boolean, buddy");
             return false;
@@ -87,7 +87,7 @@ class For : IStatement
             errorsList.Add(error);
             return false;
         }
-        if (!(collection.Return is ExpressionType.List)) throw new Attention($"You must make sure object at {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length + 4} is a list or a compile time error may occur");
+        if (!(collection.Type is ExpressionType.List)) throw new Attention($"You must make sure object at {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length + 4} is a list or a compile time error may occur");
 
         return valid;
     }
@@ -135,7 +135,7 @@ class While : IStatement
 
         valid = content.CheckSemantic(out errorsList);
 
-        if (!(conditional.Return is ExpressionType.Boolean))
+        if (!(conditional.Type is ExpressionType.Boolean))
         {
             errorsList.Add($"The expression you wrote at {codeLocation.Item1},{codeLocation.Item2 + 2} need to be boolean, buddy");
             return false;

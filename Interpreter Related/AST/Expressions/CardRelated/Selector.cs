@@ -22,7 +22,7 @@ class Selector : Expression<object>
         this.codeLocation = codeLocation;
     }
 
-    public override ExpressionType Return => ExpressionType.List;
+    public override ExpressionType Type => ExpressionType.List;
     string pos => $"in selector :{codeLocation.Item1},{codeLocation.Item2 - 1}";
 
     public override bool CheckSemantic(out List<string> errorsList)
@@ -32,7 +32,7 @@ class Selector : Expression<object>
 
         try
         {
-            if (source.Return != ExpressionType.String || source.Return != ExpressionType.Object) errorsList.Add($"This source is not correct, my bro" + pos);
+            if (source.Type != ExpressionType.String || source.Type != ExpressionType.Object) errorsList.Add($"This source is not correct, my bro" + pos);
             else if (!source.CheckSemantic(out List<string> temp)) errorsList.AddRange(temp);
             else if ((string)source.Interpret() == "parent" && parent is null) errorsList.Add($"There's no parent, my bro, check that out" + pos);
         }
@@ -46,12 +46,12 @@ class Selector : Expression<object>
             single = new UnaryObject(codeLocation, false);
             return true;
         }
-        else if (single.Return != ExpressionType.Boolean) errorsList.Add($"The type of the single is not correct, in here {pos}");
-        else if (single.Return is ExpressionType.Object) attention = ($"This single at {pos} need to be a boolean type");
+        else if (single.Type != ExpressionType.Boolean) errorsList.Add($"The type of the single is not correct, in here {pos}");
+        else if (single.Type is ExpressionType.Object) attention = ($"This single at {pos} need to be a boolean type");
         else if (!single.CheckSemantic(out List<string> temp)) errorsList.AddRange(temp);
        
 
-        if (predicate.Return != ExpressionType.Predicate) errorsList.Add($"The type of the predicate is wrong, fix it at {pos}");
+        if (predicate.Type != ExpressionType.Predicate) errorsList.Add($"The type of the predicate is wrong, fix it at {pos}");
         else if (predicate.CheckSemantic(out List<string> temp)) errorsList.AddRange(temp);
         
         if (attention != "") throw new Attention(attention);
@@ -63,13 +63,13 @@ class Selector : Expression<object>
         error = "";
         try
         {
-            if (source.Return != ExpressionType.String) error = $"This source is not correct, my bro" + pos;
+            if (source.Type != ExpressionType.String) error = $"This source is not correct, my bro" + pos;
             else if (!source.CheckSemantic(out string temp)) error = temp;
             else if ((string)source.Interpret() == "parent" && parent is null) error = $"There's no parent, my bro, check that out {pos}";
 
             else if (!single.CheckSemantic(out temp)) error = temp;
-            else if (single.Return != ExpressionType.Boolean) error = $"The type of the single is not correct, in here {pos}";
-            else if (single.Return is ExpressionType.Object) throw new Attention ($"This single {codeLocation.Item1},{codeLocation.Item2 - 1} need to be a boolean type");
+            else if (single.Type != ExpressionType.Boolean) error = $"The type of the single is not correct, in here {pos}";
+            else if (single.Type is ExpressionType.Object) throw new Attention ($"This single {codeLocation.Item1},{codeLocation.Item2 - 1} need to be a boolean type");
             else if (single is null) 
             {
                 single = new UnaryObject(codeLocation, false);
@@ -77,7 +77,7 @@ class Selector : Expression<object>
             }
 
             else if (!predicate.CheckSemantic(out error)) error = temp;
-            else if (predicate.Return != ExpressionType.Predicate) error = $"The type of the predicate is wrong, fix it {pos}";
+            else if (predicate.Type != ExpressionType.Predicate) error = $"The type of the predicate is wrong, fix it {pos}";
         }
         catch (InvalidCastException)
         {

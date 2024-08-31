@@ -43,16 +43,16 @@ class MathExpression : BinaryExpression<Number>
     public MathExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
 
     public override Number Accept (IVisitor<Number> visitor) => base.Accept(visitor);
-    public override ExpressionType Return => ExpressionType.Number;
+    public override ExpressionType Type => ExpressionType.Number;
     public override bool CheckSemantic(out List<string> errorsList)
     {
         errorsList = new List<string>();
 
         if (!matches.Contains(_operator.Value)) errorsList.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
+        if(leftValue.Type is ExpressionType.Object || rightValue.Type is ExpressionType.Object)
             throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't numbers and this won't work");
-        if(!(leftValue.Return is ExpressionType.Number)) errorsList.Add($"Left value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(!(rightValue.Return is ExpressionType.Number)) errorsList.Add($"Right value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(leftValue.Type is ExpressionType.Number)) errorsList.Add($"Left value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Type is ExpressionType.Number)) errorsList.Add($"Right value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errorsList.Count == 0;
     }
     static List<string> matches = new List<string> { "+", "-", "*", "/", "^" };
@@ -91,17 +91,17 @@ class BooleanExpression : BinaryExpression<bool>
 
     public override bool Accept (IVisitor<bool> visitor) => base.Accept(visitor);
     //weird boolean
-    public override ExpressionType Return => ExpressionType.Boolean;
+    public override ExpressionType Type => ExpressionType.Boolean;
     static List<string> matches = new List<string> { "&&", "||" };
     public override bool CheckSemantic(out List<string> errorsList)
     {
         errorsList = new List<string>();
 
         if (!matches.Contains(_operator.Value)) errorsList.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
+        if(leftValue.Type is ExpressionType.Object || rightValue.Type is ExpressionType.Object)
             throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't booleans and this won't work");
-        if(!(leftValue.Return is ExpressionType.Boolean)) errorsList.Add($"Left value is not a boolean at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(!(rightValue.Return is ExpressionType.Boolean)) errorsList.Add($"Right value is not a boolean at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(leftValue.Type is ExpressionType.Boolean)) errorsList.Add($"Left value is not a boolean at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Type is ExpressionType.Boolean)) errorsList.Add($"Right value is not a boolean at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errorsList.Count == 0;
     }
 
@@ -132,17 +132,17 @@ class LiteralExpression : BinaryExpression<string>
     public LiteralExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
 
     public override string Accept (IVisitor<string> visitor) => base.Accept(visitor);
-    public override ExpressionType Return => ExpressionType.String;
+    public override ExpressionType Type => ExpressionType.String;
     static List<string> matches = new List<string> { "@", "@@" };
     public override bool CheckSemantic(out List<string> errorsList)
     {
         errorsList = new List<string>();
 
         if (!matches.Contains(_operator.Value)) errorsList.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
+        if(leftValue.Type is ExpressionType.Object || rightValue.Type is ExpressionType.Object)
             throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't strings and this won't work");
-        if(!(leftValue.Return is ExpressionType.String)) errorsList.Add($"Left value is not a string at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(!(rightValue.Return is ExpressionType.String)) errorsList.Add($"Right value is not a string at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(leftValue.Type is ExpressionType.String)) errorsList.Add($"Left value is not a string at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Type is ExpressionType.String)) errorsList.Add($"Right value is not a string at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errorsList.Count == 0;
     }
 
@@ -173,17 +173,17 @@ class ComparisonExpression : BinaryExpression<bool>
     public ComparisonExpression (IExpression leftValue, Token _operator, IExpression rightValue) : base(leftValue, _operator, rightValue) { }
 
     public override bool Accept (IVisitor<bool> visitor) => base.Accept(visitor);
-    public override ExpressionType Return => ExpressionType.Boolean;
+    public override ExpressionType Type => ExpressionType.Boolean;
     static List<string> matches = new List<string> { "<", ">", "<=", ">=", "==", "!=" };
     public override bool CheckSemantic(out List<string> errorsList)
     {
         errorsList = new List<string>();
 
         if (!matches.Contains(_operator.Value)) errorsList.Add($"Very illegal operation at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(leftValue.Return is ExpressionType.Object || rightValue.Return is ExpressionType.Object)
+        if(leftValue.Type is ExpressionType.Object || rightValue.Type is ExpressionType.Object)
             throw new Attention($"You need to check the objects at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2 - 1} cuz' they aren't numbers and this won't work");
-        if(!(leftValue.Return is ExpressionType.Number)) errorsList.Add($"Left value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
-        if(!(rightValue.Return is ExpressionType.Number)) errorsList.Add($"Right value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(leftValue.Type is ExpressionType.Number)) errorsList.Add($"Left value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
+        if(!(rightValue.Type is ExpressionType.Number)) errorsList.Add($"Right value is not a number at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         return errorsList.Count == 0;
     }
 
