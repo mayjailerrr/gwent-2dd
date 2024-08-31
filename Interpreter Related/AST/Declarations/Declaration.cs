@@ -14,19 +14,19 @@ public interface IStatement
 class Declaration : IStatement
 {
     Environment environment;
-    IExpression value;
+    IExpression? value;
     Token token;
     Token operation;
     
 
-    public Declaration(Token token, Environment environment = null, IExpression value = null, Token operation = null)
+    public Declaration(Token token, Environment environment = null, Token operation = null, IExpression value = null)
     {
         this.environment = environment ?? Environment.Global;
         this.value = value;
         this.token = token;
         this.operation = operation;
        
-         this.RunIt();
+        this.RunIt();
     }
 
     public (int, int) CodeLocation => operation is null? token.CodeLocation : operation.CodeLocation;

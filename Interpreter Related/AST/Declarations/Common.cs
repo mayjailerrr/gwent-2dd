@@ -27,7 +27,11 @@ class If : IStatement
         bool valid = true;
 
         valid = content.CheckSemantic(out errorsList);
-        if (!(elseContent is null)) { valid = elseContent.CheckSemantic(out List<string> temperrorsList) && valid; errorsList.AddRange(temperrorsList); }
+        if (!(elseContent is null)) 
+        { 
+            valid = elseContent.CheckSemantic(out List<string> temperrorsList) && valid; 
+            errorsList.AddRange(temperrorsList); 
+        }
 
         if(!(conditional.Return is ExpressionType.Boolean))
         {
@@ -44,8 +48,14 @@ class If : IStatement
     }
      public void RunIt()
     {
-        if (conditional.Interpret() is bool conditionalValue && conditionalValue) content.RunIt();
-        else if (!(elseContent is null)) elseContent.RunIt();
+        if (conditional.Interpret() is bool conditionalValue && conditionalValue) 
+        {
+            content.RunIt();
+        }
+        else if (!(elseContent is null)) 
+        {
+            elseContent.RunIt();
+        }
     }
 }
 

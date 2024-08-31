@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using Interpreter;
+using GameLibrary;
 
 abstract class Callable : Expression<object>
 {
@@ -14,11 +15,11 @@ abstract class Callable : Expression<object>
     {
         error = "";
 
-        if (!this.CheckSemantic(out List<string> errors))
-            for (int i = 0; i < errors.Count; i++)
+        if (!this.CheckSemantic(out List<string> errorsList))
+            for (int i = 0; i < errorsList.Count; i++)
             {
-                error += errors[i];
-                if (i != errors.Count - 1) error += "\n";
+                error += errorsList[i];
+                if (i != errorsList.Count - 1) error += "\n";
             }
         else return true;
         return false;
@@ -70,7 +71,7 @@ class Methods : Callable
         else throw new RunningError($"This method doesn't exist, buddy {caller.CodeLocation.Item1},{caller.CodeLocation.Item2}");
     }
 
-    public override bool CheckSemantic(out List<string> errors) => throw new Attention($"Make the item in {caller.CodeLocation.Item1},{caller.CodeLocation.Item2 - 1} a method properly defined and later we can talk, my friend");
+    public override bool CheckSemantic(out List<string> errorsList) => throw new Attention($"Make the item in {caller.CodeLocation.Item1},{caller.CodeLocation.Item2 - 1} a method properly defined and later we can talk, my friend");
 
     public override string ToString() => caller + callee.ToString();
 }
@@ -102,5 +103,5 @@ class Property : Callable
         else throw new RunningError($"This property doesn't exist, buddy {caller.CodeLocation.Item1},{caller.CodeLocation.Item2}");
     }
 
-    public override bool CheckSemantic(out List<string> errors) => throw new Attention($"Make the item in {caller.CodeLocation.Item1},{caller.CodeLocation.Item2 - 1} a property properly defined and later we can talk, my friend");
+    public override bool CheckSemantic(out List<string> errorsList) => throw new Attention($"Make the item in {caller.CodeLocation.Item1},{caller.CodeLocation.Item2 - 1} a property properly defined and later we can talk, my friend");
 }

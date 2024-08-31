@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Interpreter;
+using GameLibrary;
 
 
     class UnaryOperation : Expression<object>
@@ -10,23 +11,24 @@ using Interpreter;
         protected Token _operator;
         protected IExpression value;
 
-        public UnaryOperation (Token _operator, IExpression value)
+        public UnaryOperation(Token _operator, IExpression value)
         {
             this._operator = _operator;
             this.value = value;
         }
 
-        public override bool CheckSemantic(out List<string> errors)
+        public override bool CheckSemantic(out List<string> errorsList)
         {
-            errors = new List<string>();
+            errorsList = new List<string>();
 
             if(value.Return is ExpressionType.Object)
-                throw new Attention($"The operations you are trying to make on this object at {Location} are not allowed");
+                throw new Attention($"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed");
             
-            if(value.Return is ExpressionType.Number || value.Return is ExpressionType.Boolean) return true;
+            if(value.Return is ExpressionType.Number || value.Return is ExpressionType.Boolean) 
+                return true;
 
-            errors.Add($"The operations you are trying to make on this object at {_operator.Location} are not allowed");
-            return false;
+            errorsList.Add($"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed");
+                return false;
         }
 
         public override object Interpret()
@@ -38,7 +40,7 @@ using Interpreter;
             case "!":
                     return !(bool)value.Interpret();
             default:
-                    throw new Exception($"Unexpected operator at {_operator.Location}");
+                    throw new Exception($"Unexpected operator at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2}");
         }
         }
 
@@ -49,11 +51,11 @@ using Interpreter;
             error = "";
 
             if(value.Return is ExpressionType.Object)
-                throw new Attention($"The operations you are trying to make on this object at {_operator.Location} are not allowed");
+                throw new Attention($"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed");
 
             if(value.Return is ExpressionType.Number || value.Return is ExpressionType.Boolean) return true;
 
-            error = $"The operations you are trying to make on this object at {_operator.Location} are not allowed";
+            error = $"The operations you are trying to make on this object at {_operator.CodeLocation.Item1},{_operator.CodeLocation.Item2} are not allowed";
             return false;
         }
         public override string ToString() => _operator + value.ToString();
@@ -61,112 +63,118 @@ using Interpreter;
 
     abstract class UnaryExpression<T> : Expression<T>
     {
-        public override CodeLocation Location { get; protected set; }
-        protected T value;
-
-        public override bool CheckSemantic(out List<string> errors)
-        {
-            errors = new List<string>();
-
-            return true;
-        }
+        public override (int, int) CodeLocation { get; protected set; }
+        protected T? value;
+        public override string ToString() => value.ToString();
         public override bool CheckSemantic(out string error)
         {
             error = "";
 
             return true;
         }
+        public override bool CheckSemantic(out List<string> errorsList)
+        {
+            errorsList = new List<string>();
 
-        public override string ToString() => value.ToString();
+            return true;
+        }
+    }
+
+    class UnaryCallable : UnaryExpression<Callable>
+    {
+        public override object Interpret() => value.Interpret();
+        public override ExpressionType Return => value.Return;
+        public UnaryCallable( Callable value)
+        {
+            this.value = value;
+            this.CodeLocation = value.CodeLocation;
+        }
+    }
+
+    class UnaryDeclaration : UnaryExpression<Declaration>
+    {
+        public override ExpressionType Return => value.Return;
+
+        public override object Interpret()
+        {
+            return value.ValueGiver().Interpret();
+        }
+        public UnaryDeclaration(Declaration value)
+        {
+            this.value = value;
+            this.CodeLocation = value.CodeLocation;
+        }
+
+       
+    }
+
+    class UnaryObject : UnaryExpression<object>
+    {
+        public override ExpressionType Return => (value is int || value is double) ? ExpressionType.Number : 
+                                                value is string ? ExpressionType.String :
+                                                value is GameList ? ExpressionType.List :
+                                                value is Card ? ExpressionType.Card : ExpressionType.Object;
+        
+        public override object Interpret() => value;
+        public UnaryObject((int, int) codeLocation, object value)
+        {
+            this.value = value;
+            this.CodeLocation = codeLocation;
+        }
     }
 
     class UnaryValue : UnaryExpression<Token>
     {
-        public UnaryValue(Token value)
+        public override object Interpret()
         {
-            this.value = value;
-            this.Location = Location;
+            switch (value.Type)
+            {
+                case TokenType.True:
+                    return true;
+                case TokenType.False:
+                    return false;
+                case TokenType.Number:
+                    return new Number(Convert.ToDouble(value.Value));
+                case TokenType.String:
+                    return value.Value.Substring(1, value.Value.Length -2);
+               
+                default:
+                    throw new Exception($"Unexpected token type at {value.CodeLocation.Item1},{value.CodeLocation.Item2 + value.Value.Length + 1}");
+            }
         }
-
-        public override ExpressionType Return
+         public override ExpressionType Return
         {
             get
             {
                 switch (value.Type)
                 {
+                     case TokenType.True:
+                        return ExpressionType.Boolean;
+                    case TokenType.False:
+                        return ExpressionType.Boolean;
                     case TokenType.Number:
                         return ExpressionType.Number;
                     case TokenType.String:
                         return ExpressionType.String;
-                    case TokenType.True:
-                        return ExpressionType.Boolean;
-                    case TokenType.False:
-                        return ExpressionType.Boolean;
+                   
                     default:
-                        throw new Exception($"Unexpected token type at {Location}");
+                        throw new Exception($"Unexpected token type at {value.CodeLocation.Item1},{value.CodeLocation.Item2 + value.Value.Length + 1}");
                 }
             }
         }
-
-    public override object Interpret()
-    {
-        //check string later
-        switch (value.Type)
+        public UnaryValue(Token value)
         {
-            case TokenType.Number:
-                return new Number(double.Parse(value.Value));
-            case TokenType.String:
-                return new String(value.Value);
-            case TokenType.True:
-                return true;
-            case TokenType.False:
-                return false;
-            default:
-                throw new Exception($"Unexpected token type at {Location}");
+            this.value = value;
+            this.CodeLocation = CodeLocation;
         }
-    }
+
+      
 }
 
-class UnaryEnunciation : UnaryExpression<Enunciation>
-{
-    public UnaryEnunciation(Enunciation value)
-    {
-        this.value = value;
-        this.Location = value.Location;
-    }
 
-    public override ExpressionType Return => value.Return;
 
-    public override object Interpret()
-    {
-        return value.ValueGiver().Interpret();
-    }
-}
 
-class UnaryCallable : UnaryExpression<Callable>
-{
-    public UnaryCallable(Callable value)
-    {
-        this.value = value;
-        this.Location = value.Location;
-    }
 
-    public override object Interpret() => value.Interpret();
-    public override ExpressionType Return => value.Return;
-}
 
-class UnaryObject : UnaryExpression<object>
-{
-    public UnaryObject(object value, CodeLocation Location)
-    {
-        this.value = value;
-        this.Location = Location;
-    }
-    public override object Interpret() => value;
-    public override ExpressionType Return => (value is int || value is double) ? ExpressionType.Number : 
-                                            value is string ? ExpressionType.String :
-                                            value is GameList ? ExpressionType.List :
-                                            value is Card ? ExpressionType.Card : ExpressionType.Object;
-}
 
 

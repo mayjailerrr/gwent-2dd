@@ -10,8 +10,24 @@ namespace Interpreter
     {
         Regex whitespace = new Regex(@"\s+");
         Regex phrase = new Regex(@"[_a-zA-Z]+[_a-zA-Z0-9]*"); //+
+        Regex symbol = new Regex(@"==|!=|<=|>=|=|--|\+\+|&&|\|\||!|@|@@|=>|<|>|^|\+|\-|\*|\/|\.|\^");
         Regex number = new Regex(@"\d+(\.\d+)?"); //+
-        Regex symbol = new Regex(@"==|!=|<=|>=|=|--|\+\+|&&|\|\||!|@|@@|=>|<|>|^|\+|\-|\*|\/|\.|\^"); 
+
+        private void AddMatch(List<Token> tokens, string match, int line, ref int column, TokenType type = TokenType.Sign)
+        {
+           try
+           {
+                tokens.Add(new Token((type == TokenType.Sign? Token.allTypes[match] : type), match, line + 1, column + 1));
+           }
+           catch (KeyNotFoundException)
+           {
+                tokens.Add(new Token(TokenType.Identifier, match, line + 1, column + 1));
+                Token.allTypes.Add(match, TokenType.Identifier);
+           }
+           column += match.Length - 1;
+
+        } 
+       
 
         public List<Token> GetTokens(string code, out string[] errors)
         {
@@ -27,7 +43,7 @@ namespace Interpreter
             string current = "";
             int line = 0;
             int column = 0;
-            (int, int) lastMatchEnd = (0, 0);
+            (int, int) lastMatched = (0, 0);
 
             do 
             {
@@ -55,7 +71,7 @@ namespace Interpreter
                     {
                         quoteMarks = !quoteMarks;
                         actualToken += current[column];
-                        lastMatchEnd = (line + 1, column + 1);
+                        lastMatched = (line + 1, column + 1);
                         
                         if (!quoteMarks)
                         {
@@ -69,14 +85,30 @@ namespace Interpreter
                    
                     else 
                     {
-                        if (phrase.IsMatch(current[column].ToString()))
-                            AddMatch(tokens, phrase.Match(current, column).Value, line, ref column);
-                        else if (number.IsMatch(current[column].ToString()))
-                            AddMatch(tokens, number.Match(current, column).Value, line, ref column, TokenType.Number);
-                        else if (symbol.IsMatch(current[column].ToString()))
-                            AddMatch(tokens, symbol.Match(current, column).Value, line, ref column);
-                        else if (!whitespace.IsMatch(current[column].ToString()))
-                            errorList.Add("Unexpected token \'" + current[column] + "\' at " + line + "," + column);
+                       var matchers = new Dictionary<Regex, Action>
+                        {
+                            { phrase, () => AddMatch(tokens, phrase.Match(current, column).Value, line, ref column) },
+                            { number, () => AddMatch(tokens, number.Match(current, column).Value, line, ref column, TokenType.Number) },
+                            { symbol, () => AddMatch(tokens, symbol.Match(current, column).Value, line, ref column) }
+                        };
+
+                        bool matched = false;
+
+                        foreach (var matcher in matchers)
+                        {
+                            if (matcher.Key.IsMatch(current[column].ToString()))
+                            {
+                                matcher.Value();
+                                matched = true;
+                                break;
+                            }
+                        }
+
+                        if (!matched && !whitespace.IsMatch(current[column].ToString()))
+                        {
+                            errorList.Add("Unexpected token '" + current[column] + "' at " + line + "," + column);
+                        }
+
                     }
 
                     column++;
@@ -88,31 +120,16 @@ namespace Interpreter
             } while (line < input.Length);
           
             if (quoteMarks)
-                errorList.Add("Missing closing quote at " + lastMatchEnd.Item1 + "," + lastMatchEnd.Item2);
+                errorList.Add("Missing closing quote at " + lastMatched.Item1 + "," + lastMatched.Item2);
             if (errorList.Count > 0)
             {
                 errors = errorList.ToArray();
                 return new List<Token>();
             }
 
-            tokens.Add(new Token(TokenType.End, "$", line, column));
+            tokens.Add(new Token(TokenType.Sign, "$", line, column));
             return tokens;
         }
-
-        private void AddMatch(List<Token> tokens, string match, int line, ref int column, TokenType type = TokenType.End)
-        {
-           try
-           {
-                tokens.Add(new Token((type == TokenType.End? Token.allTypes[match] : type), match, line + 1, column + 1));
-           }
-           catch (KeyNotFoundException)
-           {
-                tokens.Add(new Token(TokenType.Identifier, match, line + 1, column + 1));
-                Token.allTypes.Add(match, TokenType.Identifier);
-           }
-           column += match.Length - 1;
-
-        } 
     }
 }
 

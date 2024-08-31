@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Interpreter;
+using GameLibrary;
 
 class Environment
 {
@@ -24,7 +25,7 @@ class Environment
             {
                 global = new Environment();
                 global.parent = null;
-                global.expr.Add("context", InterpreterContext.Context); //to-do
+                global.expr.Add("context", GameContext.Context);
                
             }
             return global;

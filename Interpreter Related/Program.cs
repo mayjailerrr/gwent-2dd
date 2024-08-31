@@ -1,18 +1,17 @@
 ﻿
-string code = File.ReadAllText("./code");  
+using System;
+using System.IO;
 
-LexicalAnalyzer lex = Lexicalizing.Lexical;
-
-List<LexicalizingError> errors = new List<LexicalizingError>();
-
-var tokens = lex.GetTokens("code.txt", code, errors);
-
-foreach (var token in tokens)
+namespace Interpreter
 {
-    Console.WriteLine(token);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           // Interpreterr interpreterr = new Interpreterr(); //todo: develop the call on method
+            
+ 
+        }
+    }
 }
 
-foreach (var error in errors)
-{
-    Console.WriteLine($"Lexical Error: {error}");
-}

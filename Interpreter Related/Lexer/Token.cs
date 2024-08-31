@@ -4,7 +4,7 @@ using Interpreter;
 public class Token
 {
     public TokenType Type { get; private set; }
-    public string Value { get; private set; }
+    public string? Value { get; private set; }
     public (int, int) CodeLocation { get; private set; }
 
     public Token(TokenType type, string value, int line, int column)
@@ -95,7 +95,7 @@ public class Token
 
         { "@", TokenType.JoinString },
         { "@@", TokenType.SpacedString },
-        { "$", TokenType.End },
+        { "$", TokenType.Sign },
 
 
     };
@@ -123,7 +123,7 @@ public enum TokenType
     DoubleDot, Dot, Comma, SemiColon,
 
     //booleans
-    True, False, And, Or, Not, End,
+    True, False, And, Or, Not, Sign,
 
     JoinString, SpacedString,
     Identifier,
