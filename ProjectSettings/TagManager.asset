@@ -4,29 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerArea
-  - EnemyArea
-  - CACZone
-  - DistanceZone
-  - SiegeZone
-  - ECACZone
-  - EDistanceZone
-  - ESiegeZone
-  - Army
-  - TurnManager
-  - PGraveyard
-  - John
-  - Deck
-  - Bran
-  - King
-  - CACWZone
-  - DistanceWZone
-  - SiegeWZone
-  - ECACWZone
-  - EDistanceWZone
-  - ESiegeWZone
-  - Deck2
-  - ObjetoDetectable
+  - Weather
+  - WeatherCard
   layers:
   - Default
   - TransparentFX
