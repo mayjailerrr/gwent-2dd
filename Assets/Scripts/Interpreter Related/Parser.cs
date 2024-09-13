@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 using Interpreterr;
 using Interpreterr.Expressions;
 using Interpreterr.Statements;
+using System.Linq;
 
 class Parser
 {
@@ -54,12 +54,12 @@ class Parser
         {
             try
             {
-                if (LookAhead(TokenType.Effect) && LookAhead(TokenType.OpenBrace))
+                if (Move(TokenType.Effect) && Move(TokenType.OpenBrace))
                 {
                     effects.Add(Effect());
                 }
 
-                else if (LookAhead(TokenType.Card) && LookAhead(TokenType.OpenBrace)) 
+                else if (Move(TokenType.Card) && Move(TokenType.OpenBrace)) 
                 {
                     cards.Add(Card());
                 }
@@ -114,26 +114,27 @@ class Parser
         }
     }
 
-    bool LookAhead(params TokenType[] types)
+    bool Move(params TokenType[] types)
     {
         if (types.Contains(tokens.Current.Type))
         {
+            input += tokens.Current.Value + " ";
             tokens.MoveNext();
             return true;
         }
         return false;
-       
     }
 
-    bool Consume(params TokenType[] types) =>
-        types.Contains(tokens.Current.Type);
+    bool LookAhead(params TokenType[] types) => tokens.TryLookAhead is null? false : types.Contains(tokens.TryLookAhead.Type);
+
+    bool Consume(params TokenType[] types) => types.Contains(tokens.Current.Type);
 
 
    bool PanicMode(string message, TokenType breaker = TokenType.CloseBrace)
    {
        Errors.Add(message);
 
-       while (!LookAhead(breaker))
+       while (!Move(breaker))
        {
             if (Consume(TokenType.Sign, TokenType.CloseBrace))
             {
@@ -144,22 +145,22 @@ class Parser
          return false;
    }
 
-   bool Comma(TokenType breaker = TokenType.CloseBrace) => LookAhead(TokenType.Comma) || tokens.Current.Type == breaker;
+   bool Comma(TokenType breaker = TokenType.CloseBrace) => Move(TokenType.Comma) || tokens.Current.Type == breaker;
 
    IExpression AllocateExpr(bool condition, string message)
    {
        if(!condition) throw new ParsingError($"You are declaring a name that is in use already");
 
-       IExpression expression = null;
+       IExpression newExpression = null;
 
        if (LookAhead(TokenType.DoubleDot))
        {
-            expression = Comparing();
+            newExpression = BooleanExpr();
        }
         else throw new ParsingError($"You are declaring the {message} in a wrong way");
 
         if (!Comma()) throw new ParsingError($"You are declaring the {message} in a wrong way");
-        return expression;
+        return newExpression;
    }
 
    #endregion
@@ -169,7 +170,7 @@ class Parser
 
     IExpression UnaryExpr()
     {
-        while (LookAhead(TokenType.Not, TokenType.Minus))
+        while (Move(TokenType.Not, TokenType.Minus))
         {
             return new UnaryOperation(tokens.Previous, Simple());
         }
@@ -179,11 +180,11 @@ class Parser
 
      IExpression BooleanExpr()
     {
-        IExpression expression = UnaryExpr();
+        IExpression expression = Comparing();
 
-        while (LookAhead(TokenType.And, TokenType.Or))
+        while (Move(TokenType.And, TokenType.Or))
         {
-            expression = new BooleanExpression(expression, tokens.Previous, UnaryExpr());
+            expression = new BooleanExpression(expression, tokens.Previous, Comparing());
         }
         return expression;
     }
@@ -193,7 +194,7 @@ class Parser
     {
         IExpression expression = BooleanExpr();
 
-        while (LookAhead(TokenType.PowerTo))
+        while (Move(TokenType.PowerTo))
         {
             expression = new MathExpression(expression, tokens.Previous, BooleanExpr());
         }
@@ -205,7 +206,7 @@ class Parser
     {
         IExpression expression = Part();
 
-        while (LookAhead(TokenType.Plus, TokenType.Minus))
+        while (Move(TokenType.Plus, TokenType.Minus))
         {
             expression = new MathExpression(expression, tokens.Previous, Part());
         }
@@ -218,7 +219,7 @@ class Parser
     {
         IExpression expression = Term();
 
-        if (LookAhead(TokenType.Greater, TokenType.Less, TokenType.GreaterEqual, TokenType.LessEqual, TokenType.Equal, TokenType.NotEqual))
+        if (Move(TokenType.Greater, TokenType.Less, TokenType.GreaterEqual, TokenType.LessEqual, TokenType.Equal, TokenType.NotEqual))
         {
             expression = new ComparisonExpression(expression, tokens.Previous, Term());
         }
@@ -231,7 +232,7 @@ class Parser
     {
         IExpression expression;
 
-        if (LookAhead(TokenType.OpenParen))
+        if (Move(TokenType.OpenParen))
         {
             expression = Comparing();
             if (tokens.Current.Type != TokenType.CloseParen && !(expression is Predicate))
@@ -242,23 +243,23 @@ class Parser
             if (Consume (TokenType.Sign, TokenType.SemiColon, TokenType.Comma, TokenType.CloseParen))
                 throw new ParsingError("Expression is missing" + pos);
 
-            if (LookAhead(TokenType.Identifier))
+            if (Move(TokenType.Identifier))
             {
                 Token variable = tokens.Previous;
 
-                if (LookAhead(TokenType.IncreaseOne, TokenType.DecreaseOne))
+                if (Move(TokenType.IncreaseOne, TokenType.DecreaseOne))
                 {
                     expression = new UnaryDeclaration(new Declaration(variable, environments.Peek(), tokens.Previous));
                 }
 
-                else if (LookAhead(TokenType.OpenBracket))
+                else if (Move(TokenType.OpenBracket))
                 {
                     expression = new Localizer(new UnaryValue(tokens.Current), Comparing(), tokens.Previous.CodeLocation);
 
-                    if (!LookAhead(TokenType.CloseBracket)) throw new ParsingError("Closing bracket is missing" + pos);
+                    if (!Move(TokenType.CloseBracket)) throw new ParsingError("Closing bracket is missing" + pos);
                 }
 
-                else if (LookAhead(TokenType.CloseParen) && LookAhead(TokenType.Lambda))
+                else if (LookAhead(TokenType.Lambda) && Move(TokenType.CloseParen) && Move(TokenType.Lambda))
                     return Predicate(variable);
 
                 else expression = new UnaryDeclaration(new Declaration(variable, environments.Peek()));
@@ -269,25 +270,25 @@ class Parser
                 tokens.MoveNext();
             }
 
-            while (LookAhead(TokenType.Dot))
+            while (Move(TokenType.Dot))
             {
                 Token caller = null;
 
-                if (LookAhead(TokenType.Identifier)) caller = tokens.Previous;
+                if (Move(TokenType.Identifier)) caller = tokens.Previous;
                 else throw new ParsingError("Value is missing" + pos);
 
-                if (LookAhead(TokenType.OpenParen))
+                if (Move(TokenType.OpenParen))
                 {
-                    if (!LookAhead(TokenType.CloseParen))
+                    if (!Move(TokenType.CloseParen))
                     {
                         List<IExpression> arguments = new List<IExpression>();
 
-                        while (LookAhead(TokenType.Comma))
+                        while (Move(TokenType.Comma))
                         {
                             arguments.Add(Comparing());
                         } 
 
-                        if (!LookAhead(TokenType.CloseParen)) throw new ParsingError("Closing parenthesis is missing" + pos);
+                        if (!Move(TokenType.CloseParen)) throw new ParsingError("Closing parenthesis is missing" + pos);
 
                         expression = new Methods(caller, expression, arguments.ToArray());
                     }
@@ -306,7 +307,7 @@ class Parser
     {
         IExpression expression = Simple();
 
-        if (LookAhead(TokenType.JoinString, TokenType.SpacedString))
+        if (Move(TokenType.JoinString, TokenType.SpacedString))
         {
             expression = new LiteralExpression(expression, tokens.Previous, Simple());
         }
@@ -318,14 +319,14 @@ class Parser
     {
         if(variable is null)
         {
-            if (LookAhead(TokenType.OpenParen) && LookAhead(TokenType.Identifier))
+            if (Move(TokenType.OpenParen) && Move(TokenType.Identifier))
             {
                 variable = tokens.Previous;
-                if (!LookAhead(TokenType.CloseParen)) throw new ParsingError("Closing parenthesis is missing");
+                if (!Move(TokenType.CloseParen)) throw new ParsingError("Closing parenthesis is missing");
             }
             else throw new ParsingError("You are declaring the predicate in a wrong way");
             
-            if (!LookAhead(TokenType.Lambda)) throw new ParsingError("You are declaring the predicate in a wrong way");
+            if (!Move(TokenType.Lambda)) throw new ParsingError("You are declaring the predicate in a wrong way");
         }
 
         environments.Push(new Environment(environments.Peek()));
@@ -342,25 +343,83 @@ class Parser
 
     IStatement Declaration()
     {
-        Token variable = tokens.Previous;
+        IExpression variable = BooleanExpr();
 
-        if (Consume(TokenType.SemiColon))
-            return (new Declaration(variable, environments.Peek()));
-        else if (LookAhead(TokenType.Assign, TokenType.Increase, TokenType.Decrease))
-            return (new Declaration(variable, environments.Peek(),tokens.Previous, Comparing()));
+        if (variable is Property property)
+        {
+            if (Move(TokenType.Assign, TokenType.Increase, TokenType.Decrease, TokenType.DecreaseOne, TokenType. IncreaseOne))
+            {
+                Token op = tokens.Previous;
+                return new PropertyChanger(property, op, (op.Type is TokenType.IncreaseOne || op.Type is TokenType.DecreaseOne) ? null : BooleanExpr());
+            }
+            throw new ParsingError($"Incorrect: {tokens.Current.Value} in {tokens.Current.CodeLocation.Item1},{tokens.Current.CodeLocation.Item2}");
+        }
 
-        throw new ParsingError("You are declaring the Declaration in a wrong way" + pos);
+        // else if (variable is Methods && Consume(TokenType.SemiColon)) 
+        //     return variable;
+        else if (variable is UnaryDeclaration)
+        {
+            Token varToken = tokens.Previous;
+
+            if (Consume(TokenType.SemiColon))
+            {
+                return (new Declaration(varToken, environments.Peek()));
+            }
+            else if (Move(TokenType.Assign, TokenType.Increase, TokenType.Decrease))
+            {
+                return (new Declaration(varToken, environments.Peek(), tokens.Previous, BooleanExpr()));
+            }
+            throw new ParsingError($"Incorrect: {varToken.Value} in {tokens.Current.CodeLocation.Item1},{tokens.Current.CodeLocation.Item2}");
+
+        }
+        else if (variable is Localizer localizer)
+        {
+            if (Move(TokenType.Assign, TokenType.Increase, TokenType.Decrease, TokenType.IncreaseOne, TokenType.DecreaseOne))
+            {
+                Token op = tokens.Previous;
+                return new LocalizerChanger(localizer, op, (op.Type is TokenType.IncreaseOne || op.Type is TokenType.DecreaseOne) ? null : BooleanExpr());
+            }
+            throw new ParsingError($"Incorrect: {tokens.Current.Value} in {tokens.Current.CodeLocation.Item1},{tokens.Current.CodeLocation.Item2}");
+        }
+        else throw new ParsingError($"Incorrect declaration in {variable.CodeLocation.Item1},{variable.CodeLocation.Item2}");
+    }
+
+    IStatement Statement()
+    {
+        try
+        {
+            if (Consume(TokenType.Sign)) 
+                throw new ParsingError($"You have not finished yor statement" + pos);
+
+            else if (Move(TokenType.If))
+                return If();
+            else if (Move(TokenType.While))
+                return While();
+            else if (Move(TokenType.For))
+                return For();
+
+            else return SimpleStatement();
+        }
+        catch (ParsingError e)
+        {
+            if (PanicMode(e.Message, TokenType.SemiColon))
+                return null;
+        }
+
+        throw new ParsingError($"Incorrect statement + pos");
     }
 
     IStatement SimpleStatement()
     {
         IStatement stmt = null;
 
-        if (LookAhead(TokenType.Log)) stmt = new Log(Comparing());
-        else if (LookAhead(TokenType.Identifier)) stmt = Declaration();
+        if (Move(TokenType.Log)) stmt = new Log(tokens.Previous.CodeLocation, BooleanExpr());
+
+        else if (Consume(TokenType.Identifier)) stmt = Declaration();
+
         else throw new ParsingError("You are declaring an empty statement" + pos);
 
-        if (!LookAhead(TokenType.SemiColon)) throw new ParsingError("You are declaring the statement in a wrong way" + pos);
+        if (!Move(TokenType.SemiColon)) throw new ParsingError("You are declaring the statement in a wrong way" + pos);
 
         return stmt;
 
@@ -371,19 +430,19 @@ class Parser
         IStatement stmt = null;
         (int, int) codeLocation = tokens.Current.CodeLocation;
 
-        if (!LookAhead(TokenType.OpenParen)) throw new ParsingError("You are declaring the if statement in a wrong way" + pos);
+        if (!Move(TokenType.OpenParen)) throw new ParsingError("You are declaring the if statement in a wrong way" + pos);
         IExpression condition = Comparing();
-        if (!LookAhead(TokenType.CloseParen)) throw new ParsingError("You are declaring the if statement in a wrong way" + pos);
+        if (!Move(TokenType.CloseParen)) throw new ParsingError("You are declaring the if statement in a wrong way" + pos);
 
-        if (LookAhead(TokenType.OpenBrace))
+        if (Move(TokenType.OpenBrace))
         {
             stmt = ActionBody();
         }
         else stmt = SimpleStatement();
 
-        if(LookAhead(TokenType.Else))
+        if(Move(TokenType.Else))
         {
-            if (LookAhead(TokenType.OpenBrace))
+            if (Move(TokenType.OpenBrace))
             {
                 stmt = new If(condition, stmt, codeLocation, ActionBody());
             }
@@ -398,13 +457,13 @@ class Parser
     {
         (int, int) codeLocation = tokens.Current.CodeLocation;
 
-        if (!LookAhead(TokenType.OpenParen)) throw new ParsingError("You are declaring the while statement in a wrong way" + pos);
+        if (!Move(TokenType.OpenParen)) throw new ParsingError("You are declaring the while statement in a wrong way" + pos);
         IExpression condition = Comparing();
-        if (!LookAhead(TokenType.CloseParen)) throw new ParsingError("You are declaring the while statement in a wrong way" + pos);
+        if (!Move(TokenType.CloseParen)) throw new ParsingError("You are declaring the while statement in a wrong way" + pos);
 
         IStatement body = null;
 
-        if (LookAhead(TokenType.OpenBrace))
+        if (Move(TokenType.OpenBrace))
         {
             body = ActionBody();
         }
@@ -417,17 +476,19 @@ class Parser
     {
         Token item = null;
 
-        if (LookAhead(TokenType.Identifier)) item = tokens.Previous;
+        if (Move(TokenType.Identifier)) item = tokens.Previous;
         else throw new ParsingError("You are declaring the for statement in a wrong way" + pos);
 
-        IExpression collection = Comparing();
+        if (!Move(TokenType.In))
+            throw new ParsingError("You are declaring the for statement in a wrong way" + pos);
+        IExpression collection = BooleanExpr();
 
         IStatement body = null;
-        if (LookAhead(TokenType.OpenBrace))
+        if (Move(TokenType.OpenBrace))
         {
             body = ActionBody();
         }
-        else body = SimpleStatement();
+        else body = Statement();
 
         return new For(item, collection, environments.Peek(), body);
     }
@@ -438,27 +499,12 @@ class Parser
         List<IStatement> statements = new List<IStatement>();
         if (environments.Count > 1) environments.Push(new Environment(environments.Peek()));
 
-        while (!LookAhead(TokenType.CloseBrace))
+        while (!Move(TokenType.CloseBrace))
         {
-            try
-            {
-                if (Consume(TokenType.Sign)) throw new ParsingError("This statement is not complete" + pos);
-
-                else if (LookAhead(TokenType.If)) statements.Add(If());
-
-                else if (LookAhead(TokenType.While)) statements.Add(While());
-
-                else if (LookAhead(TokenType.For)) statements.Add(For());
-
-                else statements.Add(SimpleStatement());
-            }
-            catch (ParsingError error)
-            {
-                if (PanicMode(error.Message, TokenType.SemiColon)) break;
-            }
+            statements.Add(Statement());
         } 
 
-        LookAhead(TokenType.SemiColon);
+        Move(TokenType.SemiColon);
 
         if (environments.Count > 1) environments.Pop();
 
@@ -480,27 +526,27 @@ class Parser
         OnActivation onActivation = null;
 
 
-        while (!LookAhead(TokenType.CloseBrace))
+        while (!Move(TokenType.CloseBrace))
         {
             try
             {
                 if (Consume(TokenType.Sign)) throw new ParsingError($"This statement is not complete {pos} ");
 
-                else if (LookAhead(TokenType.Name)) name = AllocateExpr(name is null, "name");
+                else if (Move(TokenType.Name)) name = AllocateExpr(name is null, "name");
                     
-                else if (LookAhead(TokenType.Type)) type = AllocateExpr(type is null, "type");
+                else if (Move(TokenType.Type)) type = AllocateExpr(type is null, "type");
 
-                else if (LookAhead(TokenType.Faction)) faction = AllocateExpr(faction is null, "faction");
+                else if (Move(TokenType.Faction)) faction = AllocateExpr(faction is null, "faction");
 
-                else if (LookAhead(TokenType.Power)) power = AllocateExpr(power is null, "power");
+                else if (Move(TokenType.Power)) power = AllocateExpr(power is null, "power");
 
-                else if (LookAhead(TokenType.Range))
+                else if (Move(TokenType.Range))
                 {
-                    if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the range in a wrong way" + pos);
+                    if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the range in a wrong way" + pos);
 
-                    if (LookAhead(TokenType.OpenBracket))
+                    if (Move(TokenType.OpenBracket))
                     {
-                        while (!LookAhead(TokenType.CloseBracket))
+                        while (!Move(TokenType.CloseBracket))
                         {
                             range.Add(Comparing());
                             if (!Comma(TokenType.CloseBracket)) throw new ParsingError("You are declaring the range in a wrong way" + pos);
@@ -512,21 +558,21 @@ class Parser
                     if (!Comma()) throw new ParsingError("You are declaring the range in a wrong way" + pos);
                 }
 
-                else if (LookAhead(TokenType.OnActivation))
+                else if (Move(TokenType.OnActivation))
                 {
-                    if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the OnActivation in a wrong way" + pos);
+                    if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the OnActivation in a wrong way" + pos);
 
                     (int, int) location = tokens.Previous.CodeLocation;
                     List<(Activation, Activation)> effects = new List<(Activation, Activation)>();
 
-                    if (LookAhead(TokenType.OpenBracket))
+                    if (Move(TokenType.OpenBracket))
                     {
-                        do
+                        while(!LookAhead(TokenType.CloseBracket))
                         {
                             effects.Add(EffectAllocation());
                             if (!Comma(TokenType.CloseBracket)) throw new ParsingError("You are declaring the OnActivation in a wrong way" + pos);
 
-                        } while(!LookAhead(TokenType.CloseBracket));
+                        }
                     }
                     else effects.Add(EffectAllocation());
 
@@ -547,12 +593,12 @@ class Parser
         if (range is null) throw new ParsingError($"You are declaring the card in a wrong way {codeLocation.Item1},{codeLocation.Item2}");
         if (faction is null) throw new ParsingError($"You are declaring the card in a wrong way {codeLocation.Item1},{codeLocation.Item2}");
        
-        return new CardState(name, type, range, faction, power,  onActivation, codeLocation);
+        return new CardState(name, type, range, faction, power,  onActivation, codeLocation, Reset());
     }
 
     (Activation, Activation) EffectAllocation()
     {
-        if (!LookAhead(TokenType.OpenBrace)) throw new ParsingError("You are assigning the effect in a wrong way" + pos);
+        if (!Move(TokenType.OpenBrace)) throw new ParsingError("You are assigning the effect in a wrong way" + pos);
 
         (int, int) codeLocation = (0,0);
         (int, int) codeLocationPA = (0,0); 
@@ -565,38 +611,44 @@ class Parser
 
         IExpression selector = null;
         IExpression selectorPA = null;
-        
 
-        while (!LookAhead(TokenType.CloseBrace))
+        if (Move(TokenType.DoubleDot))
+        {
+            codeLocation = tokens.Previous.CodeLocation;
+            effect = BooleanExpr();
+            selector = new Selector(codeLocation, new UnaryValue(new Token(TokenType.String, "board", codeLocation.Item1, codeLocation.Item2)), new UnaryValue(new Token(TokenType.True, "true", codeLocation.Item1, codeLocation.Item2)));
+        }
+
+        else while (!Move(TokenType.CloseBrace))
         {
             try
             {
                 if (Consume(TokenType.Sign)) throw new ParsingError("this statement is not complete" + pos);
 
-                else if (LookAhead(TokenType.EffectParam))
+                else if (Move(TokenType.EffectParam))
                 {
                     codeLocation = tokens.Previous.CodeLocation;
-                    if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the effect in a wrong way" + pos);
+                    if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the effect in a wrong way" + pos);
 
-                    if (LookAhead(TokenType.OpenBrace)) EffectAllocationBody(ref effect, ref _params, TokenType.Name);
+                    if (Move(TokenType.OpenBrace)) EffectAllocationBody(ref effect, ref _params, TokenType.Name);
                     else effect = Comparing();
 
                     if (!Comma()) throw new ParsingError("You are declaring the effect in a wrong way" + pos);
                 }
 
-                else if (LookAhead(TokenType.Selector))
+                else if (Move(TokenType.Selector))
                 {
-                    if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
-                    if (!LookAhead(TokenType.OpenBrace)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
+                    if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
+                    if (!Move(TokenType.OpenBrace)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
                     selector = Selector();
                 }
 
-                else if (LookAhead(TokenType.PostAction))
+                else if (Move(TokenType.PostAction))
                 {
                     codeLocationPA = tokens.Previous.CodeLocation;
-                    if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the post action in a wrong way");
+                    if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the post action in a wrong way");
 
-                    if (LookAhead(TokenType.OpenBrace)) selectorPA = EffectAllocationBody(ref effectPA, ref _paramsPA, TokenType.Type, selector);
+                    if (Move(TokenType.OpenBrace)) selectorPA = EffectAllocationBody(ref effectPA, ref _paramsPA, TokenType.Type, selector);
                     else effect = Comparing();
 
                     if (!Comma()) throw new ParsingError("You are declaring the post action in a wrong way" + pos);
@@ -622,23 +674,23 @@ class Parser
     {
         IExpression selector = null;
 
-        while (!LookAhead(TokenType.CloseBrace))
+        while (!Move(TokenType.CloseBrace))
         {
             try
             {
                 if (Consume(TokenType.Sign)) throw new ParsingError("This statement is not complete" + pos);
 
-                else if (LookAhead(name))
+                else if (Move(name))
                 {
                     effect = AllocateExpr(effect is null, "name");
                 }
 
-                else if (LookAhead(TokenType.Identifier)) _params.Add((tokens.Previous, AllocateExpr(true, "parameter")));
+                else if (Move(TokenType.Identifier)) _params.Add((tokens.Previous, AllocateExpr(true, "parameter")));
 
-                else if (name is TokenType.Type && LookAhead(TokenType.Selector))
+                else if (name is TokenType.Type && Move(TokenType.Selector))
                 {
-                    if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
-                    if (!LookAhead(TokenType.OpenBrace)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
+                    if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
+                    if (!Move(TokenType.OpenBrace)) throw new ParsingError("You are declaring the selector in a wrong way" + pos);
                     selector = Selector(parentSelector);
                 }
 
@@ -662,17 +714,17 @@ class Parser
         IExpression single = null;
         IExpression predicate = null;
 
-        do 
+        while (!Move(TokenType.CloseBrace))
         {
             try
             {
                 if (Consume(TokenType.Sign)) throw new ParsingError("This statement is not complete" + pos);
 
-                else if (LookAhead(TokenType.Source)) source = AllocateExpr(source is null, "source");
+                else if (Move(TokenType.Source)) source = AllocateExpr(source is null, "source");
 
-                else if (LookAhead(TokenType.Single)) single = AllocateExpr(single is null, "single");
+                else if (Move(TokenType.Single)) single = AllocateExpr(single is null, "single");
 
-                else if (LookAhead(TokenType.Predicate)) predicate = AllocateExpr(predicate is null, "predicate");
+                else if (Move(TokenType.Predicate)) predicate = AllocateExpr(predicate is null, "predicate");
 
                 else throw new ParsingError("You are declaring the selector in a wrong way" + pos);
             }
@@ -680,12 +732,12 @@ class Parser
             {
                 if (PanicMode(error.Message, TokenType.Comma)) break;
             }
-        } while (!LookAhead(TokenType.CloseBrace));
+        }
 
         if (source is null) throw new ParsingError($"You are declaring the selector in a wrong way {codeLocation.Item1},{codeLocation.Item2}");
         if (predicate is null) throw new ParsingError($"You are declaring the selector in a wrong way {codeLocation.Item1},{codeLocation.Item2}");
 
-        return new Selector(source, single, predicate, parent, codeLocation);
+        return new Selector(codeLocation, source, predicate, parent, single);
     }
     #endregion
 
@@ -705,26 +757,26 @@ class Parser
         Token targets = null;
         Token context = null;
 
-        do
+        while (!Move(TokenType.CloseBrace))
         {
             try
             {
                 if (Consume(TokenType.Sign)) throw new ParsingError($"This statement is not complete {pos}");
 
-                else if (LookAhead(TokenType.Name)) name = AllocateExpr(name is null, "name");
+                else if (Move(TokenType.Name)) name = AllocateExpr(name is null, "name");
 
-                else if (LookAhead(TokenType.Params))
+                else if (Move(TokenType.Params))
                 {
-                    if (LookAhead(TokenType.DoubleDot))
+                    if (Move(TokenType.DoubleDot))
                     {
-                        if (LookAhead(TokenType.OpenBrace))
+                        if (Move(TokenType.OpenBrace))
                         {
                             while (Consume(TokenType.Identifier))
                             {
                                 paramsAndType.Add(Param());
-                                LookAhead(TokenType.Comma);
+                                Move(TokenType.Comma);
                             }
-                                if (!LookAhead(TokenType.CloseBrace)) 
+                                if (!Move(TokenType.CloseBrace)) 
                                 throw new ParsingError("You are declaring the params in a wrong way" + pos);
                         }
                         else if (Consume(TokenType.Identifier))
@@ -732,59 +784,58 @@ class Parser
                             paramsAndType.Add(Param());
                         }
                         else throw new ParsingError("You are declaring the params in a wrong way" + pos);
-
-                        if (!Comma()) throw new ParsingError("You are declaring the params in a wrong way" + pos);
                     }
+                    else throw new ParsingError("You are declaring the params in a wrong way" + pos);
 
-                    else if (LookAhead(TokenType.Action))
-                    {
-                        if (!(body is null)) throw new ParsingError("There is already an action with this name" + pos);
-
-                        if (LookAhead(TokenType.DoubleDot))
-                        {
-                            if (LookAhead(TokenType.OpenBrace))
-                            {
-                                if (LookAhead(TokenType.Identifier)) targets = tokens.Previous;
-                                else throw new ParsingError("You are declaring the action in a wrong way" + pos);
-
-                                if (!LookAhead(TokenType.Comma)) throw new ParsingError("You are declaring the action in a wrong way" + pos);
-                                
-                                if (LookAhead(TokenType.Identifier)) context = tokens.Previous;
-                                else throw new ParsingError("You are declaring the action in a wrong way" + pos);
-
-                                if (!LookAhead(TokenType.CloseParen)) throw new ParsingError("You are declaring the action in a wrong way" + pos);
-                            }
-
-                            if (!LookAhead(TokenType.Lambda)) throw new ParsingError("You are declaring the action in a wrong way" + pos);
-
-                            if (LookAhead(TokenType.OpenBrace))
-                            {
-                                body = ActionBody();
-                            }
-                            else body = SimpleStatement();
-
-                            if (body is null) throw new ParsingError("You are declaring the action in a wrong way" + pos);
-                        }
-                        else throw new ParsingError("You are declaring the action in a wrong way" + pos);
-
-                        if (!Comma()) throw new ParsingError("You are declaring the action in a wrong way" + pos);
-                    }
-
-                    else throw new ParsingError("You are declaring the effect in a wrong way" + pos);
+                    if (!Comma()) throw new ParsingError("You are declaring the params in a wrong way" + pos);
                 }
-            }
+
+                 else if (Move(TokenType.Action))
+                {
+                    if (!(body is null)) throw new ParsingError("There is already an action with this name" + pos);
+
+                    if (Move(TokenType.DoubleDot))
+                    {
+                        if (Move(TokenType.OpenBrace))
+                        {
+                            if (Move(TokenType.Identifier)) targets = tokens.Previous;
+                            else throw new ParsingError("You are declaring the action in a wrong way" + pos);
+
+                            if (!Move(TokenType.Comma)) throw new ParsingError("You are declaring the action in a wrong way" + pos);
+                            
+                            if (Move(TokenType.Identifier)) context = tokens.Previous;
+                            else throw new ParsingError("You are declaring the action in a wrong way" + pos);
+
+                            if (!Move(TokenType.CloseParen)) throw new ParsingError("You are declaring the action in a wrong way" + pos);
+                        }
+
+                        if (!Move(TokenType.Lambda)) throw new ParsingError("You are declaring the action in a wrong way" + pos);
+
+                        if (Move(TokenType.OpenBrace))
+                        {
+                            body = ActionBody();
+                        }
+                        else body = SimpleStatement();
+
+                        if (body is null) throw new ParsingError("You are declaring the action in a wrong way" + pos);
+                    }
+                    else throw new ParsingError("You are declaring the action in a wrong way" + pos);
+
+                    if (!Comma()) throw new ParsingError("You are declaring the action in a wrong way" + pos);
+                }
+
+                else throw new ParsingError("You are declaring the action in a wrong way" + pos);
+            } 
             catch (ParsingError error)
             {
                 if (PanicMode(error.Message, TokenType.Comma)) break;
             }
-        } while (!LookAhead(TokenType.CloseBrace));
-
+        } 
 
         if (name is null) throw new ParsingError($"You are declaring the effect in a wrong way {codeLocation.Item1},{codeLocation.Item2}");
         if (body is null) throw new ParsingError($"You are declaring the effect in a wrong way {codeLocation.Item1},{codeLocation.Item2}");
 
         return new EffectState(Reset(), name, body, paramsAndType, environments.Pop(), codeLocation, targets, context);           
-                   
     }  
 
     (Token, Token) Param()
@@ -792,12 +843,12 @@ class Parser
         Token param = null;
         Token type = null;
 
-        if (LookAhead(TokenType.Identifier)) param = tokens.Previous;
+        if (Move(TokenType.Identifier)) param = tokens.Previous;
         else throw new ParsingError("You are declaring the params in a wrong way" + pos);
 
-        if (!LookAhead(TokenType.DoubleDot)) throw new ParsingError("You are declaring the params in a wrong way" + pos);
+        if (!Move(TokenType.DoubleDot)) throw new ParsingError("You are declaring the params in a wrong way" + pos);
 
-        if (LookAhead(TokenType.Identifier)) type = tokens.Previous;
+        if (Move(TokenType.Identifier)) type = tokens.Previous;
         else throw new ParsingError("You are declaring the params in a wrong way" + pos);
 
         return (param, type);

@@ -80,7 +80,7 @@ class EffectState : IStatement
 
         try
         {
-             if (this.name.Type == ExpressionType.String)
+             if (this.name.Category == ExpressionType.String)
             {
                 if (!this.name.CheckSemantic(out string error))
                 {
@@ -155,9 +155,9 @@ class EffectState : IStatement
                 {
                     attentions += $"Parameter {parameter.Item1.Value} is not required\n";
                 }
-                else if (!(parameter.Item2.Type is ExpressionType.Object || parameter.Item2.Type == this._parameters[parameter.Item1.Value]))
+                else if (!(parameter.Item2.Category is ExpressionType.Object || parameter.Item2.Category == this._parameters[parameter.Item1.Value]))
                 {
-                    errors += $"Expected {this._parameters[parameter.Item1.Value]}, found {parameter.Item2.Type}\n";
+                    errors += $"Expected {this._parameters[parameter.Item1.Value]}, found {parameter.Item2.Category}\n";
                 } 
             }
             catch (KeyNotFoundException)

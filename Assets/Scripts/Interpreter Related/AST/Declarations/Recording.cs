@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Interpreterr;
 using GameLibrary;
+using System.IO;
 
 namespace Interpreterr.Statements
 {
@@ -13,6 +14,9 @@ namespace Interpreterr.Statements
         List<IStatement> effects;
         List<IStatement> cards;
         public (int, int) CodeLocation => (0,0);
+        static int effectsCount = 0;
+
+        static string mainPath = "/home/analaura/Documentos/Compiler";
 
         public Record(List<IStatement> cards, List<IStatement> effects)
         {
@@ -68,19 +72,53 @@ namespace Interpreterr.Statements
         {
             if(!runned)
             {
-                int start = CardState.Cards.Count; 
+                int startCardsCount = CardState.Cards.Count; 
 
                 foreach (var card in cards)
                 {
                     card.RunIt();
                 }
 
-                declaredCards = CardState.Cards.GetRange(start, CardState.Cards.Count - start);
-
+                declaredCards = CardState.Cards.GetRange(startCardsCount, CardState.Cards.Count - startCardsCount);
                 runned = true;
+
+                string effectsAttention = WriteTheFiles(EffectState.DeclaredEffects, effectsCount, "Effects/Scripts/", "jpeg");
+                string cardsAttention = WriteTheFiles(CardState.DeclaredCards, startCardsCount, "Cards/Scripts/", ".jpeg");
+
+                effectsCount = EffectState.DeclaredEffects.Count;
+
+                if (effectsAttention.Length != 0 || cardsAttention.Length != 0) 
+                    throw new Attention(effectsAttention + cardsAttention);
             }
         }
 
-        
+        static string WriteTheFiles(Dictionary<string, string> dict, int start, string folder, string ext)
+        {
+            string attentions = "";
+            int initialSave = start;
+
+            foreach (var item in dict)
+            {
+                if (start > 0) start--;
+                else if (File.Exists(mainPath + folder + item.Key + ext))
+                    attentions += $"{item.Key} its already in use \n";
+                
+                if (attentions.Length == 0) 
+                    foreach (var pair in dict)
+                    {
+                        if (initialSave > 0) initialSave--;
+                        else 
+                        {
+                            StreamWriter sw = new StreamWriter(mainPath + folder + pair.Key + ext);
+                            sw.WriteLine(pair.Value);
+                            sw.Close();
+                        }
+                    }
+            }
+
+            return attentions;
+        }
+
+        public static void Reset() => effectsCount = 0;
     }
 }

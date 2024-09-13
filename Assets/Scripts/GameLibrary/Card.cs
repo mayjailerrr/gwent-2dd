@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Collections;
-//using UnityEngine;
 using System;
 using GameLibrary;
 
@@ -26,6 +25,8 @@ namespace GameLibrary
         protected Effect effect;
         public List<Zone> Ranges { get; }
         public List<Card> ActualPosition { get; private set; }
+        public string Description { get; private set; }
+        public VisualInfo Info { get; private set; }
        
        
         public double Power 
@@ -95,6 +96,13 @@ namespace GameLibrary
             return Name + " (" + Faction + ")";
         }
 
+        public void AllocateInfo(VisualInfo info) => this.Info = info;
+        public void AllocateDescription(string description)
+        {
+            if (description.Length > 200) description = description.Substring(0, 20) + "...";
+            this.Description = description;
+        }
+
         public virtual bool Effect(Context context)
         {
             try
@@ -107,6 +115,7 @@ namespace GameLibrary
                 return false;
             }
         }
+
     
     }
 }

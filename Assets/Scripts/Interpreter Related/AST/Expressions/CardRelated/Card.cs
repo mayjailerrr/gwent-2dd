@@ -6,33 +6,38 @@ using GameLibrary;
 class CardState : IStatement
 {
     static List<Card> cards = new List<Card>();
-    static Dictionary<string, string> declaredCards = new Dictionary<string, string>();
     public static List<Card> Cards => cards;
+    static Dictionary<string, string> declaredCards = new Dictionary<string, string>();
+    public static Dictionary<string, string> DeclaredCards => declaredCards;
     IExpression name;
     IExpression power;
     List<IExpression> range;
-    IExpression type;
+    IExpression category;
     IExpression faction;
     OnActivation onActivation;
+    IExpression description;
     (int, int) codeLocation;
     public (int, int) CodeLocation => codeLocation;
     string pos => $"at the card you are trying to declare at {codeLocation.Item1},{codeLocation.Item2}";
    
+    public string Code { get; }
 
-    public CardState(IExpression name, IExpression power, List<IExpression> range, IExpression type, IExpression faction, OnActivation onActivation, (int,int) codeLocation)
+    public CardState(IExpression name, IExpression power, List<IExpression> range, IExpression category, IExpression faction, OnActivation onActivation, (int,int) codeLocation, string code)
     {
         this.name = name;
         this.power = power;
         this.range = range;
-        this.type = type;
+        this.category = category;
         this.faction = faction;
         this.onActivation = onActivation;
         this.codeLocation = codeLocation;
+        Code = code;
     }
 
     public static void StartOver()
     {
         cards = new List<Card>();
+        declaredCards = new Dictionary<string, string>();
     }
 
     public void RunIt()
@@ -73,7 +78,7 @@ class CardState : IStatement
                     throw new RunningError("Invalid zone at:" + pos);
             }
         }
-        switch ((string)type.Interpret())
+        switch ((string)category.Interpret())
         {
             case "Leader":
                 cards.Add(new LeaderCard(name, faction, AttackType.Leader));
@@ -100,6 +105,30 @@ class CardState : IStatement
             default:
                 throw new Exception("Invalid type at:" + pos);
         }
+
+        if (!(description is null)) cards[cards.Count - 1].AllocateDescription(((OwnValue)description.Interpret()).Value);
+
+        if (!(onActivation is null)) cards[cards.Count - 1].AllocateEffect((Context context) => {
+            try
+            {
+                onActivation.RunIt();
+                return true;
+            }
+            catch (RunningError)
+            {
+                return false;
+            }
+        });
+
+        try
+        {
+            DeclaredCards.Add(name, Code);
+
+        }
+        catch (ArgumentException)
+        {
+            throw new RunningError($"This card already exists in {CodeLocation}");
+        }
     }
 
     public bool CheckSemantic(out List<string> errorsList)
@@ -107,30 +136,69 @@ class CardState : IStatement
         if (onActivation is null) errorsList = new List<string>();
         else onActivation.CheckSemantic(out errorsList);
         
-        if (type.Type != ExpressionType.String)
+        try
         {
-            errorsList.Add($"Expected string, found {type.Type}:" + pos);
-        }
-        if (name.Type != ExpressionType.String)
-        {
-            errorsList.Add($"Expected string, found {name.Type}" + pos);
-        }
-        if (faction.Type != ExpressionType.String)
-        {
-            errorsList.Add($"Expected string, found {faction.Type}" + pos);
-        }
-        if (!(power is null) && power.Type != ExpressionType.Number)
-        {
-            errorsList.Add($"Expected number, found {power.Type}" + pos);
-        }
-
-        for (int i = 0; i < range.Count; i++)
-        {
-            if (range[i].Type != ExpressionType.String)
+            if (category.Category != ExpressionType.String)
             {
-                errorsList.Add($"Expected string, found {range[i].Type}:" + pos);
+                errorsList.Add($"Expected string, found {category.Category}:" + pos);
             }
         }
+        catch (ParsingError e)
+        {
+            errorsList.Add(e.Message);
+        }
+        
+        try
+        {
+            if (name.Category != ExpressionType.String)
+            {
+                errorsList.Add($"Expected string, found {name.Category}" + pos);
+            }
+        }
+         catch (ParsingError e)
+        {
+            errorsList.Add(e.Message);
+        }
+
+        try
+        {
+             if (faction.Category != ExpressionType.String)
+            {
+                errorsList.Add($"Expected string, found {faction.Category}" + pos);
+            }
+        }
+        catch (ParsingError e)
+        {
+            errorsList.Add(e.Message);
+        }
+        
+        try
+        {
+             if (!(power is null) && power.Category != ExpressionType.Number)
+            {
+                errorsList.Add($"Expected number, found {power.Category}" + pos);
+            }
+        }
+         catch (ParsingError e)
+        {
+            errorsList.Add(e.Message);
+        }
+       
+        try
+        {
+             for (int i = 0; i < range.Count; i++)
+            {
+                if (range[i].Category != ExpressionType.String)
+                {
+                    errorsList.Add($"Expected string, found {range[i].Category}:" + pos);
+                }
+            }
+        }
+          catch (ParsingError e)
+        {
+            errorsList.Add(e.Message);
+        }
+       
         return errorsList.Count == 0;
     }
 }

@@ -50,6 +50,7 @@ public class Token
 
         //common ones
         { "if", TokenType.If },
+        { "in", TokenType.In },
         { "while", TokenType.While },
         { "for", TokenType.For },
         { "else", TokenType.Else },
@@ -111,7 +112,7 @@ public enum TokenType
     Action, Params, Amount,
 
     //common ones
-    Number, String, If, While, For, Else, Log, Lambda,
+    Number, String, If, In, While, For, Else, Log, Lambda,
 
     // operators
     Assign, Increase, Decrease,

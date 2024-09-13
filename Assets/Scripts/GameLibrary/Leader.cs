@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using GameLibrary;
+using System;
 
 namespace GameLibrary
 {
@@ -37,7 +38,7 @@ namespace GameLibrary
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error en la ejecución del efecto: {ex.Message}");
+            Console.WriteLine($"Error at the execution of the effect: {ex.Message}");
             return false;
         }
     }

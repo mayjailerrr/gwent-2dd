@@ -69,8 +69,8 @@ namespace GameLibrary
 
         public (UnityCard, List<Card>) HighPeekSilverCard(bool highPeekPower)
         {
-            UnityCard? unit = null;
-            List<Card>? list = null;
+            UnityCard unit = null;
+            List<Card> list = null;
 
             foreach (var zone in Zones)
             {

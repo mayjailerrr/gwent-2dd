@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using System.Linq;
 
 
 namespace GameLibrary
@@ -12,7 +13,7 @@ namespace GameLibrary
         bool newRound = true;
         public List<Card> Weather = Enumerable.Repeat<Card>(Tools.MotherCard, 3).ToList<Card>();
         private static Board instance = new Board();
-        public Dictionary<string, List<Card>>? ZoneList;
+        public Dictionary<string, List<Card>> ZoneList;
         Stack<Operation> operations = new Stack<Operation>();
         public bool KingPlayed { get; private set; }
         public static Board Instance => instance;
@@ -154,7 +155,7 @@ namespace GameLibrary
             operations.Push(operation);
         }
 
-        public void UpdateTotalScore(Player? player = null)
+        public void UpdateTotalScore(Player player = null)
         {
             if (player is null)
             {
@@ -219,9 +220,7 @@ namespace GameLibrary
         {
             instance = new Board();
             Player.Reset();
-        }
-
-       
+        }  
 
     }
 

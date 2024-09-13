@@ -46,7 +46,7 @@ class GameContext : IExpression
         }
     }
 
-    public ExpressionType Type => ExpressionType.Context;
+    public ExpressionType Category => ExpressionType.Context;
      public bool CheckSemantic(out List<string> errorsList)
     {
         errorsList = new List<string>();

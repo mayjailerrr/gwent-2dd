@@ -44,14 +44,14 @@ class Activation : IStatement
 
         attention += ErrorsCheck(effect, errorsList);
 
-        if (effect.Type != ExpressionType.String)
+        if (effect.Category != ExpressionType.String)
         {
             errorsList.Add($"The effect you have at {codeLocation.Item1},{codeLocation.Item2} need to be a string, buddy");
         }
 
         attention += ErrorsCheck(selector, errorsList);
 
-        if (!(selector is null) && selector.Type != ExpressionType.List)
+        if (!(selector is null) && selector.Category != ExpressionType.List)
         {
             errorsList.Add($"The selector you have at {codeLocation.Item1},{codeLocation.Item2} is wrong, my bro");
         }
@@ -63,7 +63,7 @@ class Activation : IStatement
 
         try
         {
-            statement = EffectState.DeclaredEffects[(string)effect.Interpret()];     //todo: figure out the value managing
+            statement = EffectState.Effects[((OwnValue)effect.Interpret()).Value];     
             statement.Take(_params, selector);
         }
         catch (KeyNotFoundException)

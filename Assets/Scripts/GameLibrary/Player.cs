@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using System;
+using UnityEngine;
+using System.Linq;
 
 namespace GameLibrary
 {
@@ -18,8 +19,8 @@ namespace GameLibrary
         public LeaderCard Leader;
         public Battlefield Battlefield;
         public Context context;
-        private static Player? clouds;
-        private static Player? reign;
+        private static Player clouds;
+        private static Player reign;
 
         
         public static Dictionary<string, LeaderCard> Leaders = new Dictionary<string, LeaderCard>
@@ -111,7 +112,7 @@ namespace GameLibrary
 
             while (emptyCells.Count < cardToDraw)
             {
-                int index = new Random().Next(Deck.Count - 1);
+                int index = new System.Random().Next(Deck.Count - 1);
                 Battlefield.SendToGraveyard(Deck[index], Deck);
                 cardToDraw--;
             }

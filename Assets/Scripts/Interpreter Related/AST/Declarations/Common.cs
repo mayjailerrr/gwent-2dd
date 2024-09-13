@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Interpreterr;
+using UnityEngine;
 
 //COMMON CONDITIONALS STATEMENTS
 //IF
@@ -33,7 +34,7 @@ class If : IStatement
             errorsList.AddRange(temperrorsList); 
         }
 
-        if(!(conditional.Type is ExpressionType.Boolean))
+        if(!(conditional.Category is ExpressionType.Boolean))
         {
             errorsList.Add($" This expression you have at {codeLocation.Item1},{codeLocation.Item2} need to be boolean, buddy");
             return false;
@@ -87,7 +88,7 @@ class For : IStatement
             errorsList.Add(error);
             return false;
         }
-        if (!(collection.Type is ExpressionType.List)) throw new Attention($"You must make sure object at {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length + 4} is a list or a compile time error may occur");
+        if (!(collection.Category is ExpressionType.List)) throw new Attention($"You must make sure object at {token.CodeLocation.Item1},{token.CodeLocation.Item2 + token.Value.Length + 4} is a list or a compile time error may occur");
 
         return valid;
     }
@@ -135,7 +136,7 @@ class While : IStatement
 
         valid = content.CheckSemantic(out errorsList);
 
-        if (!(conditional.Type is ExpressionType.Boolean))
+        if (!(conditional.Category is ExpressionType.Boolean))
         {
             errorsList.Add($"The expression you wrote at {codeLocation.Item1},{codeLocation.Item2 + 2} need to be boolean, buddy");
             return false;
@@ -165,11 +166,12 @@ class While : IStatement
 //LOG
 class Log : IStatement
 {
-    public (int, int) CodeLocation => throw new NotImplementedException();
+    public (int, int) CodeLocation { get; }
     public IExpression Value { get; private set; }
 
-    public Log(IExpression value)
+    public Log((int, int) codeLocation, IExpression value)
     {
+        CodeLocation = codeLocation;
         Value = value;
     }
 
@@ -186,6 +188,6 @@ class Log : IStatement
 
     public void RunIt()
     {
-        Console.WriteLine(Value.Interpret());
+        Debug.Log(Value.Interpret());
     }
 }

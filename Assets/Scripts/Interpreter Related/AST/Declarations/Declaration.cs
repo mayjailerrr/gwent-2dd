@@ -30,8 +30,8 @@ class Declaration : IStatement
     }
 
     public (int, int) CodeLocation => operation is null? token.CodeLocation : operation.CodeLocation;
-    public ExpressionType Type => value is null? environment[token.Value].Type : value.Type;
-    //to check
+    public ExpressionType Category => value is null? environment[token.Value].Category : value.Category;
+    
     public override string ToString()
     {
         return token.Value + " " + operation.Value + " " + value;

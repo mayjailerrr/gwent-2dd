@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
-using System;
+using UnityEngine;
 
 namespace GameLibrary
 {
@@ -43,6 +43,7 @@ namespace GameLibrary
         { 
             get
             {
+                if(motherCard.Info is null) motherCard.AllocateInfo(new VisualInfo(Resources.Load<Material>("MotherCardSelected"), null, "base"));
                 return motherCard;
             }
         }
@@ -86,6 +87,50 @@ namespace GameLibrary
             if(saveOperation) Board.Instance.Take(new ShuffleOperation(newList, list));
         }
        
+    }
+
+    public class VisualInfo
+    {
+        public Sprite Main { get; private set; }
+        public Material Material { get; private set; }
+        public Sprite Info { get; private set; }
+
+        public VisualInfo(Material material, Sprite info, string faction)
+        {
+            if (faction != "base" && (material is null || info is null)) this.Take(GetRandomInfo(faction));
+            else 
+            {
+                this.Material= material;
+                this.Info = info;
+            }
+        }
+
+        public VisualInfo(Sprite main, Sprite info, string faction)
+        {
+            if (main is null || info is null) this.Take(GetRandomInfo(faction));
+            else 
+            {
+                Main = main;
+                Info = info;
+            }
+        }
+        public VisualInfo(Sprite main, string faction)
+        {
+            if (main is null) this.Take(GetRandomInfo(faction));
+            else 
+            {
+                Main = Info = main;
+            }
+        }
+
+        static VisualInfo GetRandomInfo(string faction) => new VisualInfo(Resources.Load<Sprite>("Random/" + faction + "/" + Random.Range(1, 6)), faction);
+
+        void Take(VisualInfo visualInfo)
+        {
+            this.Material = visualInfo.Material;
+            this.Main = visualInfo.Main;
+            this.Info = visualInfo.Info;
+        }
     }
 
 

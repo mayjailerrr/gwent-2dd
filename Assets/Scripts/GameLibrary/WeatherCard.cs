@@ -32,11 +32,11 @@ namespace GameLibrary
                     switch (reign[i], clouds[i])
                     {
                         case (UnityCard reignUnit, _) when reignUnit.Rank == Rank.Silver && !Player.Reign.Battlefield.UsedClearance[Tools.IndexByZone[range]]:
-                            reignUnit.InitialPower -= reignUnit.Power < initialPower ? reignUnit.Power : initialPower;
+                            reignUnit.Powerr -= reignUnit.Power < initialPower ? reignUnit.Power : initialPower;
                             break;
 
                         case (_, UnityCard cloudUnit) when cloudUnit.Rank == Rank.Silver && !Player.Clouds.Battlefield.UsedClearance[Tools.IndexByZone[range]]:
-                            cloudUnit.InitialPower -= cloudUnit.Power < initialPower ? cloudUnit.Power : initialPower;
+                            cloudUnit.Powerr -= cloudUnit.Power < initialPower ? cloudUnit.Power : initialPower;
                             break;
                     }
 

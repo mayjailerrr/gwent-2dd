@@ -1,227 +1,277 @@
 using System.Collections.Generic;
 using System.Collections;
+using GameLibrary;
+using UnityEngine;
+
 
 namespace GameLibrary
 {
     public static class Effects
     {
-        static readonly Dictionary<string, Effect> effects = new()
+
+        static Dictionary<string, Effect> effects = new Dictionary<string, Effect>
         {
             {"1", PutsAnAugment }, 
             {"2", PutsAWeather },
+            
             {"3", ReducePowerToAverage },
+        
             {"4", Draw },
+        
             {"5", DeleteWeakest },
             {"6", DeleteStrongest },
+        
             {"7", MultiplyItself }, 
+        
             {"8", CleanLowerZone },
+        
             {"9", VoidEffect },
+        
         };
 
-        public static void AddEffect(string name, Effect effect) => effects[name] = effect;
+        public static void AddEffect(string name, Effect effect) => effects.Add(name, effect);
 
-        public static Effect GetEffect(string number) => effects.GetValueOrDefault(number, effects["9"]);
+        public static Effect GetEffect(string number) => effects.ContainsKey(number) ? effects[number] : effects["9"];
 
-        #region 1 - Puts An Augment
+
+
+        #region 1
         public static bool PutsAnAugment(Context context)
         {
+            List<Card> actualPos = context.ActualPos;        
             Player player = context.ActualPlayer;
-            AugmentCard army = new("Army", Faction.Clouds, AttackType.Augment, new List<Zone> { Zone.Distance }, 1.8);
-            return player.Battlefield.AllocateCard(army, player.ZoneByList[context.ActualPos]);
+
+            AugmentCard army = new AugmentCard("Army", Faction.Clouds, AttackType.Augment, new List<Zone> { Zone.Distance }, 1.8);
+            
+            return player.Battlefield.AllocateCard(army, player.ZoneByList[actualPos]);
         }
         #endregion
 
-        #region 2 - Puts A Weather
+
+
+        #region 2
         public static bool PutsAWeather(Context context)
         {
-            foreach (var zone in context.RivalPlayer.Battlefield.Zones)
+            Battlefield enemy = context.RivalPlayer.Battlefield;
+
+            for (int i = 0; i < enemy.Zones.Length; i++)
             {
-                ChangeActualPower(zone);
+                ChangeActualPower(enemy.Zones[i]);
             }
             return true;
         }
         #endregion
 
-        #region 3 - Reduce Power To Average
+
+
+        #region 3
         public static bool ReducePowerToAverage(Context context)
         {
-            List<UnityCard> cards = new();
-            double totalPower = 0;
+            List<UnityCard> list = new List<UnityCard>();
+            double originalPower = 0;
+            double average = 0;
 
-            foreach (var zone in context.ActualPlayer.Battlefield.Zones)
+            for (int i = 0; i < context.ActualPlayer.Battlefield.Zones.Length; i++)
             {
-                CollectCardsAndPower(zone, cards, ref totalPower);
+                KeepCardsAndCountPower(context.ActualPlayer.Battlefield.Zones[i], list, ref originalPower);
+                KeepCardsAndCountPower(context.RivalPlayer.Battlefield.Zones[i], list, ref originalPower);
             }
 
-            foreach (var zone in context.RivalPlayer.Battlefield.Zones)
-            {
-                CollectCardsAndPower(zone, cards, ref totalPower);
-            }
+            average = originalPower / list.Count;
 
-            double averagePower = totalPower / cards.Count;
-
-            foreach (var card in cards)
+            foreach (UnityCard card in list)
             {
                 if (card.Rank == Rank.Silver)
-                    card.ChangeActualPower(averagePower, true);
+                    card.ChangeActualPower(average, true);
             }
-
             return true;
         }
         #endregion
 
-        #region 4 - Draw
+
+        #region 4
         public static bool Draw(Context context) => context.ActualPlayer.GetCard();
+    
         #endregion
 
-        #region 5 - Delete Weakest
+
+
+        #region 5
         public static bool DeleteWeakest(Context context)
         {
-            var (weakestCard, sourceList) = context.RivalPlayer.Battlefield.HighPeekSilverCard(false);
-            if (weakestCard is null) return false;
+            (Card, List<Card>) weakest = context.RivalPlayer.Battlefield.HighPeekSilverCard(false);
+            if (weakest.Item1 == null) 
+                return false;
 
-            context.RivalPlayer.Battlefield.SendToGraveyard(weakestCard, sourceList);
+            context.RivalPlayer.Battlefield.SendToGraveyard(weakest.Item1, weakest.Item2);
             return true;
         }
         #endregion
 
-        #region 6 - Delete Strongest
+
+
+        #region 6
         public static bool DeleteStrongest(Context context)
         {
-            var actualPlayerStrongest = context.ActualPlayer.Battlefield.HighPeekSilverCard(true);
-            var rivalPlayerStrongest = context.RivalPlayer.Battlefield.HighPeekSilverCard(true);
+            (UnityCard, List<Card>) actualPlayerList = context.ActualPlayer.Battlefield.HighPeekSilverCard(true);
+            (UnityCard, List<Card>) rivalPlayerList = context.RivalPlayer.Battlefield.HighPeekSilverCard(true);
 
-            var (strongestCard, sourceList) = actualPlayerStrongest.Item1 is null || 
-                                              actualPlayerStrongest.Item1.InitialPower < rivalPlayerStrongest.Item1?.InitialPower
-                                              ? rivalPlayerStrongest 
-                                              : actualPlayerStrongest;
+            if (actualPlayerList.Item1 == null && rivalPlayerList.Item1 == null) 
+                return false;
+            
+            if(actualPlayerList.Item1 == null || actualPlayerList.Item1.InitialPower < rivalPlayerList.Item1.InitialPower)
+            {
+                context.RivalPlayer.Battlefield.SendToGraveyard(rivalPlayerList.Item1, rivalPlayerList.Item2);
+                return true;
+            }
 
-            if (strongestCard is null) return false;
+            else if (rivalPlayerList.Item1 == null || actualPlayerList.Item1.InitialPower > rivalPlayerList.Item1.InitialPower)
+            {
+                context.ActualPlayer.Battlefield.SendToGraveyard(actualPlayerList.Item1, actualPlayerList.Item2);
+            }
+else if (actualPlayerList.Item1.InitialPower == rivalPlayerList.Item1.InitialPower)
+            {
+                context.ActualPlayer.Battlefield.SendToGraveyard(actualPlayerList.Item1, actualPlayerList.Item2);
+                context.RivalPlayer.Battlefield.SendToGraveyard(rivalPlayerList.Item1, rivalPlayerList.Item2);
+            }
 
-            context.RivalPlayer.Battlefield.SendToGraveyard(strongestCard, sourceList);
+            else return false;
+
             return true;
         }
         #endregion
 
-        #region 7 - Multiply Itself
+
+
+        #region 7
         public static bool MultiplyItself(Context context)
         {
+            Player player = context.ActualPlayer;
             UnityCard card = (UnityCard)context.ActualCard;
-            List<UnityCard> matchingCards = new();
-            int multiplier = 0;
+            int count = 0;
+            List<UnityCard> list = new List<UnityCard>();
 
-            foreach (var zone in context.ActualPlayer.Battlefield.Zones)
+            for (int i = 0; i < player.Battlefield.Zones.Length; i++)
             {
-                CountMatchingCards(zone, card, matchingCards, ref multiplier);
+                CountCardsInList(player.Battlefield.Zones[i], card, list, ref count);
             }
 
-            foreach (var matchingCard in matchingCards)
-            {
-                matchingCard.ChangeActualPower(matchingCard.ActualPower * multiplier, true);
-            }
+                foreach (UnityCard cards in list)
+                {
+                    cards.ChangeActualPower(cards.ActualPower * count, true);
+                }
 
             return true;
         }
         #endregion
 
-        #region 8 - Clean Lower Zone
+
+        #region 8
         public static bool CleanLowerZone(Context context)
         {
             try
             {
-                int minCount = int.MaxValue;
-                List<Card>? targetZone = null;
+                int minCount = 7;
+                List<Card> list = null;
                 Card augment = Tools.MotherCard;
-                Player targetPlayer = context.RivalPlayer;
+                Player player = context.RivalPlayer;
 
-                foreach (var zone in context.ActualPlayer.Battlefield.Zones)
+                for (int i = 0; i < context.ActualPlayer.Battlefield.Zones.Length; i++)
                 {
-                    if (FindMinCountZone(zone, ref minCount, ref targetZone, context.ActualPlayer))
+                    if (CountCardsAndCheckMinCount(context.ActualPlayer.Battlefield.Zones[i], context.ActualPlayer, ref minCount, ref list, context.ActualPlayer))
                     {
-                        augment = context.ActualPlayer.Battlefield.Augment[Tools.IndexByZone[context.ActualPlayer.ZoneByList[zone]]];
-                        targetPlayer = context.ActualPlayer;
+                        augment = context.ActualPlayer.Battlefield.Augment[i];
+                        player = context.ActualPlayer;
+                    }
+                    if (CountCardsAndCheckMinCount(context.RivalPlayer.Battlefield.Zones[i], context.RivalPlayer, ref minCount, ref list, context.RivalPlayer))
+                    {
+                        augment = context.RivalPlayer.Battlefield.Augment[i];
+                        player = context.RivalPlayer;
                     }
                 }
 
-                foreach (var zone in context.RivalPlayer.Battlefield.Zones)
-                {
-                    if (FindMinCountZone(zone, ref minCount, ref targetZone, context.RivalPlayer))
-                    {
-                        augment = context.RivalPlayer.Battlefield.Augment[Tools.IndexByZone[context.RivalPlayer.ZoneByList[zone]]];
-                        targetPlayer = context.RivalPlayer;
-                    }
-                }
+                if (list is null) return false;
 
-                if (targetZone is null) return false;
-
-                targetPlayer.Battlefield.SendToGraveyard(augment, targetPlayer.Battlefield.Augment);
-                targetPlayer.Battlefield.SendToGraveyard(targetZone);
+                player.Battlefield.SendToGraveyard(augment, player.Battlefield.Augment);
+                player.Battlefield.SendToGraveyard(list);
 
                 return true;
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                Console.WriteLine(ex.Message);
+                Debug.Log(e.Message);
                 return false;
             }
         }
         #endregion
 
-        #region 9 - Void Effect
+    
+
+        #region 9
         public static bool VoidEffect(Context context) => true;
         #endregion
 
-        #region Tools
-        static bool FindMinCountZone(List<Card> zone, ref int minCount, ref List<Card>? targetZone, Player player)
-        {
-            int cardCount = zone.Count(card => !card.Equals(Tools.MotherCard));
-            if (!player.Battlefield.Augment[Tools.IndexByZone[player.ZoneByList[zone]]].Equals(Tools.MotherCard))
-                cardCount++;
 
-            if (cardCount > 0 && cardCount < minCount)
+
+
+        #region Tools
+        static bool CountCardsAndCheckMinCount(List<Card> forCount, Player player, ref int minCount, ref List<Card> list, Player actualPlayer)
+        {
+            int count = 0;
+
+            foreach (Card card in forCount)
             {
-                minCount = cardCount;
-                targetZone = zone;
-                return true;
+            if(!card.Equals(Tools.MotherCard)) 
+                    count++;
             }
 
+            if (!actualPlayer.Battlefield.Augment[Tools.IndexByZone[actualPlayer.ZoneByList[forCount]]].Equals(Tools.MotherCard))
+                count++;
+            
+            if (count > 0 && (count < minCount || (count == minCount && !player.Equals(actualPlayer))))
+            {
+                minCount = count;
+                list = forCount;
+                return true;
+            }
             return false;
         }
 
-        static void CountMatchingCards(List<Card> zone, UnityCard card, List<UnityCard> matchingCards, ref int count)
+        static void CountCardsInList(List<Card> forCount, UnityCard card, List<UnityCard> list, ref int count)
         {
-            foreach (var zCard in zone)
+            foreach (Card cards in forCount)
             {
-                if (zCard.Equals(card))
+                if (cards.Equals(card))
                 {
                     count++;
-                    matchingCards.Add((UnityCard)zCard);
+                    list.Add((UnityCard)cards);
                 }
             }
         }
 
-        static void ChangeActualPower(List<Card> zone, int reduction = 1)
+        static void ChangeActualPower(List<Card> list, int eliminate = 1)
         {
-            foreach (var card in zone)
+            foreach (Card card in list)
             {
                 if (card is UnityCard unityCard && unityCard.Rank == Rank.Silver)
                 {
-                    unityCard.ChangeActualPower(unityCard.ActualPower - reduction, true);
+                    unityCard.ChangeActualPower(unityCard.ActualPower - eliminate, true);
                 }
             }
         }
 
-        static void CollectCardsAndPower(List<Card> zone, List<UnityCard> cards, ref double totalPower)
+        static void KeepCardsAndCountPower(List<Card> forCount, List<UnityCard> list, ref double power)
         {
-            foreach (var card in zone)
+            foreach (Card card in forCount)
             {
                 if (card is UnityCard unityCard)
                 {
-                    cards.Add(unityCard);
-                    totalPower += unityCard.ActualPower;
+                    list.Add(unityCard);
+                    power += unityCard.ActualPower;
                 }
             }
         }
         #endregion
+
     }
 }
